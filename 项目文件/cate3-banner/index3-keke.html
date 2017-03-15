@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>潭州学院电商平台</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body,ul{font-size:12px;font-family:"微软雅黑";color:#666;list-style:none;}
+			ul,li{list-style:none}
+			a{text-decoration:none;text-align:center;}
+			/*top start*/
+			.top{width:100%;height:54px;background:#2f333b;}
+			.top .t_logo{width:197px;height:54px;display:block;background:url("images/head-logo.jpg") no-repeat top center;float:left;}
+			.top .t_logo:hover{background-position:0 -54px;}
+			.top .t_login{height:54px;float:right;margin-right:6%;}
+			.top .t_login .l_desc li{float:left;padding:0 8px 0 8px;line-height:54px;color:#b8bbbf;}
+			.top .t_login .l_desc li a{font-size:14px;color:#b8bbbf;display:block;text-decoration:none;}
+			.top .t_login .l_desc li a:hover{color:#fff;}
+			/*end top*/
+
+			.tools{width:100%;height:75px;background:linear-gradient(#fff,#F4F4F7);}
+			.tools .t_nav{width:1200px;height:75px;margin:0 auto;}
+			.tools .t_nav .n_icon{width:448px;height:75px;}
+			.tools .t_nav .n_icon .i_con li{float:left;padding-right:50px;}
+			.tools .t_nav .n_icon .i_con li a{text-decoration:none;line-height:75px;display:inline-block;}
+			.tools .t_nav .n_icon .i_con li a:hover span{color:#6dc186;}
+			.tools .t_nav .n_icon .i_con li a i{width:26px;height:26px;display:inline-block;background:url("images/head-icon.png") no-repeat;margin-right:5px;vertical-align: middle;}
+			.tools .t_nav .n_icon .i_con li a span{color:#8b8c8f;font-size:18px;}
+			.tools .t_nav .n_icon .i_con li a .c_index{background-position:0 -34px;}
+			.tools .t_nav .n_icon .i_con li .c_i:hover .c_index{background-position:0 -62px;}
+			.tools .t_nav .n_icon .i_con li a .c_vip{background-position:-29px -34px;}
+			.tools .t_nav .n_icon .i_con li .c_v:hover .c_vip{background-position:-29px -62px;}
+			.tools .t_nav .n_icon .i_con li a .c_free{background-position:-58px -34px;}
+			.tools .t_nav .n_icon .i_con li .c_f:hover .c_free{background-position:-58px -62px;}
+
+
+			/*banner图集*/
+			.bannerbox{width:1200px;margin:40px auto;}
+			/*margin padding float display是用控制布局的 */
+			.bannerbox .c_left{width:300px;background:red;height:374px;float:left;margin-right:20px;}
+			.bannerbox .c_right{width:874px;height:374px;float:left;overflow:hidden;position:relative;}
+			.bannerbox .c_right ul.bimg{width:1000%;position:relative;}
+			.bannerbox .c_right ul.bimg li{float:left;width:874px;height:374px;background:#111;color:#fff;font-size:36px;}
+			/*上一张和下一张*/
+			.bannerbox .c_right .pn{display:block;position:absolute;width:60px;height:60px;z-index:1;top:157px;text-align:center;line-height:60px;font-size:48px;color:#999;background:#333;background:rgba(0,0,0,0.6);opacity:0;filter:alpha(opacity=0);transition:opacity .6s ease;}
+			#prev{left:0;}
+			#next{right:0;}
+			/*小圆圈*/
+			.bannerbox .c_right .cyclebox{position:absolute;bottom:0;left:0;width:100%;height:0px;background:rgba(5,5,5,0.7);transition:height .6s ease;}
+			.bannerbox .c_right:hover .pn{opacity:1;filter:alpha(opacity=100);transition:opacity .6s ease;}
+			.bannerbox .c_right:hover .cyclebox{height:50px;transition:height .6s ease;}
+			.bannerbox .c_right .cyclebox ul{width:200px;height:50px;margin:0 auto;}
+			.bannerbox .c_right .cyclebox ul li{float:left;width:20px;height:20px;background:#999;margin-top:15px;text-align:center;color:#fff;margin-left:10px;border-radius:50%;cursor:pointer}
+			.bannerbox .c_right .cyclebox li.selected{background:green}
+			.bannerbox .c_right .cyclebox li:hover{background:green}
+
+		</style>
+	</head>
+<body>
+
+	<!--top start-->
+	<div class="top">
+		<a href="#" class="t_logo"></a>
+		<div class="t_login">
+			<ul class="l_desc">
+				<li><a href="#">登录</a></li>
+				<li>|</li>
+				<li><a href="#">注册</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--end top-->
+
+	<div class="tools">
+		<div class="t_nav">
+			<div class="n_icon">
+				<ul class="i_con">
+					<li>
+						<a href="#" class="c_i">
+							<i class="c_index"></i>
+							<span>首页</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="c_v">
+							<i class="c_vip"></i>
+							<span>VIP课程</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="c_f">
+							<i class="c_free"></i>
+							<span>免费体验课</span>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+			<div class="n_search"></div>
+		</div>
+	</div>
+	
+	
+	
+	<div id="bannerbox" class="bannerbox">
+		<!--分类栏目左边-->
+		<div class="c_left">
+		
+		</div>
+		<!--banner右边-->	
+		<div class="c_right">
+			<a href="javascript:void(0);" class="pn" id="prev"><</a>
+			<ul  class="bimg" id="banner_ul" style="left:-874px;">
+				<!--最后放在第一张-->
+				<li><a href="#"><img src="http://static.tanzhouedu.com//group1/M00/00/02/CqpsflWmGBCAXj9UAAN_D1XMcxU455.png"></a></li>
+				<li><a href="#"><img src="http://static.tanzhouedu.com//group1/M00/00/02/CqpsflWmGIKAcX-iAAJ0qz_N5Y4790.png"></a></li>
+				<li><a href="#"><img src="http://static.tanzhouedu.com//group1/M00/00/06/CqpsflWt-eqAcPrBAAMBeTT9mBA649.png"></a></li>
+			</ul>
+			<a href="javascript:void(0);" class="pn" id="next">></a>
+			<!--圆圈盒子-->
+			<div class="cyclebox">
+				<ul>
+					<li class="selected">1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	
+	
+
+
+	
+
+	<!--引入jquery-->
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript">
+
+		/*
+			1:哪些是块级元素 特点是什么
+			2:哪些行内元素  特点什么
+			3:修饰的文字和图片的样式
+			4:哪些是用来控制布局
+			4:哪些元素是不被继承的，哪些元素是被继承
+			5:定位(position)和布局(float width height padding margin line-height display flexbox flex box-sizing)的关系 修饰元素
+		*/
+	
+		/*
+			格式公式:
+			<div overflow:hidden
+			  <ul width:1000%;position:relative; 
+				<li><img/></li>
+			  </ul>
+			</div>
+
+			目标是:改变ul改变 left位置 
+		*/
+
+		//初始化banner
+		function initBanner(){
+			//获取图片的盒子对象
+			var $ulDom = $("#banner_ul");
+			//控制轮播的索引
+			var index = 1;
+			//获取宽度
+			var w = $ulDom.find("li").eq(0).width();
+			//动画执行的时间
+			var timer = 3000;
+			//定时器
+			var bannerTimer = null;
+			
+			//附加元素收尾相加的元素
+			var $first = $ulDom.find("li:first").clone();
+			var $last= $ulDom.find("li:last").clone();
+			//var $first = $ulDom.find("li").eq(0);
+			//var $last= $ulDom.find("li").eq(length-1);
+			$ulDom.append($first);
+			$ulDom.prepend($last);
+			//获取长度
+			var length = $("#banner_ul").children().length;
+
+			//下一张
+			$("#next").click(function(){
+				//清除动画
+				clearInterval(bannerTimer);
+				index++;
+				if(index == length-1){
+					$ulDom.css("left",0);
+					index = 1;
+				};
+				$ulDom.stop(true,true).animate({"left":-1 * w * index });
+				$("#bannerbox").find(".cyclebox li").eq(index-1).addClass("selected").siblings().removeClass("selected");
+			}).mouseleave(function(){
+				//离开的执行动画
+				playBanner();
+			}).mouseover(function(){
+				clearInterval(bannerTimer);
+			});
+		
+			//上一张
+			$("#prev").click(function(){
+				//清除动画
+				clearInterval(bannerTimer);
+				index--;
+				if(index == 0){
+					//最后一张
+					index = length - 2;	
+					$ulDom.stop(true,true).animate({"left":0},function(){
+						//显示最后一个张图片
+						$(this).css("left",-1 * w * index);
+					});
+				}else{
+					$ulDom.stop(true,true).animate({"left":-1 * w * index});
+				}
+
+				$("#bannerbox").find(".cyclebox li").eq(index-1).addClass("selected").siblings().removeClass("selected");
+			}).mouseleave(function(){
+				//离开的执行动画
+				playBanner();
+			}).mouseover(function(){
+				clearInterval(bannerTimer);
+			});
+
+
+			/*小圆圈的绑定事件*/
+			$("#bannerbox").find(".cyclebox li").click(function(){
+				clearInterval(bannerTimer);
+				index = $(this).index()+1;
+				$(this).addClass("selected").siblings().removeClass("selected");
+				$ulDom.stop(true,true).animate({"left":-1 * w * index });
+			}).mouseleave(function(){
+				//离开的执行动画
+				playBanner();
+			}).mouseover(function(){
+				clearInterval(bannerTimer);
+			});
+
+			//banner的定时器轮播
+			function playBanner(){
+				bannerTimer = setInterval(function(){
+					$("#next").trigger("click");
+				},timer);	
+			};
+			
+			//执行轮播
+			playBanner();
+		};
+
+
+		$(function(){
+			//调用banner效果
+			initBanner();
+		});
+	</script>
+</body>
+</html>

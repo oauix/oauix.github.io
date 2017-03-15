@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="Author" content="">
+		<!--页面三要素-->
+		<title>jplay</title>
+		<meta name="description" content="关键词，关键词">
+		<meta name="keywords" content="说明书">
+		<!--层叠样式-->
+		<style>
+			*{margin:0px;padding:0px;}
+			body{font-size:12px;color:#666;font-family:"微软雅黑";}
+		</style>
+		<!--js脚本语言-->
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/jquery.jplayer.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){ 
+				ready: function (event) {
+					$("#jquery_jplayer_1").jPlayer({  ready: function (event) {				
+						$(this).jPlayer("setMedia", {   
+							m4a:"audio/北京天使合唱团 - 祈祷.mp3",  
+							oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"  
+							});   
+					},   
+					swfPath: "js/jquery.jplayer.swf", 
+					supplied: "mp3, oga",  
+					wmode: "window"   
+				});  
+			});
+		</script>
+	</head>
+	<body>
+		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="关键词，关键词">
+		<meta charset="UTF-8">
+		<title>position定位认识 - oauix</title>
+		<style type="text/css">
+			.nav{margin:10px auto;width:800px;}
+			body{font-size:12px;font-family:"微软雅黑" "楷体";color:#666;line-height:30px;}
+			span{color:red;}
+		</style>
+	</head>
+	<body>
+	  <div class="nav"> 
+		<p>CSS2.0 HandBook上的解释： <span>定位不常用，根据像素定位，显示器不同会乱码</span></p>
+
+		<p>设置此属性值为 absolute 会将对象拖离出正常的文档流绝对定位而不考虑它周围内容的布局。假如其他具有不同 z-index 属性的对象已经占据了给定的位置，他们之间不会相互影响，而会在同一位置层叠。此时对象不具有外补丁( margin )，但仍有内补丁( padding )和边框( border )。</p>
+		要激活对象的绝对(absolute)定位，必须指定 left ， right ， top ， bottom 属性中的至少一个，并且设置此属性值为 absolute 。否则上述属性会使用他们的默认值 auto ，这将导致对象遵从正常的HTML布局规则，在前一个对象之后立即被呈递。</p> 
+
+		<p>TRBL属性（TOP、RIGHT、BOTTOM、LEFT）只有当设定了position属性才有效。 </p>
+		当设定position:absolute </p>
+		如果父级（无限）没有设定position属性，那么当前的absolute则结合TRBL属性以浏览器左上角为原始点进行定位 </p>
+		如果父级（无限）设定position属性，那么当前的absolute则结合TRBL属性以父级（最近）的左上角为原始点进行定位。 </p>
+
+		<p>当设定position: relative </p>
+		<p>则参照父级（最近）的内容区的左上角为原始点结合TRBL属性进行定位（或者说相对于被定位元素在父级内容区中的上一个元素进行偏移），无父级则以BODY的左上角为原始点。相对定位是不能层叠的。在使用相对定位时，无论元素是否进行移动，元素依然占据原来的空间。因此，移动元素会导致它覆盖其他框。 
+
+		<p>一般来讲，网页居中的话用Absolute就容易出错，因为网页一直是随着分辨率的大小自动适应的，而Absolute则会以浏览器的左上角为原始点，不会应为分辨率的变化而变化位置。有时还需要依靠z-index来设定容器的上下关系，数值越大越在最上面，数值范围是自然数。当然有一点要注意，父子关系是无法用z-index来设定上下关系的，一定是子级在上父级在下。</p> 
+
+		<p>设置此属性值为 relative 会保持对象在正常的HTML流中，但是它的位置可以根据它的前一个对象进行偏移。在相对(relative)定位对象之后的文本或对象占有他们自己的空间而不会覆盖被定位对象的自然空间。与此不同的，在绝对(absolute)定位对象之后的文本或对象在被定位对象被拖离正常文档流之前会占有它的自然空间。放置绝对(absolute)定位对象在可视区域之外会导致滚动条出现。而放置相对(relative)定位对象在可视区域之外，滚动条不会出现。其实对于定位的主要问题是要记住每个定位的意义。相对定位是“相对于“元素在文档流中初始位置的，而绝对定位是”相对于“最近的已经定位的祖先元素。 </p>
+
+		<p>以下是补充：</p>
+
+		<p>虽然有知道css的绝对定位（absolute）、相对定位（relative），但却从未自己动手写过相关的效果！ </p>
+		<p>忙活了一大半天，也算是完成了！也把这两个属性搞明白了一些！ </p>
+
+		<p>总结如下：</p> 
+
+		<p>先看下面这一个层结构 </p>
+
+		<p>&lt;body&gt; </p>
+
+		<p>&lt;div id=posi&gt; </p>
+		<p>&lt;div id=rel&gt; 此层只应用position：relative;样式 &lt;/div&gt; </p>
+		<p>&lt;div id=abs&gt; 此层只应用position：absolute;样式 &lt;/div&gt; </p>
+		<p>&lt;div id=sss&gt; 不应用样式 &lt;div&gt; </p>
+
+		<p>&lt;/div&gt; </p>
+
+		<p>&lt;/body&gt; </p>
+
+		<p>1、absolute：不占位、relative：有占位！ </p>
+
+		<p>如上层结构: </p>
+
+		<p>id为rel的层在显示时，会占用一行！其后面的abs层只会在下一行显示出来！ </p>
+		<p>id为abs的层在显示时，会与后面id为sss的重叠在一起！ </p>
+
+		<p>2、默认情况下（不结合top等来定位），absolute（绝对定位）以父层来定位的 </p>
+		<p>如上面的id为abs的层，如果不结合top等来定位，则其显示位置会随父级posi层（posi在文档左下角，其也会在左下角）</p> 
+
+		<p>3、在结合top、bottom、right、left等属性时，absolute（绝对定位）以窗口做为定位，relative以自身的占位为基线做偏移！如下： </p>
+
+		<p>&lt;body&gt; </p>
+
+		<p>&lt;div id=posi&gt; </p>
+
+		<p>&lt;div id=sss&gt; 不应用样式 &lt;div&gt; </p>
+		<p>&lt;div id=rel&gt; 此层应用position：relative;bottom：30px;样式 &lt;/div&gt; </p>
+		<p>&lt;div id=abs&gt; 此层只应用position：absolute;bottom：30px;样式 &lt;/div&gt; </p>
+
+		<p>&lt;/div&gt; </p>
+
+		<p>&lt;/body&gt; </p>
+
+		<p>以上代码： </p>
+		<p>id为rel的层会上移并与id为sss的层重叠 </p>
+		<p>id为abs的层会以窗口为基线，移至距离窗口30像素的位置！</p> 
+
+		<p>4、在结合top、bottom、right、left等属性时，如果想absolute（绝对定位）能以父层做为定位基线的话，则在父层应用absolute或relativ属性就可以!如下： </p>
+
+		<p>&lt;body&gt; </p>
+
+		<p>&lt;div id=posi style=”position：relative”&gt; </p>
+
+		<p>&lt;div id=rel&gt; 此层应用position：relative;bottom：30px;样式 &lt;/div&gt; </p>
+		<p>&lt;div id=abs&gt; 此层只应用position：absolute;bottom：30px;样式 &lt;/div&gt; </p>
+
+		<p>&lt;/div&gt; </p>
+
+		<p>&lt;/body&gt; </p>
+
+		<p>以上代码：id为posi的层，也可以用absolute属性！</p> 
+		<p>id为rel的层，不受影响，以自身的占位为基线做偏移！</p>
+
+		<p>Position：fixed；top：0px；left：0px；fixed 背景是否随容器滚动：（有两个可选值，scroll滚动，fixed不滚动，默认是scroll）</p>
+	  </div>
+	</body>
+</html>

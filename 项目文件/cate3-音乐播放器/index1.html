@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="Author" content="">
+		<!--页面三要素-->
+		<title>ie9+--音乐播放器-keke老师写的插件</title>
+		<meta name="description" content="关键词，关键词">
+		<meta name="keywords" content="说明书">
+		<!--层叠样式-->
+		<style>
+			*{margin:0px;padding:0px;}
+			body{font-size:12px;color:#666;font-family:"微软雅黑";}
+			.nav{margin:90px auto;width:680px;} 
+			.nav .chang{width:600px;display: inline-block;background: #666;}
+			.nav .chang .ang{height:8px;width:0%;background:green;}
+		</style>
+		<!--js脚本语言-->
+		<!--插件音乐插件文件-->
+		<script type="text/javascript" src="audio/tz_audio.js"></script>
+		<script type="text/javascript">
+			//初始化tz_audio.js中的tzAudio对象
+			//var tzAudio = new tzAudio();---只有播放、暂时、上一首和下一首，这样初始化就行
+			//要显示音乐时间，要在初始化时返回总时间time和已播放时间timer值
+			var tzAudio=new tzAudio(function(timer,stimer){
+				document.getElementById("time").innerText=stimer; //音乐的时间
+			},function(ctimer,cstimer){
+				document.getElementById("timer").innerText=cstimer; //已播放了的时间
+				//进度条，跟进已播放时间/总时间，再赋给div宽
+				var c = this.duration;//获取总时长
+				var jind = (ctimer / c) * 100;
+				document.getElementById("jindu").style.width=jind+"%";
+				document.getElementById("sname").innerText="歌曲："+this.name;
+
+			});
+			//添加音乐列表，tz_audio.js的封装的方法
+			tzAudio.add("北京天使合唱团 - 祈祷","audio/北京天使合唱团 - 祈祷.mp3");
+			tzAudio.add("许美静 - 只是这人生","audio/许美静 - 只是这人生.mp3");
+			tzAudio.add("景岗山 - 步步高","audio/景岗山 - 步步高.mp3");
+			tzAudio.add("Wonder Girls - Nobody","audio/Wonder Girls - Nobody.mp3");
+			tzAudio.add("小娟&山谷里的居民,山谷里的居民 - 我的家（原创）","audio/小娟&山谷里的居民,山谷里的居民 - 我的家（原创）.mp3");
+			//tzAudio.play(0);
+			//tzAudio.next();
+		</script>
+	</head>
+	<body>
+		<div class="nav" id="video">	
+			<p>
+				<a href="javascript:void(0);" onclick="tzAudio.play(0);">播放</a>
+				<a href="javascript:void(0);" onclick="tzAudio.stop();">暂停</a>
+				<a href="javascript:void(0);" onclick="tzAudio.prev();">上一首</a>
+				<a href="javascript:void(0);" onclick="tzAudio.next();">下一首</a>
+				<span id="sname" style="margin-left:200px">歌曲：</span>
+			</p>
+			<span id="timer" style="color:green">00:00</span>
+			<div class="chang">
+				<div class="ang" id="jindu"></div>
+			</div>
+			<span id="time" style="color:red">00:00</span>
+			<div style="margin-top:200px;line-height:22px">
+				现有的歌曲：<br/>
+				1.北京天使合唱团 - 祈祷<br />
+				2.许美静 - 只是这人生<br />
+				3.景岗山 - 步步高<br />
+				4.Wonder Girls - Nobody<br />
+				5.山谷里的居民 - 我的家
+			</div>
+		</div>
+	</body>
+</html>
+
+<!--歌曲信息显示、音量控制、进度拖动、歌词、停止、动态添加音乐和歌词 进发方向-->

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="Author" content="">
+		<!--页面三要素-->
+		<title>tes2-升级版</title>
+		<meta name="description" content="关键词，关键词">
+		<meta name="keywords" content="说明书">
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/jquery.jplayer.js"></script>
+		<!--层叠样式-->
+		<style>
+			*{margin:0px;padding:0px;}
+			body{font-size:12px;color:#666;font-family:"微软雅黑";}
+			.nav{margin:100px auto;width:440px;}
+		</style>
+	</head>
+	<body>
+		<div class="nav">
+			<span id="jquery_jplayer_1"></span>
+			<span id="my_play">播放</span>
+			<span id="my_pause">暂停</span>
+			<span id="my_stop">停止</span>
+			<span id="my_volumeMin">静音</span>
+			<span id="my_volumeMins" style="color:green">循环</span>
+			<span id="my_volumeMax">最大声音</span>---<span id="titles">歌曲名：</span>
+			<div id="jp_container_1">
+				<!--声音调整条-->
+				<div class="jp-volume-bar" style="height:20px;background:#666;width:138px;">
+					<div class="jp-volume-bar-value" style="height:18px;background:red;" style="width: 80%;"></div>
+				</div>
+				<span class="jp-current-time" role="timer" aria-label="time">00:00</span>
+				<div class="jp-progress" style="width:300px;">
+					<div class="jp-seek-bar" style="height:20px;background:#666">
+						<div class="jp-play-bar" style="height:20px;background:#ff0066;width: 1%; overflow: hidden;"></div>
+					</div>
+				</div>
+				<span class="jp-duration" role="timer" aria-label="duration">00:00</span>
+			</div>
+		
+			<div id="playlist_list">
+				<ul>
+					<li jplayer="audio/dd.mp3" songer="北京天使合唱团 - 祈祷" songname="b">1使合唱团 - 祈祷</li>
+					<li jplayer="audio/cc.mp3" songer="这就是人生" songname="c">2这就是人生</li>
+					<li jplayer="audio/ee.mp3" songer="步步高" songname="e">3-步步高</li>
+				</ul>
+			</div>
+			<span id="my_ces">事件</span>
+		</div>
+		<script type="text/javascript">
+			var tits="北京天使合唱团 - 祈祷",srcs="audio/dd.mp3";
+			//播放
+			//$("#my_play").jPlayer("play");
+			$("#my_play").click(function(){
+					$("#jquery_jplayer_1").jPlayer("play");
+			});
+			//暂停
+			$("#my_pause").click(function(){
+					$("#jquery_jplayer_1").jPlayer("pause");
+			});
+			//停止
+			$("#my_stop").click(function(){
+					$("#jquery_jplayer_1").jPlayer("stop");
+			});
+				//静音
+			var mu_bb=1;
+			$("#my_volumeMin").click(function(){
+					if(mu_bb==1){
+						$("#jquery_jplayer_1").jPlayer("mute");
+						mu_bb=0;
+					}
+					else if(mu_bb==0){
+						$("#jquery_jplayer_1").jPlayer("unmute");
+						mu_bb=1;
+					}
+			});
+			$("#my_volumeMins").click(function(){
+					$("#jquery_jplayer_1").jPlayer("repeat");
+			});
+			//最大声音
+			$("#my_volumeMax").click(function(){
+					$("#jquery_jplayer_1").jPlayer("volumeMax");
+			});
+			$("#playlist_list ul li").click(function(){
+				//alert(media.mp3);
+				tits=$(this).attr("songer");
+				srcs=$(this).attr("jplayer");
+				//$("#jquery_jplayer_1").changeAndjPlayer(srcs);
+				//初始化播放器
+				mymusic();
+				//歌曲名显示
+				$("#titles").text("歌曲名："+tits);
+				//alert(srcs);
+			});
+			//初始化播放器函数
+			function mymusic(){
+				$("#jquery_jplayer_1").jPlayer({
+					ready: function (event) {
+						$(this).jPlayer("setMedia", {
+							title:tits,
+							mp3:srcs
+						}).jPlayer("play");
+					},
+					swfPath: "js/jquery.jplayer.swf",
+					supplied: "mp3",
+					supplied: "mp3,m4a, oga",
+					volume: 0.6,  
+					wmode: "window",
+					useStateClassSkin: false,
+					autoBlur: false,
+					smoothPlayBar: false,
+					keyEnabled: true,
+					remainingDuration: false,
+					toggleDuration: true
+				});
+			}
+			$("#my_ces").click(function(){
+					
+			});
+		</script>
+	</body>
+</html>

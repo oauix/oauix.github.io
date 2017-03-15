@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="Author" content="">
+		<!--页面三要素-->
+		<title>new Document</title>
+		<meta name="description" content="关键词，关键词">
+		<meta name="keywords" content="说明书">
+		<script type="text/javascript" src="http://www.jplayer.org/latest/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="http://www.jplayer.org/latest/dist/jplayer/jquery.jplayer.min.js"></script>
+		<script type="text/javascript" src="http://www.jplayer.org/latest/dist/add-on/jquery.jplayer.inspector.min.js"></script>
+		<!--层叠样式-->
+		<style>
+			*{margin:0px;padding:0px;}
+			body{font-size:12px;color:#666;font-family:"微软雅黑";}
+		</style>
+		<!--js脚本语言-->
+		<script>
+			$(document).ready(function(){
+				$("#jquery_jplayer_1").jPlayer({
+					ready: function (event) {
+						$(this).jPlayer("setMedia", {
+							title: "北京天使合唱团 - 祈祷",
+							mp3: "audio/dd.mp3",
+							//oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"
+						});
+					},
+					swfPath: "js/jquery.jplayer.swf",
+					supplied: "mp3",
+					supplied: "mp3,m4a, oga",
+					volume: 0.6,  
+					wmode: "window",
+					useStateClassSkin: true,
+					autoBlur: false,
+					smoothPlayBar: true,
+					keyEnabled: true,
+					remainingDuration: false,
+					toggleDuration: true
+				});
+				//播放
+				$("#my_play").jPlayer("play");
+				//暂停
+				$("#my_pause").jPlayer("pause");
+				//停止
+				$("#my_stop").jPlayer("stop");
+/*
+				//设定音量
+				$("#jquery_jplayer_1").jPlayer("volume", 0.8); //设为最大音量的 25%
+				//播放结束事件
+				$("#jpId").jPlayer("onSoundComplete", function() {
+					alert('播放结束了');
+					this.element.jPlayer("play"); // 循环播放
+				});
+				//播放进行事件
+				$("#jpId").jPlayer("onProgressChange", function(lp,ppr,ppa,pt,tt) {
+					var s = '缓冲百分比:'+lp +'% ,';
+					s += '已播放占已缓冲的百分比:'+ppr +'% ,';
+					s += '已播放占总时长的百分比:'+ppa +'%';
+					s += '已播放时间:'+pt+ '毫秒 ,';
+					s += '总时间:'+tt+ '毫秒';
+					$("#play_info").text(s);
+				});
+*/
+			});
+		</script>
+	</head>
+	<body>
+		<div id="jquery_jplayer_1"></div>
+		<div id="jp_container_1">
+			<div class="jp-play">播放/暂停</div>
+			<div class="jp-stop">停止</div>
+		</div>
+	</body>
+</html>

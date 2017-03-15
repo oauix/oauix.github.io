@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="关键词，关键词">
+		<meta charset="UTF-8">
+		<title>个人系统 - oauix</title>
+		<link type="text/css" href="css/yema.css" rel="stylesheet" />
+		<style>
+			.top{
+				margin:0px auto;
+				width:1190px;
+				background-color:#F5F5F5;
+				line-height:30px;
+				font-size:14px;
+				color:#E1DDE1;
+			}
+			.top a{padding:20px 10px;}
+			.top a:hover{color:#FF4400;}
+			.top .top_left{float:left;width:100px;}
+			.top .top_right{float:right;width:600px;text-align:right;}
+			.top .top_right a:first-child{color:#F22E00;}
+			.top .top_right a:first-child:hover{color:#6c3;}
+			.tops{margin:6px auto;width:1190px;height:80px;border:1px solid #6c3;position:relative;}
+			.tops .tops_x{
+				font-size:16px;
+				background:red;
+				width:10px;
+				position:absolute;
+				top:0px;
+				right:0px;
+				text-align:right;
+				cursor:pointer;
+			}
+			.daohang{margin:0px auto;width:1190px;line-height:90px;height:70px;}
+			.daohang a{padding:10px 14px;font-size:16px;}
+			.daohang a:hover{text-decoration:underline;color:#6c3;}
+			.cont{margin:0px auto;width:1190px;}
+			.cont .cont_left{float:left;width:800px;}
+			.cont .cont_left .cont_left_r{height:300px;border:1px solid #66cc66;}
+			.cont .cont_left .cont_left_m{height:300px;border:1px solid #66cc66;}
+			.cont .cont_left .cont_left_x{height:280px;border:1px solid #66cc66;}
+			.cont .cont_left .cont_left_x .cont_left_x_c{margin:16px;font-size:16px;color: #66cc66;line-height:40px;float:left;width:366px;}
+			.cont .cont_right{float:left;width:388px;}
+			.cont .cont_right .zt{font-size:18px;padding:6px 20px;font-weight:800;}
+			.cont .cont_right .zta{font-size:16px;padding:10px 10px;margin:10px auto;width:240px;}
+			.cont .cont_right .zta a{border:2px solid #666;margin-left:1px;}
+			.cont .cont_right .zta a:hover{background:#6c3;}
+			.cont .cont_right .cont_right_d a{padding:13px 10px;}
+			.cont .cont_right .cont_right_y{height:400px;border:1px solid #66cc66;}
+			.cont .cont_right .cont_right_x{height:200px;border:1px solid #66cc66;}
+			.bottom{margin:0px auto;width:1190px;text-align:center;border:1px solid red;}
+		</style>
+	</head>
+	<body>
+		<div class="top">
+			<div class="top_left"><a href="#">web</a>|<a href="#">wap</a></div>
+			<div class="top_right">
+				<a href="html/login.html">亲，请登录吧！</a>|<a href="html/reg.html">加入我们[注册]</a>|<a href="#">个人中心</a>|<a href="index.html">返回主页</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div id="tops" class="tops">
+			<div>更新/通知部分 右边x可隐藏这内容</div>
+			<div class="tops_x" onclick="mytops()">X</div>
+		</div>
+		<div class="daohang">
+			<a href="#" title="技术型|认知型|教程">日志</a>
+			<a href="#" title="养心|调整节奏">音乐</a>
+			<a href="#" title="素材|记忆">图片库</a>
+			<a href="#" title="你知道想要什么！">目标</a>
+			<a href="#" title="知识整理">学习笔记</a>
+			<a href="#" title="自网络知识">资料</a>
+			<a href="#" title="真理|名言">心得</a>
+			<a href="#" title="自我认知">个人信息</a>
+			<a href="#" title="个人正品[小项目]">个人正品</a>
+			<a href="#" title="赠言|改进建议">留言</a>
+		</div>
+		<div class="cont">
+			<div class="cont_left">
+				<div class="cont_left_r">[精选日志]</div>
+				<div class="cont_left_m">[目标]</div>
+				<div class="cont_left_x">
+					[小项目/小作品]
+					<div>
+						<div class="cont_left_x_c">
+							<a href="html/html认识和课程安排.html">1.html认识及web前端课程安排</a><br/>
+							<a href="html/html标签.html">2.html认识及常用标签</a><br/>
+							<a href="html/rgb颜色.html">3.html之rgb颜色</a><br/>
+							<a href="html/img认识.html">4.html常用标签之img标签</a><br/>
+							<a href="html/font属性.html">5.html常用标签之font属性</a><br/>
+						</div>
+						<div class="cont_left_x_c">
+							<a href="html/form.html">6.html常用标签之form标签</a><br/>
+							<a href="html/position定位.html">7.html之position定位【收藏】</a><br/>
+							<a href="html/css认识.html">8.css认识</a><br/>
+							<a href="html/css3动态.html">9.css扩展-动态</a><br/>
+							<a href="html/wts特殊符号.html">10.网络上的特殊符号【收藏】</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cont_right">
+				<div class="cont_right_d">
+					<div class="zt">网站导航</div>
+					<div class="zta">
+						<a href="index.html">主页</a><a href="#">个人中心</a><a href="#">日志</a>
+					</div>
+					<div class="zta"><a href="#">资料</a><a href="#">学习笔记</a><a href="#">图片库</a></div>
+					<div class="zta"><a href="#">目标</a><a href="#">个人心得</a><a href="#">总结</a></div>
+					<div class="zta"><a href="#">个人经验</a><a href="#">作品</a><a href="#">个人信息</a></div>
+					<div class="zta"><a href="#">收藏作品</a><a href="#">小项目</a><a href="#">代码库</a></div>
+				</div>
+				<div class="cont_right_y">
+					<div class="zt">音乐播放器</div>
+					<div>
+						<audio src="music/小娟&山谷里的居民,山谷里的居民 - 我的家（原创）.mp3" controls="controls" style="width:385px;height:32px;"></audio>
+						<!--<EMBED src="music/小娟&山谷里的居民,山谷里的居民 - 我的家（原创）.mp3" autostart="true" loop="3" hidden="true" width="386" height="80" title="我的家" />-->
+					</div>
+				</div>
+				<div class="cont_right_x">
+					<div class="zt">推荐学习资料</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="bottom">&copy;-oauix</div>
+		<script type="text/javascript">
+			function mytops(){
+				document.getElementById("tops").style.display="none";
+			}
+		</script>
+	</body>
+</html>
