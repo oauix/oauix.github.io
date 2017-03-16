@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="关键词">
+		<meta name="desctiption" content="说明书">
+		<style type="text/css">
+			*{margin:0px;padding:0px}
+			body{font-size:62.5%;font-family:"微软雅黑";color:#666;}
+			.bod{margin:1% 1% 0 1%}
+			.bod .top{background:blue;color:#fff;font-size:1.4em;}
+			.bod .top .re_{padding:1%;width:5%;float:left;cursor:pointer;text-align:center}
+			.bod .top .logi{padding:1%;width:84%;text-align:center;color:#666;float:left;cursor:default}
+			#clear_{clear:both}
+			.bod .user_{padding:1%;font-size:1.4em;text-align:center}
+			#user,#pass{padding:1%;width:92%;color:#666}
+			.bod .sub_{font-size:1.4em;padding:1%;background:blue;text-align:center;cursor:pointer}
+			#sbutton{border:none;background:blue;color:#fff}
+			.bod .touu{text-align:right;padding:1%}
+			.bod .touu span{text-align:right;cursor:pointer}
+		</style>
+	</head>
+	<body>
+		<div class="bod">
+			<div class="top"><div class="re_">关闭</div><div class="logi">登录</div><div class="re_">注册</div><div id="clear_"></div></div>
+			<from action="" method="post">
+				<div class="user_">
+					<label for="user">用户</label>
+					<input type="text" id="user" value="输入您的用户名"  onfocus="javascript:if(this.value=='输入您的用户名')this.value='';"
+					onblur="javascript:if(this.value=='')this.value='输入您的用户名';">
+				</div>
+				<div class="user_">
+					<label for="pass">密码</label>
+					<input type="password" id="pass" placeholder="输入您的密码"onfocus="javascript:if(this.value=='输入您的密码')this.value='';"
+					onblur="javascript:if(this.value=='')this.value='输入您的密码';">
+				</div>
+				<div class="sub_"><input type="submit" id="sbutton" value="登录" /></div>
+			</from>
+			<div class="touu"><span>忘记密码</span></div>
+		</div>
+	</body>
+		<!--value和placeholder属性，placeholder html5支持，刚出来--->
+</html>

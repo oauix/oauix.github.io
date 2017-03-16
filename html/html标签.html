@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<title>HTML-常用标签一</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<style type="text/css">
+			*{margin:0px;padding:0px;}
+			boay{font-size:12px;font-fanily:"微软雅黑";color:#666;}
+			.bod{width:1000px;margin:0 auto;background-color:#666;}
+			.bod .t_bq{font-size:16px;color:#fff;font-family:"楷体";}
+			.bod .t_bq .h{color:#000;margin:10px 100px;}
+			.bod .t_bq .t_bq_ziti{font-size:40px;color:#33ffcc;font-family:"楷体";line-height:100px;}
+			.bod .t_bq .t_bq_zitia{font-size:40px;color:#21C53D;font-family:"楷体";line-height:100px;}
+		</style>
+	</head>
+	<body>
+		<div class="bod">
+			<div>
+				<h2>html常用元素：</h2>
+				<p><b>html标签：</b>html head title meta stlye body  font h p span i u b strong  
+				  	     a br hr img marquee table frameset ol ul dl pre form</p>
+				<p><b>html特殊符:</b>< > " c 空格</p>
+				<p><b>html注释:</b>/* */ /** */</p>
+			</div>
+			<div class="t_bq"><!--html页面中必用元素-->
+				<div>	
+					<div class="t_bq_ziti">&lt;html&gt;标签</div>
+					html标签是双标签，以&lt;html&gt;开始点，以&lt;/html&gt;结束点，在它们之间是文档的头部和主体.
+					不能与frameset同用。
+				</div>
+				<div>
+					<div class="t_bq_ziti">&lt;head&gt;标签</div>
+					自己理解：双标签，html的头部，通告浏览器一些信息，不显示；&lt;head&gt;标签用于定义文档的头部，它
+					是所有头部元素的容器。&lt;head&gt;中的元素可以引用脚、指示浏览器在哪里找到样式表、提供元信息等等。
+					文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web 中的位置以及和其他文档的关系等。
+					绝大多数文档头部包含的数据都不会真正作为内容显示给读者。
+				</div>
+				<div>
+					<div class="t_bq_ziti">&lt;title&gt;标签</div>
+					显示网页主题信息，文档的标题，供浏览器显示出来
+				</div>
+				<div>
+					<div class="t_bq_ziti">&lt;meta&gt;标签</div>
+					在 Web 中的位置以及和其他文档的关系等，可说明页面信息，放一些搜索引擎的关键词。
+				</div>
+				<div>
+					<div class="t_bq_ziti">&lt;style&gt;标签</div>
+					可引用css内部或外部样式。
+				</div>
+				<div>
+					<div class="t_bq_ziti">&lt;body&gt;标签</div>
+					自己理解：双标签，身体，浏览器显示部分；body 元素定义文档的主体。 body 元素包含文档的所有内容（比
+					如文本、超链接、图像、表格和列表等等）。
+				</div>
+			</div>
+			<hr><hr>
+			<div class="t_bq"><!--块元素标签-->
+				<div class="t_bq_zitia">&lt;font&gt;&lt;h&gt;&lt;i&gt;&lt;u&gt;&lt;span&gt;&lt;storng&gt;&lt;a&gt;&lt;
+				 hr&gt;&lt;br&gt;</div>
+				<p>&lt;font&gt;标签常用格式:
+				 &lt;font size="字体大小" color="字体颜色" face="字体类型"&gt;文字&lt;/font&gt;注:但是<font>里的属性不推
+				 荐用,一般用css来实现</p>
+				<p>&lt;hn&gt;标题标签：一共有h1-6，数字越大字体越小，效果越严紧.
+				注释：浏览器会自动地在标题的前后添加空行。</p>
+				<h1 class="h">我是标题1a</h1>
+				<h2 class="h">我是标题2b</h2>
+				<h3 class="h">我是标题3c</h3>
+				<h4 class="h">我是标题4d</h4>
+				<h5 class="h">我是标题5e</h5>
+				<h6 class="h">我是标题6f</h6>
+				&lt;b&gt;与&lt;strong&gt;加粗、&lt;i&gt;斜体、&lt;span&gt;跟css很实用、&lt;u&gt;下划线
+				<div class="t_bq_zitia">&lt;a&gt;超级链接标签</div>
+				<p>超级链接常用格式：&lt;a href="URL" target="打开方式"&gt;文字&lt;/a&gt;</p>
+				<p>URL-绝对路径、#id(描点链接,跟&lt;span id=id&gt;&lt;/span&gt;配用)、+文件名(即跳转该文件同目录下文件)、
+				 ../文件名(即跳转该文件上一目录下文件)</p>
+				<p>打开方式：_blank(在新窗口中打开)、_parent(在父框架集中打开)、_self(在相同的框架中打开 默认)、_top
+				 (在整个窗口中打开)、framename(在指定的框架中打开)</p>
+				<hr>
+				<hr>
+				<br>
+				<p>&lt;br/&gt;换行标签、&lt;hr/&gt;分割线标签</p>
+				<p>&lt;br/&gt;单标签，实现换一行显示</p>
+				<p>&lt;hr/&gt;单标签，一条分割线，可以用样式调整他显示方式，很实用</p>
+				<hr>
+			</div>
+			<div class="t_bq">
+				<div class="t_bq_zitia">&lt;img&gt;标签</div>
+				&lt;img&gt;常用格式：
+				&lt;img src="路径" alt="图片加载不成功文本提示的内容" width="宽" hight=“高”/&gt;
+				<div class="t_bq_zitia">&lt;marquee&gt;滚动标签</div>
+				&lt;marquee&gt;常用格式：
+				&lt;marquee direction="方向" scrollamount=“速度”&gt;内容&lt;/marquee&gt;
+				<p>注：这个标签属性很多，常用的有方向、速度、鼠标放上离开。	</p>
+			</div>
+		</div>
+	</body>
+</html>
