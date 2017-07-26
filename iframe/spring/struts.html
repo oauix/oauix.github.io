@@ -7,7 +7,7 @@
 		<meta name="keywords" content="关键词" />
 		<!-- 显示区缩放 适用于手机 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<link rel="stylesheet" href="../web/css/web.css" type="text/css" />
 		<style>
 			
 		</style>
@@ -155,15 +155,24 @@
 	}
 	public String execute(){
 		System.out.println("文件下载功能");
-
+		byte[] data=createPngImage();
+		img=new ByteArray(data);
 		return "success";
 	}
-	//配置:
-	<result type="stream" name="success">
-		
-	</result>
 </pre>
-				
+	//配置:
+<pre>	
+	&lt;result type="stream" name="success">
+		&lt;param name="contentType">image/png&lt;/param>
+		&lt;param name="inputName">img&lt;/param> //上面传下来的变量
+	&lt;/result>
+</pre>
+				<p>[返回值是json]</p>
+<pre>
+	&lt;result type="json" name="success"> //利用get set方法
+</pre>
+				<p>由于框架自动将所有属性转换为json对象,有些我们用不到，影响性能</p>
+				<p>》》一般我们把要的属性封装到一个对象中，给该对象创建get set</p>
 			</div>		 
 		</div>
 	</body>
