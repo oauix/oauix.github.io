@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<title>springjdbc</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>spring-jdbc应用</h3>
+				<P>1.导包： spring-webmvc[核心包],spring-jdbc,ojdbc,dbcp,junit</P>
+				<P>2.添加spring配置文件</P>
+				<P>3.配置jdbcTemplate  [模板]</P>
+
+
+<pre>
+	//读取配置文件
+	&lt;util:properties id="db" location="classpath:db.properties"/>
+	
+	//利用连接类,创建连接池
+	&lt;bean id="ds" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		&lt;property name="driverClassName" value="#{db.drivername}"/>
+		&lt;property name="url" value="#{db.url}"/>
+		&lt;property name="username" value="#{db.username}"/>
+		&lt;property name="password" value="#{db.password}"/>
+	&lt;/bean>
+	
+	//jdbcTemplate
+	&lt;bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+		&lt;property name="dataSource" ref="ds"> //属性
+		&lt;/property>
+	&lt;/bean>
+</pre>				
+					<P>4.写一个java类(UserDAOSpringJdbcImpl)</P>
+					<P>5.测试UserDAO</P>
+					<p>[利用模板]</p>
+					<p>String sql="insert into webuser values(?,?)";</p>
+					<p>Object[] args={e.getName(),e.getAge};</p>
+					<p>jt.update(sql,args);//jdbcTemplate会将底层异常统一转换为RunTimeException,然后抛出</p>
+					<p>有结果集:得定义一个结果处理类.它得继承RowMapper类,里面得编写一个处理方法mapRow()</p>
+
+					<h3>myBatis</h3>
+
+					1.导包
+					2.添加mybatis配置文件
+					3.写实体类,它的属性跟数据库表的字段一致,不区分大小写
+					<h3>解决表字段与实体类的属性不同</h3>
+					1.使用别名
+					2.写配置使属性对应别名
+					<h3>Mappee映射器</h3>
+					Mappee映射器:是一个符合映射文件要求的接口。
+					注:MyBatis会生成一个符合该接口的对象
+					使用Mapper映射器：
+					1.写一个接口
+						该接口要求:方法名与映射文件中的sqlid一样；参数与映射文件的parameterType一样;返回类型要跟resultType一样
+					2.修改映射文件
+						将namespace设置为接口名[接口完整名]
+					3.调用SqlSession对象的getMapper
+
+					@Test
+					@Before //会在test方法前先调用
+					@Controller //处理器
+					@Repository //注入类或组件
+					@Service //用于标注业务层组件
+					@Resource(name="baseDao") //通过beanid查找
+			</div>		
+		</div>
+	</body>
+</html>

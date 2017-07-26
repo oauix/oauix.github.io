@@ -1,0 +1,13 @@
+/**
+ * oracle文件下所有html共享css
+
+ */
+
+*{margin:0px;padding:0px}
+body{font-size:12px;color:#666;font-family:"微软雅黑"}
+.body{margin:3px auto;width:95%}
+.body .content{font-size:13px;line-height: 29px;box-shadow: 0px 0px 8px #999;border-radius: 6px;padding: 20px 18px}
+.body .content a{text-decoration:none}
+p{text-indent:1.9em}
+.clear{clear:both;}
+pre{background:#ccf2d0;border-radius: 7px;box-shadow: 1px 2px 10px #888}

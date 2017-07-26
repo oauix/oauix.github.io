@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<title>oauix资料库-web</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--
+			<link rel="stylesheet" href="#" type="text/css" />
+		-->
+		<link rel="stylesheet" href="../css/note.css" type="text/css">
+		<style>
+			.bod .corse .left a{text-decoration:none;color:#777;display:block;}
+			.bod .corse .left li:hover a{
+				color:#e64040;
+				background:#f6eeee;
+			}
+			.bod{
+				width:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bod">
+			<!--top内容,放logo-->
+			<!--菜单导航-->
+			<div class="muent">
+				
+			</div>
+			<!--内容区-->
+			<div class="corse">
+				<div class="left">
+					<ul class="web">
+						<li><h3>Html</h3></li>
+						<li><a href="web/base.html" target="ifraweb">HTML-基础</a></li>
+						<li><a href="web/label.html" target="ifraweb">HTML-标签</a></li>
+						<li><a href="web/rgb.html" target="ifraweb">HTML-颜色</a></li>						
+						<li><a href="web/position.html" target="ifraweb">HTML-定位</a></li>
+						<li><h3>Css</h3></li>
+						<li><a href="web/css.html" target="ifraweb">HTML-CSS</a></li>
+						<li><a href="web/css3.html" target="ifraweb">HTML-CSS3</a></li>
+						<li><h3>Javascript</h3></li>
+						<li><a href="web/script_base.html" target="ifraweb">script常识</a></li>
+						<li><a href="web/script_inside.html" target="ifraweb">script内部对象</a></li>
+						<li><a href="web/script_external.html" target="ifraweb">script外部对象[dom]</a></li>
+						<li><a href="web/script_custom.html" target="ifraweb">script自定义对象</a></li>
+						<li><a href="web/script_click.html" target="ifraweb">script事件与event</a></li>
+						<li><h3>Jquery</h3></li>
+						<li><a href="web/jquery.html" target="ifraweb">jquery</li>
+						<li><h3>Other</h3></li>
+						<li><a href="web/script_jquery.html" target="ifraweb">js常用元素</a></li>
+					</ul>
+				</div>
+				<div class="right">
+					<iframe id="java" name="ifraweb" src="web/label.html"  style="width:100%" frameborder="0" onload="this.height=100" scrolling="no"  > 
+
+					</iframe> 
+				</div>
+				<div class="clear"></div>
+			
+			</div>
+			<!--底部版权信息-->
+			<div class="bottom">
+				因兴趣而玩转编程,这里主要是一些本人接触java知识与自己的心得
+				@ouaix制作，仅供学习用途
+			</div>
+		
+		</div>
+		<script>
+			function reinitIframe(){//iframe高自动被内容填充
+					var iframe = document.getElementById("java");
+					try{
+					var bHeight = iframe.contentWindow.document.body.scrollHeight;
+					var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+					var height = Math.max(bHeight, dHeight);
+					iframe.height = height;
+					console.log(height);
+					}catch (ex){}
+				}
+				window.setInterval("reinitIframe()", 200);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<title>servlet</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<style>
+			*{margin:0px;padding:0px}
+			body{font-size:12px;color:#666;font-family:"微软雅黑"}
+			.clear{clear:both}
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>重定向</h3>
+				<p>重定向：服务器会通知浏览器发送一个新得地址发送请求,俩次请求</p>
+				<p style="text-indent:4em">-response.sendRedirect("url");</p>
+				<p style="text-indent:4em">-会先把response[响应对象]中的内容先清空,并且service方法执行完后才重定向</p>
+				<p style="text-indent:4em">-可以任意url,且浏览器地址会跟着变动</p>
+				<h3>转发</h3>
+				<p>转发[浏览器地址不能变且在同一个web应用中]:一个web组件[jsp或servlet]将未完成的任务转交给另一个web组件继续做[通常是servlet将一些数据转交给jsp来展现]</p>
+				<p>[常用方法]</p>
+				<p style="text-indent:4em">request.setAttribute(String key,Object obj);</p>
+				<p style="text-indent:4em">key与obj为map的key与value,可以利用map中key获取value的方法obj:request.getAttribute(String key)</p>
+				<p>[用法]</p>
+<pre>
+	//将数据绑定到request对象上
+	request.setAttribute("xioayu","28");
+	//获得转发器
+	RequestDispatcher rd=request.getRequestDispatcher("url");
+	//调用转发器方法实现转发
+	rd.forwrad(request,response);
+	//后面用request.getAttribute(String key)接收就能用
+</pre>		
+				<h3>转发与重定向区别</h3>
+					<p>1.共享request和response:转发可以，重定向不行。[会立即创建request和response,响应发送完毕，则容器会立即销毁这两个对象]</p>
+					<p>2.浏览器地址栏地址是否会发生变化:转发不变，重定向会变。</p>
+					<p>目的[url]地是否有限制:转发有限制（要求是同一个应用），重定向没有。</p>
+			</div>
+		</div>
+	</body>
+</html>

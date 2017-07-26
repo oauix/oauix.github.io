@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<title>oracle-ddl</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/oracle.css" type="text/css">
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2 class="one">数据定义语音 DDL[对表操作]</h2>
+
+		<h4>创建 表:</h4>
+<pre>
+	create table 表名(
+		id number(4), //要用','隔开
+		name varchar2(20),
+		gender char(1),
+		birth date,
+		salary number(6,2),
+		job varchar2(30),
+		deptno number(2)
+	);	
+</pre>
+		<h4>删除表：drop table 表名</h4>
+		<h4>表的常用操作:</h4>
+<pre>
+		desc 表名 -查看表的结构
+		default '内容' -添加默认内容
+		not null -约束条件 内容不能为空
+		rename 要改的名字 to 新名字 -改表名
+		alter table 表名 add (ID number(4)) -给表添加新列
+		alter table 表名 drop (ID) -删除列
+		alter table 表名 modify (ID char(45)) -修改列数据类型，默认值，应该不能该列名[待证]
+</pre>
+				<h4>将查询的内容直接加入新建的表:</h4>
+		
+				<p>create table 表名 as</p>
+				<p>select * from emp;</p>
+			</div>
+		</div>
+	</body>
+</html>

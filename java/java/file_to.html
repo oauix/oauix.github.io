@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<title>文件读写[高级流]</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+			<h3>能用这个处理输出输入流就ok了</h3>
+			<p>[输入流应用:]</p>
+<pre>
+	FileInputStream fis= new FileInputStream("osw.txt");
+		
+	InputStreamReader isr= new InputStreamReader(fis,"UTF-8");//转换流
+	
+	BufferedReader br= new BufferedReader(isr);
+		
+	int d = -1;
+	while((d = isr.read())!=-1){
+		System.out.print((char)d);
+	}
+</pre>			
+	
+			<p>[输出流应用:]</p>
+<pre>
+	FileOutputStream fos= new FileOutputStream("osw.txt",true);//true不覆盖，默认false覆盖
+		
+	OutputStreamWriter osw= new OutputStreamWriter(fos,"UTF-8");//转换流,高级流
+
+	PrintWriter pw = new PrintWriter(osw,true);//true自动刷新输出,默认是缓存的,可以用wp.flush()强制输出
+		
+	pw.println("我爱北京天安门,");
+
+	pw.println("吹啊吹啊我的骄傲放纵!");
+</pre>
+			</div>
+		</div>
+	</body>
+</html>

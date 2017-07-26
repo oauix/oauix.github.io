@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+	<head>
+		<title>springmvc</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>mvc:是一种软件架构模式</h3>
+				<p>核心思想是将一个软件可以划分模型、视图和控制器三种不同类型的模块,其中,模型负责封装业务逻辑的处理，视图负责提供界面[包括数据展现和用户操作界面],控制器负责协调模型与视图[视图将请求先发送给控制器,由控制器选择对应的模型来处理,模型将处理结果交给控制器,再由控制器选择对应的视图来展现数据]。</p>
+
+				<h3>mvc的优点</h3>
+					<p>方便测试：将业务写在servlet里面,需要部署才能测试</p>
+					<p>方便维护：修改视图不影响模型,反过来,修改模型也不影响视图.</p>
+					<p>方便分工协作</p>
+				<h3>springmvc</h3>
+					<p>基于mbc模型的web应用程序框架</p>
+					<h5>springmvc 使用流程</h5>
+					<p>1.导包</p>
+					<p>2.配置Dispatcherservlet[控制器],配置web.xml文件[处理请求信息头,配置启动config,指向Dispatcherservlet类]</p>
+<pre>
+	//web.xml配置,指向指向Dispatcherservlet类
+  &lt;servlet>
+  	&lt;servlet-name>springmvc&lt;/servlet-name>
+  	&lt;servlet-class>
+  		org.springframework.web.servlet.DispatcherServlet
+  	&lt;/servlet-class>
+  	&lt;init-param>
+  		&lt;param-name>contextConfigLocation&lt;/param-name>
+  		&lt;param-value>classpath:springmvc.xml&lt;/param-value>
+  	&lt;/init-param>
+  	&lt;!--容器启动时启动-->
+  	&lt;load-on-startup>1&lt;/load-on-startup>
+  &lt;/servlet>
+  &lt;servlet-mapping>
+  	&lt;servlet-name>springmvc&lt;/servlet-name>
+  	&lt;url-pattern>*.do&lt;/url-pattern>
+  &lt;/servlet-mapping>
+</pre>
+					<p>4.创建Controller类[处理器-业务逻辑处理]</p>
+					<p>5.配置HandlerMapping[映射器，指定Controller类文件]对象,ViewResovler[视图解释器,规则对应处理响应文件或对象如hello.jsp]对象</p>
+<pre>
+	//配置HandlerMaping
+	&lt;bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		&lt;property name="mappings" >
+			&lt;props>
+				&lt;prop key="/hello.do">hc&lt;/prop>
+			&lt;/props>
+		&lt;/property>
+	&lt;/bean>
+	&lt;bean id="hc" class="Controllerl类位置">&lt;/bean>
+</pre>
+<br/>
+<pre>
+	//配置ViewResovler【视图解释器】
+	&lt;bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		&lt;property name="prefix" value="/WEB-INF/" />
+		&lt;property name="suffix" value=".jsp" />
+	&lt;/bean>
+</pre>
+					<p>6.写一个响应jsp文件</p>
+					<h5>基于注解的springmvc</h5>
+					<p>【用注解配置文件:视图解析器,组件扫描，mvc注解扫描】</p>
+<pre>
+	//springmvc文件
+	&lt;!-- 配置组件扫描 -->
+	&lt;context:component-scan base-package="controller" />
+	&lt;!-- 配置MVC注解扫描  让@RequestMapping注解起作用-->
+	&lt;mvc:annotation-driven />
+	&lt;!-- 配置视图解析器 -->
+	&lt;bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		&lt;property name="prefix" value="/WEB-INF/" />
+		&lt;property name="suffix" value=".jsp" />
+	&lt;/bean>
+</pre>
+				<h3>springmvc应用中的方法参数有这些</h3>
+				<p>1.request</p>
+				<p>2.@request,注解转参数</p>
+				<p>3.转一个引用类型类,容器会自动实例化</p>
+				<h3>向页面传值,jsp文件接收数据显示</h3>
+					
+					<p>return 关键词默认就是转发 </p>
+						<p style="text-indent:5em">若想变为重定向: 返回是字符串:return "redirect:##.do"[不能直接写.jsp,spring规范,不能访问WEB-INF]</p>
+						<p style="text-indent:5em">返回是ModelAndview时：</p>
+							<p style="text-indent:7em">redirectView re=new redirectView("响应地址");</p>
+							<p style="text-indent:7em">ModelAndview mav=new ModelAndview(re,data);</p>
+					<p>1.将数据绑定到request对象中</p>
+					<p>2.把数据绑定到ModelAndview对象上</p>
+						<p style="text-indent:5em">Map&lt;String ,Object> data=new HashMap&lt;String,Object>();</p>
+						<p style="text-indent:5em">data.put("status",status);</p>
+						<p style="text-indent:5em">ModelAndview mav=new ModelAndview("view",data);</p>
+						<p style="text-indent:5em">return mav;</p>
+					<p>3.把数据绑定Modelmap对象中</p>
+						<p style="text-indent:5em">modelmap.addAttribute("status",status);</p>
+					<p>4.把数据绑定session对象上</p>
+
+					<p>尽量有生命周期短的,他们是占内存的</p>
+
+					<h3>系统分层[扩展]</h3>
+
+					<p>表示层[ui层] -数据展现和制作界面,另外还有负责请求分发</p>
+					<p>业务层[服务层] -封装业务处理逻辑</p>
+					<p>持久层[数据访问层] -封装数据访问逻辑</p>
+			</div>		
+		</div>
+	</body>
+</html>

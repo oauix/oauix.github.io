@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-初步认知</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>1.java编译运行过程:--------常见面试题</h3>
+				<p>1.1)编译期:.java源文件，经过编译，生成.class字节码文件</p>
+				<p>1.2)运行期:JVM加载.class并运行.class</p>
+				<p>*- 特点:跨平台、一次编译到处使用</p>
+				<br/>
+				<h3>面试题： String s = new String(“xyz”); 产生几个对象？</h3>
+				<p>答案:一个或两个。如果常量池中原来没有 ”xyz”, 就是两个。如果原来的常量池中存在“xyz”时，就是一个。</p>
+				<br/>
+				<h3>2.JVM、JRE、JDK名词解释:----------------常见面试题</h3>
+				<br/>
+				<p>1)JVM:java虚拟机</p>
+				<p>*- 加载.class并运行.class</p>
+				<br/>
+				<p>2)JRE:java运行环境</p>
+				<p>*- 除了包含JVM以外还包含了运行java程序所必须的环境</p>
+				<p>*- JRE=JVM+java系统类库</p>
+				<br/>
+				<p>3)JDK:java开发工具包</p>
+				<p>*- JDK=JVM+java系统类库+编译、运行等命令工具</p>
+				<p>*- 除了包含JRE以外还包含了开发java程序所必须的命令工具</p>
+				<p>*- JDK=JRE+编译、运行等命令工具</p>
+				<p>*- 运行java程序的最小环境为JRE</p>
+				<p>*- 开发java程序的最小环境为JDK</p>
+			
+				<h3>3.重写与重载的区别:-----常见面试题</h3>
+				<br/>
+				<p>1)重写(Override):</p>
+				<p>1.1)发生在父子类中，方法名相同，参数列表相同，方法体不同</p>
+				<p>1.2)重写遵循"运行期"绑定，看对象的类型来调用方法</p>
+				<br/>
+				<p>2)重载(Overload):</p>
+				<p>2.1)发生在一个类中，方法名相同，参数列表不同，方法体不同</p>
+				<p>2.2)重载遵循"编译期"绑定，看引用的类型来绑定方法</p>
+			
+				<h3>4.构造继承</h3>
+				<p>问:子类可以继承父类的构造方法吗?面试题</p>
+				<p>答:不可以，父类的构造是被子类调用的</p>
+				
+				<h3>5.什么是类？什么是对象？</h3>
+				  <p>1)现实世界是由很多很多对象组成的</p>
+					<p style="text-indent:4em">基于对象抽出了类</p>
+				  <p>2)对象:真实存在的单个的个体</p>
+					<p style="text-indent:4em">类:类型/类别，代表一类个体</p>
+				  <p>3)类中可以包含:</p>
+					<p style="text-indent:4em">3.1)所有对象所共有的属性/特征(静)-----成员变量</p>
+					<p style="text-indent:4em">3.2)所有对象所共有的行为(动)----------方法</p>
+				 <p> 4)一个类可以创建多个对象</p>
+					<p style="text-indent:4em">同一类型的多个对象，结构相同，数据不同</p>
+				 <p> 5)类是对象的模板，对象是类的具体的实例</p>
+
+				 <h3>6.面向对象三大特征:</h3>
+					<h4>1>.封装:</h4>
+					  <p>1)类:封装的是对象的属性和行为</p>
+					  <p>2)方法:封装的是具体的业务逻辑功能</p>
+					  <p>3)访问控制修饰符:封装的是访问的权限</p>
+					<h4>2>.继承:</h4>
+					  <p>1)作用:代码的复用</p>
+					  <p>2)父类:所有子类共有的属性和行为</p>
+						<p style="text-indent:2.5em">子类:子类所特有的属性和行为</p>
+					  <p>3)子继承父后，子具有:父类+子类</p>
+					  <p>4)单一继承、多接口实现，传递性</p>
+					<h4>3>.多态:</h4>
+					  <p>1)意义:行为的多态、对象的多态</p>
+					  <p>2)向上造型、强制类型转换、instanceof</p>
+					  <p>3)多态的表现形式:</p>
+						<p style="text-indent:2.5em">3.1)重写:主要是依据对象</p>
+						<p style="text-indent:2.5em">3.2)重载:主要是依据参数</p>
+
+				<h3>7.面向过程的结构化设计弊端:</h3>
+				  <p>1)缺乏对数据的封装</p>
+				  <p>2)数据与方法(操作数据的)的分离</p>
+				<h3>8.高质量的代码:</h3>
+				  <p>复用性好、扩展性好、维护性好、</p>
+				  <p>可移植性好、健壮性好、可读性好、效率好......</p>
+
+				<h3>9.实例变量(分支)、成员变量与局部变量区分</h3>
+				<p>1)实例变量:没有static修饰，属于对象的，存在堆中</p>
+							<p style="text-indent:6em">有几个对象就有几份</p>
+							<p style="text-indent:6em">通过对象点来访问</p>
+				<p>2)静态变量:由static修饰，属于类的，存在方法区中</p>
+							<p style="text-indent:6em">只有一份</p>
+							<p style="text-indent:6em">通过类名点来访问</p>
+				<p>成员变量:</p>
+				<p>1)类中，方法外</p>
+				<p>2)有默认值</p>
+				<p>3)创建对象时存在堆中，对象被回收时一并消失</p>
+
+				<p>局部变量:</p>
+				<p>1)方法中</p>
+				<p>2)没有默认值</p>
+				<p>3)调用方法时存在栈中，方法执行完以后与栈帧一并失效</p>
+				
+				<h3>10.集合框架中的泛型有什么优点？</h3>
+
+				<p>Java1.5引入了泛型，所有的集合接口和实现都大量地使用它。泛型允许我们为集合提供一个可以容纳的对象类型，因此，如果你添加其它类型的任何元素，它会在编译时报错。这避免了在运行时出现ClassCastException，因为你将会在编译时得到报错信息。</p>
+				<br/>
+				<p>泛型也使得代码整洁，我们不需要使用显式转换和instanceOf操作符。它也给运行时带来好处，因为不会产生类型检查的字节码指令。</p>
+				<h3>11.Java集合框架的基础接口有哪些？</h3>
+
+
+				<p>Collection为集合层级的根接口。一个集合代表一组对象，这些对象即为它的元素。Java平台不提供这个接口任何直接的实现。</p>
+				<p>Set是一个不能包含重复元素的集合。这个接口对数学集合抽象进行建模，被用来代表集合，就如一副牌。</p>
+				<p>List是一个有序集合，可以包含重复元素。你可以通过它的索引来访问任何元素。List更像长度动态变换的数组。</p>
+				<p>Map是一个将key映射到value的对象.一个Map不能包含重复的key：每个key最多只能映射一个value。</p>
+				<p>一些其它的接口有Queue、Dequeue、SortedSet、SortedMap和ListIterator。</p>
+
+				<h3>12.在Java中，HashMap是如何工作的？</h3>
+
+
+				<p>HashMap在Map.Entry静态内部类实现中存储key-value对。</p>
+				<br/>
+				<p>HashMap使用哈希算法，在put和get方法中，它使用hashCode()和equals()方法。当我们通过传递key-value对调用put方法的时候，HashMap使用Key hashCode()和哈希算法来找出存储key-value对的索引。</p>
+				<br/>
+				<p>Entry存储在LinkedList中，所以如果存在entry，它使用equals()方法来检查传递的key是否已经存在，如果存在，它会覆盖value，如果不存在，它会创建一个新的entry然后保存</p>。
+				<br/>
+				<p>当我们通过传递key调用get方法时，它再次使用hashCode()来找到数组中的索引，然后使用equals()方法找出正确的Entry，然后返回它的值。下面的图片解释了详细内容。</p>
+				<p>其它关于HashMap比较重要的问题是容量、负荷系数和阀值调整。HashMap默认的初始容量是32，负荷系数是0.75。</p>
+				<br/>
+				<p>阀值是为负荷系数乘以容量，无论何时我们尝试添加一个entry，如果map的大小比阀值大的时候，HashMap会对map的内容进行重新哈希，且使用更大的容量。容量总是2的幂，所以如果你知道你需要存储大量的key-value对，比如缓存从数据库里面拉取的数据，使用正确的容量和负荷系数对HashMap进行初始化是个不错的做法。</p>
+
+				<h3>13.hashCode()和equals()方法有何重要性？</h3>
+
+
+				<p>HashMap使用Key对象的hashCode()和equals()方法去决定key-value对的索引。当我们试着从HashMap中获取值的时候，这些方法也会被用到。如果这些方法没有被正确地实现，在这种情况下，两个不同Key也许会产生相同的hashCode()和equals()输出，HashMap将会认为它们是相同的，然后覆盖它们，而非把它们存储到不同的地方。</p>
+				</br>
+				<p>同样的，所有不允许存储重复数据的集合类都使用hashCode()和equals()去查找重复，所以正确实现它们非常重要。equals()和hashCode()的实现应该遵循以下规则：</p>
+				<p>（1）如果o1.equals(o2)，那么o1.hashCode() == o2.hashCode()总是为true的。</p>
+				<p>（2）如果o1.hashCode() == o2.hashCode()，并不意味着o1.equals(o2)会为true。</p>
+
+				<h3>14.我们能否使用任何类作为Map的key？</h3>
+
+
+				<p>我们可以使用任何类作为Map的key，然而在使用它们之前，需要考虑以下几点：</p>
+				<br/>
+				<p>（1）如果类重写了equals()方法，它也应该重写hashCode()方法。</p>
+				<p>（2）类的所有实例需要遵循与equals()和hashCode()相关的规则。请参考之前提到的这些规则。</p>
+				<p>（3）如果一个类没有使用equals()，你不应该在hashCode()中使用它。</p>
+				<p>（4）用户自定义key类的最佳实践是使之为不可变的，这样，hashCode()值可以被缓存起来，拥有更好的性能。不可变的类也可以确保hashCode()和equals()在未来不会改变，这样就会解决与可变相关的问题了。</p>
+				<p>比如，我有一个类MyKey，在HashMap中使用它。</p>
+				<br/>
+				<p>//传递给MyKey的name参数被用于equals()和hashCode()中</p>
+				<p>[java] view plain copy</p>
+				<br/>
+					<p>MyKey key = new MyKey('Pankaj'); //assume hashCode=1234  </p>
+					<p>myHashMap.put(key, 'Value');  </p>
+
+
+				<p>// 以下的代码会改变key的hashCode()和equals()值</p>
+				<p>[java] view plain copy</p>
+				<br/>
+					<p>key.setName('Amit'); //assume new hashCode=7890  </p>
+
+				<br/>
+				<p>//下面会返回null，因为HashMap会尝试查找存储同样索引的key，而key已被改变了，匹配失败，返回null</p>
+				<p>[java] view plain copy</p>
+				<br/>
+					<p>myHashMap.get(new MyKey('Pankaj'));</p>  
+				<br/>
+				<p>那就是为何String和Integer被作为HashMap的key大量使用。</p>
+				<br/>
+				<h3>15.Map接口提供了哪些不同的集合视图？</h3>
+				<br/>
+				<br/>
+				<p>Map接口提供三个集合视图：</p>
+				<br/>
+				<p>（1）Set keyset()：返回map中包含的所有key的一个Set视图。</p>
+				<br/>
+				<p>集合是受map支持的，map的变化会在集合中反映出来，反之亦然。当一个迭代器正在遍历一个集合时，若map被修改了（除迭代器自身的移除操作以外），迭代器的结果会变为未定义。</p>
+				<br/>
+				<p>集合支持通过Iterator的Remove、Set.remove、removeAll、retainAll和clear操作进行元素移除，从map中移除对应的映射。它不支持add和addAll操作。</p>
+				<br/>
+				<p>（2）Collection values()：返回一个map中包含的所有value的一个Collection视图。</p>
+				<br/>
+				<p>这个collection受map支持的，map的变化会在collection中反映出来，反之亦然。当一个迭代器正在遍历一个collection时，若map被修改了（除迭代器自身的移除操作以外），迭代器的结果会变为未定义。</p>
+				<br/>
+				<p>集合支持通过Iterator的Remove、Set.remove、removeAll、retainAll和clear操作进行元素移除，从map中移除对应的映射。它不支持add和addAll操作。</p>
+				<br/>
+				<p>（3）Set&lt;Map.Entry<K,V>> entrySet()：返回一个map钟包含的所有映射的一个集合视图。</p>
+				<br/>
+				<p>这个集合受map支持的，map的变化会在collection中反映出来，反之亦然。当一个迭代器正在遍历一个集合时，若map被修改了（除迭代器自身的移除操作，以及对迭代器返回的entry进行setValue外），迭代器的结果会变为未定义。</p>
+				<br/>
+				<p>集合支持通过Iterator的Remove、Set.remove、removeAll、retainAll和clear操作进行元素移除，从map中移除对应的映射。它不支持add和addAll操作。</p>
+
+				<h3>16.队列和栈是什么，列出它们的区别？</h3>
+
+
+				<p>栈和队列两者都被用来预存储数据。java.util.Queue是一个接口，它的实现类在Java并发包中。队列允许先进先出（FIFO）检索元素，但并非总是这样。Deque接口允许从两端检索元素。</p>
+				<br/>
+				<p>栈与队列很相似，但它允许对元素进行后进先出（LIFO）进行检索。</p>
+				<br/>
+				<p>Stack是一个扩展自Vector的类，而Queue是一个接口。</p>
+				<br/>
+				<h3>17.Collections类是什么？</h3>
+				<br/>
+
+				<p>Java.util.Collections是一个工具类仅包含静态方法，它们操作或返回集合。它包含操作集合的多态算法，返回一个由指定集合支持的新集合和其它一些内容。这个类包含集合框架算法的方法，比如折半搜索、排序、混编和逆序等。</p>
+
+				<h3>什么是jsp?</h3>
+
+				<p>sun公司制订的一种服务器端的动态页面技术规范。
+				注：因为直接使用servlet虽然也可以生成动态页面，但是
+				过于繁琐（需要使用out.println语句输出），并且不利于
+				页面的维护（需要修改java源代码），所以sun才制订了jsp</p>
+				技术规范。
+
+			</div>
+		</div>
+	</body>
+</html>

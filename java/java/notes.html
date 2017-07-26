@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-注释</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>注释【解释性代码】</h2>
+				<p><h3>java：</h3></p>
+				<p>// ----单行</p>
+				<p>/* ...... */ 注释若干行</p>
+				<p>/**   */ 文档注释</p>
+				<p>javadoc -d 文档存放目录 -author -version 源文件名.java</p>
+				<p>这条命令编译一个名为"源文件名.java"的 java 源文件，并将生成的文档存放在"文档存放目录"指定的目录下，生成的文档中 index.html 就是文档的首页。-author 和 -version 两个选项可以省略。
+				<p>javadoc 标记由"@"及其后所跟的标记类型和专用注释引用组成</p>
+				<p>javadoc 标记有如下一些：</p>
+				<p>@author 标明开发该类模块的作者</p>
+				<p>@version 标明该类模块的版本</p>
+				<p>@see 参考转向，也就是相关主题</p>
+				<p>@param 对方法中某参数的说明</p>
+				<p>@return 对方法返回值的说明</p>
+				<p>@exception 对方法可能抛出的异常进行说明</p>
+
+				<p>@author 作者名</p>
+				<p>@version 版本号</p>
+				<p>其中，@author 可以多次使用，以指明多个作者，生成的文档中每个作者之间使用逗号 (,) 隔开。@version 也可以使用多次，只有第一次有效</p>
+
+				<p>使用 @param、@return 和 @exception 说明方法</p>
+				<p>这三个标记都是只用于方法的。@param 描述方法的参数，@return 描述方法的返回值，@exception 描述方法可能抛出的异常。它们的句法如下：</p>
+				<p>@param 参数名参数说明</p>
+				<p>@return 返回值说明</p>
+				<p>@exception 异常类名说明</p>
+
+				<h3>SQL注释:</h3>
+				<p>单行注释：--</p>
+				<p>多行注释：/*......*/</p>
+				<h3>html:</h3>
+					<p>&lt;!-- 我是被注释内容，并且在浏览器中不会显示 --&gt;</p>
+					<p>&lt;!--[if IE]>这里是正常的html代码&lt;![endif]--&gt;</p>
+				<h3>/* CSS的注释标签 */</h3>
+				<h3>&lt;%-- jsp特有的注释--%&gt;</h3>
+					
+			</div>
+		</div>
+	</body>
+</html>

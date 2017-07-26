@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<title>springMVC</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+					<h3>拦截器</h3>
+					<p>DispatcherServlet在收到请求之后,如果有拦截器,会先调用拦截器,在调用处理器(Controller);</p>
+
+					<p>过滤器和拦截器区别:过滤器是servlet规范,拦截器是属于spring框架。</p>
+
+					<p>实现拦截器:</p>
+						<p style="text-indent:5em">1.写一个Java类,实现HandlerInterceptor接口</p>
+						<p style="text-indent:5em">2.在拦截器接口方法中,实现拦截处理逻辑</p>
+						<p>1.preHandle()判断方法,false跳过拦截器和处理器,直接返回,2.postHandle() 3.afterCompletion()</p>
+						<p style="text-indent:5em">3.配置拦截器[多个拦截器时,按配置拦截器先后顺序执行]</p>
+<pre>
+	&lt;mvc:interceptors>
+		&lt;mvc:interceptor>
+			&lt;mvc:mapping path="/**"> //拦截哪些请求 /*一级
+			&lt;mvc:exclude-mapping path="/"> //排除这些拦截请求
+			&lt;bean class="拦截类的路径"/>
+		&lt;/mvc:interceptor>
+	&lt;/mvc:interceptors>
+</pre>				
+					<h3>异常处理</h3>
+					<p>e.getMessage();//获取异常提示信息</p>
+					<p>1.SimpleMappingExceptionResolver[简单异常处理器]</p>
+				<p>[spring配置文件写下面异常处理:]</p>
+<pre>
+	&lt;bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">//spring-webmvc 包内
+		&lt;property name="exceptionMappings">//映射
+			&lt;props>
+				&lt;prop key="java.lang.NumberFormatException">error1&lt;/prop> //当遇到该异常,将跳转error1.jsp
+			&lt;/props>
+		&lt;/property>
+	&lt;/bean>
+</pre>				<p>2.@ExceptionHandler注解异常处理</p>
+						<p>在处理器类添加一个处理异常方法,它有exception request参数</p>
+						<p>响应异常页面</p>
+			</div>		
+		</div>
+	</body>
+</html>

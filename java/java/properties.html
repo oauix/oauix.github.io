@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-读配置文件[Properties]</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>读配置文件[Properties]</h2>	
+				<p>* 可以读取文件内的信息，跟ResultSet获取sql集合一样</p>
+				<p>* 用法: </p>
+<pre>
+	Properties pop = new Properties()  //初始化
+	pop.load(new FileInputStream("文件路径"));//获取文件内容流
+
+	//若文件里有: url=abcd 这时通过url查到abcd，str=abcd
+	//若文件里没有对应记录,就会报错。
+	//注意大小写，文件内没有分号[;]
+	String str=pop.getProperty("url[文件内容]");//获取内容
+</pre>	
+			</div>
+		</div>
+	</body>
+</html>

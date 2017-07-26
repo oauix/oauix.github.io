@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<title>oracle-dml</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/oracle.css" type="text/css">
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>数据操纵语音 DML [需要提交事务]</h2>
+			
+				<h4>添加记录[数据]</h4>
+
+				<p>insert into 表名(id,name,job)[字段内容不能默认全部字段]</p>
+				<p>values(1001,'xiaoyu','proo');</p>
+				<h4>将查询的内容直接加入新建的表</h4>
+				
+				<p>create table 表名 as</p>
+				<p>select * from emp;</p>
+
+				<h4>更改记录</h4>
+				<p>update 表名 set name="oauix" where id='1001'; //将表中id为1001记录中 name给为oauix</p>
+
+				<h4>删除记录</h4>
+				<p>delete from 表名 where name is 'oauix'; //-如果没有where会将整个表删除，from可以不写</p>
+				<p>truncate 也是删除记录，但不能撤退</p>
+
+			</div>
+		</div>
+	</body>
+</html>

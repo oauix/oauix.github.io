@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+	<head>
+		<title>spring-aop</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h4>struts框架</h4>
+				<p>1.导包 struts2-core</p>
+				<p>2.配置web.xml 类似添加拦截器 new--fiter--Use existong--StrutsPrepareAndExecuteFilter</p>
+<pre>
+  &lt;!--配置Struts2主控制器-->
+  &lt;filter>
+    &lt;display-name>StrutsPrepareAndExecuteFilter&lt;/display-name>
+    &lt;filter-name>StrutsPrepareAndExecuteFilter&lt;/filter-name>
+    &lt;filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class>
+  &lt;/filter>
+  &lt;filter-mapping>
+    &lt;filter-name>StrutsPrepareAndExecuteFilter&lt;/filter-name>
+    &lt;url-pattern>/*&lt;/url-pattern>
+  &lt;/filter-mapping>
+</pre>
+				<p>3.写个类作 控制器 </p>
+				<p>》》添加一个默认方法 execute方法,默认调该方法,可以写别的,要在struts.xml声明method=*方法</p>
+				<p>》》若要接收form传过来的数据,添加对应属性，并写get set方法。</p>
+
+<pre>
+	/**子控制器*/
+	public class DemoAction {
+	/**控制器中，处理web请求的方法,默认情况是方法名execute,返回为string,目标视图的名称*/
+	public String execute(){//默认方法
+		System.out.println("hello word!!");
+		return "success";//对应配置文件name="success"
+	}
+}	
+</pre>
+				<p>4.配置struts.xml配置信息文件</p>
+<PRE>
+	&lt;?xml version="1.0" encoding="UTF-8"?>
+	&lt;!DOCTYPE struts PUBLIC //在包在找：struts 2.5.1->struts-2.5.dtd
+		"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+		"http://struts.apache.org/dtds/struts-2.5.dtd">
+	&lt;struts>
+		&lt;!--用于定义“包” 就是定义第一层web路径,@extends="struts-default"自动继承库内定义环境信息-->
+		&lt;package namespace="/demo" name="demo" extends="struts-default">
+			&lt;!--请求url,默认是demo/*.action-->
+			&lt;action name="hello" class="cn.xyu.action.DemoAction">
+			&lt;!--控制器返回结果和视图对应关系-->
+				&lt;result name="success"> //有默认的属性type="redirect"
+					/WEB-INF/jsp/demo.jsp
+				&lt;/result>
+			&lt;/action>
+			&lt;!--可以加method=方法名,没有（）-->
+			&lt;action name="test" class="cn.xyu.action.TestAction">
+			&lt;!--控制器返回结果和视图对应关系-->
+				&lt;result name="success">
+					/WEB-INF/jsp/test.jsp
+				&lt;/result>
+			&lt;/action>
+		&lt;/package>
+	&lt;/struts>
+
+</PRE>
+
+					<h4>spring-struts整合</h4>
+					<p>1.导包 spring-struts-plugin插件 版本跟struts版本一致,兼容问题</p>
+					<p>2.添加配置初始化Spring容器信息 new--listener--Use existong--ContextLoaderListener</p>
+<pre>
+  &lt;!-- 配置监听器, 在Web服务器启动时候初始化Spring容器 -->
+  &lt;listener>
+    &lt;listener-class>org.springframework.web.context.ContextLoaderListener&lt;/listener-class>
+  &lt;/listener>
+  &lt;context-param>
+  	 &lt;param-name>contextConfigLocation&lt;/param-name>
+  	 &lt;param-value>classpath:spring-*.xml&lt;/param-value>
+  &lt;/context-param>
+</pre>
+					<p>3.写spring管理的控制器类 加@Controller @Scope("prototype")  注意：添加spring-*.xml文件并配置文件添加组件扫描 &lt;context:component-scan base-package="cn.tedu.ttms" /></p>
+<pre>
+	@Controller 
+	//Spring 管理的Bean, ID: springAction
+	@Scope("prototype") //<span style="color:red">收到请求就创建一个bean对象,对于线程安全问题</span>
+	public class SpringAction {
+		
+		public String execute(){
+			System.out.println("From Spring");
+			return "success";
+		}
+	}
+
+</pre>
+					<p>4.配置struts.xml,在action标签指定beanID:class="beanID"，beanID默认是控制器类名,首字母小写</p>
+<pre>
+	&lt;!-- class 属性的值使用 Spring Bean ID 
+		时候, 就可以从Spring中获取控制器Bean对象-->
+	&lt;action name="spring" class="springAction">
+		&lt;result name="success"> 
+			/WEB-INF/jsp/demo.jsp
+		&lt;/result>
+	&lt;/action>
+</pre>
+				<h4>线程安全问题</h4>
+				<p>1.springmvc也有线程安全问题，我们一般不在控制器定义改变的实例变量[有的话最好只读不改]，这样可以避免线程安全。</p>
+				<p>2.struts中线程安全问题：@Scope("prototype") //<span style="color:red">收到请求就创建一个bean对象,对于线程安全问题</span></p>
+				<p>3.一个线程对应一块栈,栈不共享,堆是共享的</p>
+
+				<h4>struts--result</h4>
+				<p>[返回值是重定向]</p>
+<pre>
+&lt;package namespace="/demo" name="demo" extends="struts-default">
+	<action name="doc" class="testAction">
+		&lt;result type="redirect" name="success"> //[默认方式]redirect重定向的意思
+			&lt;param name="location">foo.jsp&lt;/param> //url
+			&lt;param name="parse">false&lt;/param>
+			&lt;param name="anchar">FRAGMENT&lt;/param> //喵点
+		&lt;/result>
+	</action>
+&lt;/package>
+</pre>
+				<p>[返回值是其他的请求地址]</p>
+<pre>
+&lt;package namespace="/test" name="test" extends="struts-default">
+	&lt;action name="test" class="testAction"> //写一个TestAction子控制器,做辅助
+		&lt;result type="redirectAction" name="success">
+			&lt;param name="namespace">/demo&lt;/param>
+			&lt;param name="actionName">doc&lt;/param>
+		&lt;/result>
+	&lt;/action>
+&lt;/package>
+</pre>
+
+				<p>[返回值是下载资源]《http协议：RFC2616》</p>
+<pre>
+	子控制器：
+	private InputStream inimg;
+	//生产一张图片
+	public byte[] createImage(){
+		BufferedImage img=new BufferedUmage(200,100,BufferedImage.TYPE_3BYOE_BGR);//长,宽，颜色
+		img.setRGB(100,50,0Xffffff);
+		//一个新的缓冲流，一个api
+		ByteArrayOutputStream buf=new ByteArrayOurpurStream();
+		ImageIo.write(img,"png",buf);
+		buf.close();
+		return buf.toByteArray();//转换为ByteArray数组
+	}
+	public String execute(){
+		System.out.println("文件下载功能");
+
+		return "success";
+	}
+	//配置:
+	<result type="stream" name="success">
+		
+	</result>
+</pre>
+				
+			</div>		 
+		</div>
+	</body>
+</html>  

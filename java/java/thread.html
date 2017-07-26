@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-线程</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>进程与线程</h3>
+				<p>*线程：规范在Thread类</p>
+					<p>#线程是异步执行代码的</p>
+					<p style="text-indent:4em">* 异步运行:多段代码可以同时运行,各干个的.</p>
+					<p style="text-indent:4em">* 同步运行:运行代码有先后顺序的一句一句执行.</p>
+					<p>[跟匿名内部类一样,可以去翻阅]当一个方法的局部内部类中想引用这个方法的其他局部变量,那么该变量必须是final的.这原则JVM的内存分配问题.</p>
+					<p>#JDK8由于重构了JVM内存分配,解决了这个问题,就不再这样要求了.</p>
+
+
+				<h3>创建线程4种情况：</h3>
+					<p>1.	继承Thread类：</p>
+						<p style="text-indent:4em">Class Aoo extends Thread{</p>
+							<p style="text-indent:6em">public void run(){}</p>
+						<p style="text-indent:4em">}</p>
+						<p style="text-indent:4em">main方法中：</p>
+							<p style="text-indent:6em">Thread t1=new Aoo (a);</p>
+							<p style="text-indent:6em">t1.start();//启动线程的run()方法</p>
+					<p>2.	实现Runnable接口</p>
+						<p style="text-indent:4em"> (第一种创建线程的方式存在两个设计上的不足:</p>
+						<p style="text-indent:4em"> * 1:继承冲突,由于java是单继承的,这就导致一个类如果希望是线程,同时又需要扩展另一个类的功能时,由于不能同时继承这两个类,导致继承冲突</p>
+						<p style="text-indent:4em">* 2:继承线程需要重写run方法来定义线程任务,这就导致线程与任务定义在一起有一个强耦合关系,不利于线程重用.）</p>
+						<p style="text-indent:4em">	 *  而这种创建线程的方式解决了这两个问题.)</p>
+						<p style="text-indent:4em">class Aoo implements Runnable{</p>
+							<p style="text-indent:6em">public void run(){}</p>
+						<p style="text-indent:4em">}</p>
+						<p style="text-indent:4em">main方法中：</p>
+						<p style="text-indent:4em">Aoo a=new Aoo();</p>
+						<p style="text-indent:4em">Thread t1=new Thread(a);</p>
+						<p style="text-indent:4em">t1.start();</p>
+					<p>3.	用Thread匿名内部类</p>
+						<p style="text-indent:4em">直接main方法中：</p>
+						<p style="text-indent:4em">Thread t1=new Thread(){</p>
+							<p style="text-indent:6em">Public void run(){}</p>
+						<p style="text-indent:4em">};</p>
+						<p style="text-indent:4em">t1.start()；</p>
+					<p>4.	用Runnable匿名内部类</p>
+						<p style="text-indent:4em">main方法中：或其他方法：</p>
+						<p style="text-indent:4em">Runnable a=new Runnable(){</p>
+							<p style="text-indent:6em">Public void run(){}</p>
+						<p style="text-indent:4em">};</p>
+							<p style="text-indent:4em">Thread t1=new Thread(a);</p>
+							<p style="text-indent:4em">t1.start();</p>
+			
+					<h3>线程常用获取信息方法</h3>
+						<p>Thread main = Thread.currentThread();//创建线程变量，在个基础上执行下面</p>
+						<p>String name = main.getName();//线程名字</p>
+						<p>long id = main.getId();//获取线程ID</p>
+						<p>int priority = main.getPriority();//线程优先级</p>
+						<p>boolean isAlive = main.isAlive();//是否处于活动状态</p>
+						<p>boolean isDaemon = main.isDaemon();//是否为守护线程</p>
+						<p>boolean isInterrupted = main.isInterrupted();//是否被中断</p>
+
+					<h3>常用操作方法</h3>
+					<h5># Thread.yield();模拟发生线程切换</h5>
+					<h5>1.join（）方法：[排队]</h5>
+						 <p style="text-indent:4em">* 可以使用线程的join方法当多个线程出现同步运行的效果.让多个线程中的代码有先后顺序的执行.</p>
+						 <p style="text-indent:4em">*用法：在要在其方法后运行，就在方法对应的变量[进程变量名].join();意思讲该线程进入阻塞状态,直到前面线程将任务执行完毕(download线程结束)时才会解除阻塞继续向下运行代码。</p>
+					<h5>2.jack.setDaemon(true); //设置守护线程, 又称为"后台线程"</h5>
+						 <p style="text-indent:4em">$默认创建出来的线程都是前台线程,后台线程需要进行单独设置.</p>
+						 <p style="text-indent:4em">$前后、后台线程没有区别，区别在结束上,前台线程都结束时. 后台线程会被强制中断</p>
+						 <p style="text-indent:4em">$设置为后台线程,在start之前设置.</p>
+					<h5>3.线程优先级调整: min.setPriority(1);//设置优先级</h5>
+						 <p style="text-indent:4em">* 线程对于线程调度的工作是不可控制的.</p>
+						 <p style="text-indent:4em">* 线程只能被动的被分配CPU时间,不能主动获取.</p>
+						 <p style="text-indent:4em">* 改变线程优先级可以最大程度改善线程获取CPU的几率</p>
+						 <p style="text-indent:4em">* </p>
+						 <p style="text-indent:4em">* 理论上线程优先级越高的线程获取CPU时间片的次数越多.</p>
+					<h5>4.进入阻塞 static void sleep(long ms) </h5>
+						 <p style="text-indent:4em">该方法会导致运行当前方法的线程进入阻塞状态，</p>
+						 <p style="text-indent:4em">指定毫秒值,当超时后,线程会自动回到Runnable状态,等待再次分配CPU时间并发运行</p>
+					<h5>5.min.yield(); 放弃cpu片刻时间</h5>
+
+					<h3>线程并发安全问题【Synchronized关键词】</h3>
+						<p>1. 方法上加Synchronized关键词，进方法加锁，出方法解锁。静态方法加锁，一定有同步效果。（不抢着执行，如果异步，抢着执行，线程可能同时执行，出现安全隐患）</p>
+						<p>2.加锁块：Synchronized(同步监视器){} //用于在方法里面不能同时执行的动作</p>
+<pre>
+	public void buy(){
+		System.out.println(t.getName()+":正在挑选衣服...");
+		Thread.sleep(5000);
+		synchronized (this) { <span style="color:red">//这个动作不能同时执行</span>
+			System.out.println(t.getName()+":正在试衣服...");
+			Thread.sleep(5000);
+		}		
+		System.out.println(t.getName()+":结账离开");
+	}
+</pre>
+						<p style="text-indent:4em">同步监视器即上锁的对象,可以是java中的任意对象,但是必须保证需要同步执行代码的多个线程看到的该对象必须是"同一个"才可以.通常可以使用"this"</p>
+						<p>3.互斥锁:若用Synchronized锁的对象一样时，就形成互斥锁。像一个类有两个方法，这两个方法都被Synchronized修饰，都调用时，常会把对象加上锁</p>
+						<P>[如案例]</P>
+<pre>
+	Aoo fo=new Aoo();
+	fo.方法1();
+	fo.方法2(); //fo被加上锁，这种两方法称为互斥锁,不能异步执行,只能一个方法完后再随机执行下一个
+</pre>
+						<p>3.Synchronized线程安全转换功能:有很多东西为不安全的，将集合，字符串转为线程安全的，集合：Callections. Synchronizedset(obj);</p>
+
+					<h3>线程池</h3>
+					<p>线程池的主要功能是:</p>
+					 <p style="text-indent:4em">* 1:控制线程数量</p>
+					 <p style="text-indent:4em">* 2:重用线程</p>
+					 <p style="text-indent:4em">* 当并发任务量大时,或者有频繁创建线程执行任务的操作时,就应当使用线程池来调度线程.</p>
+				
+			</div>
+		</div>
+	</body>
+</html>

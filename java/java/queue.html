@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-队列和栈：Queue Deque</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>队列和栈：Queue Deque</h2>
+				<h4>1.队列：Queue</h4>
+				<p>* Queue 先进先出原则：一端进一端出</p>
+				<p>* LinkedList实现Queue接口原因：Queue常常进行添加删除操作，而在LinkedList在这方效率较高</p>
+				<p>* boolean offer(E e) 将一个对象添加到队尾，成功会返回true</p>
+				<p>* E poll() 从队首删除元素，并返回删除的元素</p>
+				<p>* E peek() 只返回里面的元素，不删除元素</p>
+				<br/>
+				<p>[应用案例]</p>
+<pre>
+	public void testqueue(){
+		Queue&lt;String> queue=new LinkedList()&lt;String>;
+		queue.offer("a");
+		queue.offer("b");
+		queue.offer("c");
+		System.out.println(queue);//[a,b,c]
+		String str=queue.peek();
+		System.out.println(str);//a
+		String strs=queue.peek();
+		//b 再执行一次就会返回下一个数,但不删除元素,像复制一份,再一个个删除取元素,不改变原结构
+		System.out.println(strs);
+		while(queue.size()>0){
+			str=queue.queue.pll();
+			System.out.println(str+" ");//a b c
+		}
+	}
+</pre>
+				<br/>
+				<h4>2.Deque 双端队列(又称栈)</h4>
+				<p>* 先进后出原则：一端堵死，一个端进出</p>
+				<p>* Deque是双端队列,但是若只从一段进出队就实现了栈结构.</p>
+				<p>* 继承Queue接口，故有上面的方法,对于栈而言：入栈称之为push，出栈称之为pop</p>
+
+				<p>故有这些方法:</p>
+				<p>* obj.push()进栈</p>
+				<p>* obj.pop()出栈，[删除]</p>
+				<p>* obj.speek()出栈，[不删除] 跟队列一样</p>
+				
+				<p>* 栈结构常被用来实现"后退"功能</p>
+				<br/>
+				<p>[应用案例]</p>
+<pre>
+	public void teststack(){
+		Deque&lt;String> stack=new Deque()&lt;String>;
+		stack.push("a");
+		stack.push("b");
+		stack.push("c");
+		System.out.println(stack);//[c,b,a]
+		String str=stack.speek();
+		System.out.println(sta);//c
+		while(stack.size>0){
+			str=stack.pop();
+			System.out.println(str+" ");// c b a
+		}
+	}
+</pre>
+			</div>
+		</div>
+	</body>
+</html>

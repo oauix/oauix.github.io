@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+		<title>jsp篇</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--
+			<link rel="stylesheet" href="#" type="text/css" />
+		-->
+		<link rel="stylesheet" href="../css/note.css" type="text/css">
+		<style>
+			.bod{
+				width:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bod">
+			<!--top内容,放logo-->
+			<!--菜单导航-->
+			<!--内容区-->
+			<div class="corse">
+				<div class="left">
+					<ul class="jdbc">
+						
+						<li><a href="spring/springbase.html" target="ifraspring">spring</a></li>
+						<li><a href="spring/springmvc.html" target="ifraspring">springmvc</a></li>
+						<li><a href="spring/springtry.html" target="ifraspring">spring-拦截器与异常</a></li>
+						<li><a href="spring/mybatis.html" target="ifraspring">mybatis</a></li>
+						<li><a href="spring/springconfig.html" target="ifraspring">spring文件文件备份</a></li>
+						<li><br/></li>
+						<li><a href="other/project.html" target="ifraspring">做项目时扩展</a></li>
+						<li><a href="spring/spring-aop.html" target="ifraspring">spring-AOP</a></li>
+						<li><a href="spring/struts.html" target="ifraspring">struts2</a></li>
+						<li><a href="spring/shit.html" target="ifraspring">反射API</a></li>
+						
+						
+					</ul>
+
+				</div>
+				<div class="right">
+					<iframe id="java" name="ifraspring" src="spring/springbase.html""  style="width:100%" frameborder="0" onload="this.height=100" scrolling="no"  > 
+
+					</iframe> 
+				</div>
+				<div class="clear"></div>
+			
+			</div>
+			<!--底部版权信息-->
+			<div class="bottom">
+				因兴趣而玩转编程,这里主要是一些本人接触java知识与自己的心得
+				@ouaix制作，仅供学习用途
+			</div>
+		
+		</div>
+		<script>
+			function reinitIframe(){//iframe高自动被内容填充
+					var iframe = document.getElementById("java");
+					try{
+					var bHeight = iframe.contentWindow.document.body.scrollHeight;
+					var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+					var height = Math.max(bHeight, dHeight);
+					iframe.height = height;
+					console.log(height);
+					}catch (ex){}
+				}
+				window.setInterval("reinitIframe()", 200);
+		</script>
+	</body>
+</html>

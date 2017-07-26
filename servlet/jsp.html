@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<title>jsp篇</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--
+			<link rel="stylesheet" href="#" type="text/css" />
+		-->
+		<link rel="stylesheet" href="../css/note.css" type="text/css">
+		<style>
+			.bod{width:100%}
+		</style>
+	</head>
+	<body>
+		<div class="bod">
+			<!--top内容,放logo-->
+			
+			<!--菜单导航-->
+				
+			<!--内容区-->
+			<div class="corse">
+				<div class="left">
+					<ul class="jdbc">
+						<li><a href="servlet/servlet.html" target="ifraservlet">servlet容器</a></li>
+						<li><a href="servlet/life.html" target="ifraservlet">servlet-生命周期</a></li>
+						<li><a href="servlet/state.html" target="ifraservlet">servlet-状态码与中文乱码</a></li>
+						<li><a href="servlet/url.html" target="ifraservlet">servlet-重定向|转发</a></li>
+						<li><a href="servlet/cookie.html" target="ifraservlet">servlet-状态管理</a></li>
+						<li><a href="servlet/filter.html" target="ifraservlet">servlet-转发器|监听器|上下文</a></li>
+						<li><a href="servlet/cound.html" target="ifraservlet">应用-访问次数[session]</a></li>
+
+						<li><a href="servlet/img.html" target="ifraservlet">应用-验证码[session]</a></li>
+						<li><br/></li>
+						<li><a href="spring/springbase.html" target="ifraservlet">spring</a></li>
+						<li><a href="spring/springmvc.html" target="ifraservlet">springmvc</a></li>
+						<li><a href="spring/springtry.html" target="ifraservlet">spring-拦截器与异常</a></li>
+						<li><a href="spring/mybatis.html" target="ifraservlet">mybatis</a></li>
+						<li><a href="ajax/ajax.html" target="ifraservlet">ajax</a></li>
+						<li><a href="ajax/ajaxche.html" target="ifraservlet">ajax代码</a></li>
+						<li><a href="spring/springconfig.html" target="ifraservlet">spring文件文件备份</a></li>
+						<li><br/></li>
+						<li><a href="other/project.html" target="ifraservlet">做项目时扩展</a></li>
+						<li><a href="spring/spring-aop.html" target="ifraservlet">spring-AOP</a></li>
+						<li><a href="spring/struts.html" target="ifraservlet">struts2</a></li>
+						
+						
+					</ul>
+
+				</div>
+				<div class="right">
+					<iframe id="java" name="ifraservlet" src="servlet/jsp.html"  style="width:100%" frameborder="0" onload="this.height=100" scrolling="no"  > 
+
+					</iframe> 
+				</div>
+				<div class="clear"></div>
+			
+			</div>
+			<!--底部版权信息-->
+			<div class="bottom">
+				因兴趣而玩转编程,这里主要是一些本人接触java知识与自己的心得
+				@ouaix制作，仅供学习用途
+			</div>
+		
+		</div>
+		<script>
+			function reinitIframe(){//iframe高自动被内容填充
+					var iframe = document.getElementById("java");
+					try{
+					var bHeight = iframe.contentWindow.document.body.scrollHeight;
+					var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+					var height = Math.max(bHeight, dHeight);
+					iframe.height = height;
+					console.log(height);
+					}catch (ex){}
+				}
+				window.setInterval("reinitIframe()", 200);
+		</script>
+	</body>
+</html>

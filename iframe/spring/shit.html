@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<title>spring-aop</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+						<h4>反射机制[API]</h4>
+
+							<p>不懂内存管理 不懂线程应用 很难找到好工作</p>
+							<br/>
+							<p>1.java提供的API</p>
+								<p>》》类和方法</p>
+							<p>2.其功能：动态执行功能</p>
+								<p>》》动态加载类 class className=Class.forName(类名); 类名是变量时;只加载一次,没有对象类时抛异常</p>
+								<p>》》动态创建对象 Object obj=className.newInstance(); 没有无参构造器时抛异常</p>
+								<p>》》动态符文属性，执行方法 Method[] methods=className.getdDeclaredMethods()</p>
+								<p>》》动态解析 注解 等</p>
+							<p>3.反射是java底层执行机制</p>
+							<p>4.几乎所有的框架底层都使用了反射技术</p>
+
+							<p>动态执行：在运行期间才确定执行次序。</p>
+			
+							<h5>利用反射执行私有方法[属性]</h5>
+							<p>》》Object.setAccessiblie(true);//利用该方法打开访问限制,安全考虑,建议不要用</p>
+							<h5>利用反射调用方法</h5>
+							<p>》》动态执行:动态加载类-动态创建对象-查询方法-调用方法 Object _return=method.invoke(对象,方法……)</p>
+							<p>》》invoke转中文：调用</p>
+
+<pre>
+	Scanner in= new Scanner(System.in);
+	System.out.println("输入类名:");
+	String className=in.nextLine();
+	System.out.println("输入方法名:");
+	String methodname=in.nextLine();
+
+	//动态加载类：
+	Class classname=Class.forName(className);
+	System.out.println(classname);
+	//动态创建对象
+	Object obj= classname.newInstance();
+	System.out.println(obj);
+	//动态查询方法名为methodname 参数为int类型的方法
+	Method method=classname.getdDeclaredMethod(methodname,int.class[参数]);
+	//若不抛异常调用方法
+	Object _return=method.invoke(2);
+	System.out.println(_return);
+</pre>
+							<h5>利用反射处理解析、注解</h5>
+							<p>》》Object obj=method.getAnnotation(注解类型) //Test.class;返回null则不包含注解,反之有注解</p>
+							<p>》》method可以是：class、field[属性]、方法</p>
+							<p>》》自定义注解：public @interface Test{}</p>
+							<p>》》@Retention(RetentionPolicy.RUNTIME)让注解保存到运行期</p>
+			</div>		 
+		</div>
+	</body>
+</html>  

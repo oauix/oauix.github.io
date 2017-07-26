@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-date</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>Date</h2>
+					<p>*Date库类(从java1.1已不用了)</p>
+					<p>getTime()与setTime();前者将date类型值转换为long，后者相反</p>
+<pre style="background:#ccf2d0;border-radius: 7px;box-shadow: 1px 2px 10px #888">
+	import java.util.Date;
+	/**
+	*使用Date输出当前系统时间，并告知3天后这一刻的时间
+	*
+	*/
+
+   public class test{
+		public static void main(String[] agrs){
+			Date date=new Date();//获取一个时间节点，当前系统时间
+			System.out.println(date);
+			long time = date.getTime();//转换为自1970.1.1到截取时间的毫秒数
+			System.out.println(time);
+			time+=24*60*60*1000*3;
+			date.setTime(time);//再转换为日期格式
+			System.out.println(date);
+		}
+   }
+
+</pre>
+				<h2>SimpleDateFormat[格式类，java.text.SimpleDateFormat]</h2>
+					<p>自定义格式：object.format();[日期格式>自定义]object.parse();[相反]</p>
+<pre style="background:#ccf2d0;border-radius: 7px;box-shadow: 1px 2px 10px #888">
+	
+	import java.util.Date;
+	import java.text.SimpleDateFormat;
+	/**
+	*将当前系统时间转换以"yyyy-MM-dd HH:mm:ss"格式输出
+	*
+	*/
+	public class tests{
+		public static void main(String[] agrs){
+			Date date = new Date();
+			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String str = sd.format(date);//将日期格式转换为指定格式
+			Date sb= sd.parse(str);//再将指定格式反转换为日期格式
+			System.out.println(str+","+sb);
+		}
+	}
+</pre>
+			
+				<h2>Calendar</h2>
+					<p>*getInstance();获取时间分量</p>
+					<p>*Get(int field);获取当前Catendar中的时间分量。</p>
+<pre style="background:#ccf2d0;border-radius: 7px;box-shadow: 1px 2px 10px #888">
+	import java.util.Calendar;
+	public class CalenderTest{
+		public static void main(String[] agrs){//<span style="color:red">获取时间信息</span>
+			//创建cal,也是获取当前时间，但内容很多，显示不直观
+			Calendar cal = Calendar.getInstance();
+			System.out.println(cal);
+			Date d=cal.getTime();//转换日期格式
+			System.out.println(d);
+			int year=cal.get(Calender.YEAR);
+			int month=cal.get(Calendar)+1;//月的计数是0-11；
+			int day = cal.get(Calendar.DAY_OF_MONTH);
+			System.out.println(year+"年"+month+"月"+day+"日");
+			int h=cal.get(Calendar.HOUR_OF_DAY);
+			int m=cal.get(Calendar.MINUTE);
+			int s=cal.get(Calendar.SECOND);
+			System.out.println(year+"年"+month+"月"+day+"日"+" "+h+"："+m+":"+s);
+			int w=cla.get(Calendar.DAY_OF_YEAR);//一年的第几天
+			int mo=cal.get(Calendar.DAY_OF_WEEK)-1;//这个点星期几，这个里周日为1，星期一位2；故-1
+			char[] che = {'日','一','二','三','四','五','六'};
+			System.out.println("今年的第"+w+"天，星期:"+che[mo]);
+		}
+	}
+	public class CalenderTests{
+		public static void main(String[] agrs){//<span style="color:red">更改时间信息</span>
+			Calendar cal = Calendar.getInstance();
+			cal.set(Calendar.YEAR,2004);//将年改为2004
+			cal.set(Calendar.MONTH,3);//将月改为3月，  <span style="color:red">其他时间分量会跟着变，即同步</span>
+			cal.add(Calendar.YEAR,20);//将时间增加20年
+			System.out.println(cal.getTime());
+		}
+	}
+</pre>				
+			</div>	
+		</div>
+	</body>
+</html>

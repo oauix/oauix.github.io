@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-初步认知</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h5>学习java得渐进：1)多想，2)多练</h5>
+
+				<h3>操作系统</h3>
+				<p>Linux与Window目录结构的区别</p>
+				<p> 1)文件系统不同:Linux:目录 Windows:盘符</p>
+				<p> 2)外部设备映射不同:Linux:挂载点 Windows:盘符</p>
+				<p> 3)安全级别不同:Linux:高 Windows:低</p>
+				<h3>Linux是基于命令操作</h3>
+				<p>1)pwd:显示当前工作目录</p>
+				<p>2)ls:查看当前目录中的内容</p>
+				<p>3)cd:改变当前工作目录</p>
+
+				<h3>程序=算法+数据结构</h3>
+				<p>1)算法:解决问题的流程/步骤(顺序、分支、循环)</p>
+				<p>2)数据结构:将数据按照某种特定的结构来保存</p>
+							 <p style="text-indent:6em">数怎么存</p>
+				 <p>设计良好的数据结构会导致好的算法</p>
+
+				<h3>设计规则:</h3>
+				<p>1)将所有子类共有的属性和行为，抽象到父类中</p>
+				<p>2)所有子类行为都一样，设计为普通方法</p>
+				  <p style="text-indent:4em">所有子类行为不一样，设计为抽象方法</p>
+				<p>3)部分子类共有的行为，抽象到接口中</p>
+				  <p style="text-indent:4em">符合既是也是原则时，使用接口</p>
+				  <p style="text-indent:4em">接口是对继承的单一性的扩展-----多继承</p>
+
+				<h3>配置环境变量:------------了解</h3>
+				<p>*我的电脑(右击)-属性-高级系统设置-环境变量</p>
+				<p>1)JAVA_HOME:指向jdk的安装目录,方便后面配置</p>
+				<p>2)CLASSPATH:表示类的搜索路径，一般简写为.或变量值%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar，首尾不带空格的</p>
+				<p>3)PATH:指向jdk下的bin目录，加上;符号后在末尾加入%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin</p>
+				<p>*下面验证下是否配置成功，点开始运行输入cmd打开命令行窗口，输入java -version</p>
+
+				<h3>maven的使用(maven认识)[增加知识点]</h3>
+				<p>作为一名程序员，在开发的过程中，经常需要面对不同的运行环境（开发环境、测试环境、生产环境、内网环境、外网环境等等），在不同的环境中，相关的配置一般不一样，比如数据源配置、日志文件配置、以及一些软件运行过程中的基本配置。每次在不同环境部署程序时，都需要修改相应的配置文件，使之完成环境的配置。这么做存在一个比较大的问题：每次修改配置非常麻烦，而且配置错误会产生不可预估的影响，比如，在发布生产环境时用的开发环境的配置还好，但如果在开发环境下用生产环境的数据，将会造成生产数据的污染，导致生产环境崩溃。</p>
+				<br/>
+				<p>目前JAVA相关的项目基本都是使用Maven来进行构建。在maven中实现多环境的构建可移植性需要使用profile，通过不同的环境激活不同的profile来达到构建的可移植性。</p>
+			</div>
+		</div>
+	</body>
+</html>

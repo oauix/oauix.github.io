@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+	<head>
+		<title>类与对象</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+			<h2>抽象类:</h2>
+			  <p>1)由abstract修饰</p>
+			  <p>2)包含抽象方法的类必须是抽象类</p>
+				<p style="text-indent:2.5em">不包含抽象方法的类也可以声明为抽象类----我乐意</p>
+			  <p>3)抽象类不能被实例化</p>
+			  <p>4)抽象类是需要被继承的，<p></p>子类:</p>
+				<p style="text-indent:2.5em">4.1)重写所有抽象方法------常用</p>
+				<p style="text-indent:2.5em">4.2)也声明为抽象类--------不常用</p>
+			  <p>5)抽象类的意义:</p>
+				<p style="text-indent:2.5em">5.1)封装子类共有的属性和行为-------代码复用</p>
+				<p style="text-indent:2.5em">5.2)为所有子类提供一种统一的类型---向上造型</p>
+				<p style="text-indent:2.5em">5.3)可以包含抽象方法，为所有子类提供了统一的入口</p>
+				<p style="text-indent:4em">每个子类的实现不同，但入口是一致的</p>
+
+				<h2>内部类</h2>
+				<span style="color:red">个人理解：</span>
+						<p>1.在类的内部，默认该类的外部类不可见，要用的话，该类.内部类来访问,创建对象:Outer.Inner in = new Outer().new Inner()</p>
+						<p>2.内部类有一个隐式的实例化 即[外部类名 不知名 = new 外部类名()],可以直接拿来用</p>
+						<p>3.了解上面两点，其它的根普通一样</p>
+						<br/><hr/><br/>
+				<div>成员内部类: 应用几率比较小</div>
+				  <p>1)类中套类，里面的称为Inner内部类，外面的称为Outer外部类</p>
+				  <p>2)内部类通常只服务于外部类，对外不具备可见性</p>
+				  <p>3)内部类对象通常在外部类中创建</p>
+				  <p style="text-indent:4em">题:Outer类中定义了一个成员内部类Inner，需要在main()方法中创建 Inner类实例对象</p>
+				  <p style="color:red;text-indent:4em">一定要在别的类访问:Outer.Inner in = new Outer().new Inner();在外面对象的基础上创建对象</p>
+				  <p>4)内部类中可以访问外部类的成员(包括私有的)</p>
+					<p>5)内部类中有个隐式的引用指向了创建它的外部类对象，可以直接拿来用</p>
+				<h2>匿名内部类:</h2>
+				  <p>1)若想创建一个类(子类)的对象，并且对象只被创建一次,此时该类不必命名，称为匿名内部类</p>
+				  <p>而且该类是继承或实现接口的类，不然以什么基础创建</p>
+				  <p>创建格式：父类名[接口] obj =new 父类名[接口]（）{内部类内容}；</p>
+				  <p>在这里只是告诉初学者对于匿名内部类不要想的太多，而要这么想：匿名内部类就是重写父类或接口的方法，实现某种功能。可以匿名内部类对象.方法名()可以调用</p>
+				  <p>2)匿名内部类若想访问外部的外部变量，这个外部变量必须是final的[老师讲课带过,待测]</p>
+				  <p>[网上说是:]匿名内部类不能访问外部类方法中的局部变量，除非变量被声明为final类型
+					<a href="class_to_final.html">[扩展-原因]</a></p>
+					<p>最后，Java 8更加智能：如果局部变量被匿名内部类访问，那么该局部变量相当于自动使用了final修饰。</p>
+
+ 
+				  
+		</div>
+	</body>
+</html>

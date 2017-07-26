@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+	<head>
+		<title>查询表(map接口) Map  散列表(HashMap)</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>查询表(map接口) Map 影响散列表(HashMap)</h2>
+				 <p>* java.util.Map</p>
+				 <p>* 查找表,以key-value对的形式存储元素.</p>
+				 <p>* 常用实现类:java.util.HashMap</p>
+				 <p>* HashMap:散列表,以散列算法实现的Map</p>
+				 <p>* Map要求key不允许重复,是否重复取决于key元素 与 equals方法比较的结果</p>
+
+				<p>【常用方法】</p>
+				 <p>1.V put(K k,V v)方法：添加一对key-value元素，并返回value值</p>
+				 <p>*将对应的键值对存入到Map中.由于Map要求key不允许重复,所以使用已有的key存入新的value则是替换该key原来对应的value值,并将其返回.若指定的key在Map中不存在,则返回值为null.加值数据没有排序的</p>
+				 <p>*尽量不使用基本类型去接收返回值.因为若返回为值NULL,触发自动拆箱时会引起空指针异常.int num = map.put("化学", 99);回出现异常[有一个隐形的拆装:int num = map.put.inValue();]</p>
+				 <p>2.V get(K k)方法：返回value值 [查询value值]</p>
+						<p style="text-indent:6em"> * 获取指定key所对应的value</p>
+						 <p style="text-indent:6em">* 若指定的key在map中不存在则返回值为null</p>
+							<p style="text-indent:7em">实例:	</p>
+						 <p style="text-indent:6em">* Integer num = map.get("语文");</p>
+						 <p style="text-indent:6em">* System.out.println("语文:"+num);</p>
+				 <p>3.V remove(K k)：2017/6/10 星期六添加一对key-value元素 返回value值</p>
+						 <p style="text-indent:6em">* 将给定的key对应的键值对从map中删除</p>
+						 <p style="text-indent:6em">* 返回值为该key对应的value</p>
+						 <p style="text-indent:6em">* 如：删除数学</p>
+						 <p style="text-indent:6em">* Integer num = map.remove("数学");</p>
+						 <p style="text-indent:6em">* System.out.println("remove:"+num);</p>
+				 <p>4.boolean containsKey(K k) boolean containsValue(V v) [判断是否包含元素]</p>
+						<p style="text-indent:6em">* 判断当前map是否包含给定的key或value</p>
+						<p style="text-indent:6em">* 判断标准还是参考元素equals比较的结果.</p>
+				 <h3>遍历Map </h3>
+				 <p>[有三种方式:]</p>
+				 <p>1:遍历所有的key </p>
+								 <p style="text-indent:6em">*  Set keySet()方法</p>
+								 <p style="text-indent:6em">* 该方法会将当前Map中所有的key存入一个,Set集合后返回.</p>
+								 <br/>
+								 <p style="text-indent:4em">[应用代码]</p>
+								<p style="text-indent:6em">Set<String> keySet = map.keySet();</p>
+								<p style="text-indent:6em">for(String key : keySet){</p>
+									<p style="text-indent:8em">System.out.println("key:"+key);</p>
+								<p style="text-indent:6em">}</p>
+				 <p>2:遍历所有键值对  </p>
+					<p style="text-indent:4em">* Set entrySet() </p>
+					<p style="text-indent:4em">* Entry是Map的内部类,其每一个实例用于表示Map中一组键值对 </p>
+					<p style="text-indent:4em">* entrySet方法会将当前map中每一组键值 
+					对以一个Entry实例的形式存入Set集合后，将该Set集合返回. </p>
+					<p style="text-indent:4em">* 常用getKey(),getValue()方法再用于获取该组键值对中的key与value </p>
+					<br/>
+					<p style="text-indent:4em">[应用代码]</p>
+					<p style="text-indent:4em">Set&lt;Entry<String,Integer>> entrySet = map.entrySet(); </p>
+						<p style="text-indent:6em">for(Entry<String,Integer> e : entrySet){</p>
+							<p style="text-indent:8em">String key = e.getKey();</p>
+							<p style="text-indent:8em">Integer value = e.getValue();</p>
+							<p style="text-indent:8em">System.out.println(key+":"+value);</p>
+						<p style="text-indent:6em">}</p>
+				 <p>3:遍历所有的value(相对前两种不太常用)</p>
+						 <p style="text-indent:4em">* Collection values()</p>
+						 <p style="text-indent:4em">* 将当前Map中所有的value存入一个集合后返回.</p>
+						 <br/>
+						 <p style="text-indent:4em">[应用代码]</p>
+						 <p style="text-indent:4em">*Collection<Integer> values = map.values();</p>
+						 <p style="text-indent:4em">*for(Integer value : values){</p>
+							 <p style="text-indent:6em">System.out.println("value:"+value);</p>
+						 <p style="text-indent:4em">*}</p>
+				 <h3>影响散列表(HashMap)查询性能的一个主要原因 </h3>
+				 <p>是: 在HashMap中产生链表.产生链表的主要情况有两种:</p>
+				 <p style="text-indent:4em">1:元素多,概率问题(通过加载因子解决,避免扩容rehash)</p>
+				 <p style="text-indent:4em">2:作为key元素equals方法与hashcode方法的重写不当.</p>
+				 <p style="text-indent:6em">* 当两个key的hashcode值相同时,它们在HashMap内部数组(散列桶)中的位置就相同,若这两个key的equals,方法比较为false时就会产生链表.</p>
+				 <p># 当一个类在重写equals方法时就应当连同重写hashcode方法.并且遵循以下原则:</p>
+				 <p style="text-indent:4em">稳定性:</p>
+				 <p style="text-indent:8em">在一个对象参与equals比较的属性值没有发生改变的前提下,多次调用hashcode值返回的数字必须相同.不能是随机数.</p>
+				 
+				 <p style="text-indent:4em">一致性:</p>
+				 <p style="text-indent:8em">当两个对象equals比较为true时,hashcode值要相等.反过来若连个对象hashcode值相等equals方法也应当为true,若不然则可能会在HashMap中出现链表影响查找性能.</p>
+					<br/>
+				 <p>[<span style="color:red">下面最后段落是自己理解的</span>]</p>
+				 <p>扩展--hashcode()</p>
+				 <p>hashcode()跟equals()一样，都在object里的</p>
+				 <p><span style="color:red">## </span>看两个key[可以将key成a,它就是一个变量]是不是相同，鉴定与他们的hashcode是不是相同,若相同则为同一个引用类型，再判定他们是不是同一个对象，java是看他们的equals比较结果，若equals比较是false，那就是俩个对象，变量key里面就会存两个对象,[返回map]这样map里的key存了两个数，即产生链表</p>
+
+				 <p>[下面以这个东西再解释,这个东西要理解]</p>
+				 <p>当两个引用类型，他们类型相同，但equals比较是false的，那key里面就会存两个数【即产生链表，产生链表会影响散列表(HashMap)查询性能】</p>
+				 <p>范传奇老师说这样的列子：自己是通缉犯，拿身份证去住酒店，如果没有登记系统，警察来抓，要一个一个房间查找，有了登记系统可以直接查到房间号，但如果几个人拿的身份证[里面的名字等信息一样]一样，身份证号又不同，那登记时只会分配到同一个房间[假如登记系统只会一个身份证分配一个房间]，当警察查到房间号，进入房间，里面又有很多人，又有一个个的找，这样就影响性能了。</p>
+				 <p>产生链表的还有一种情况：元素多时，列子：3个房间要分配5个人住，那出现重复的概率很大</p>
+				 <p>为了减少元素多的情况，&gt;加载因子解决&lt;java规定一个map容量为16，当存储的集合到3/4时会扩容一次，但扩容很可怕，key查询表会变，尽量避免</p>
+
+				 <h2>LinkHashMap</h2>
+				 <p>可以美观的排序</p>
+			</div>
+		</div>
+	</body>
+</html>

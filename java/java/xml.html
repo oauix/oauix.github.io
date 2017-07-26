@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-xml</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>XML文档[XML很强大,因此java提供了对xml的支持的类]</h2>
+				<h4>解析[读取或获取]XML文档大致流程:</h4>
+				 <p>1:创建SAXReader对象，来读文件[需要导包支持]</p>
+					<p style="text-indent:4em">SAXReader reader = new SAXReader();	//导包import org.dom4j.io.SAXReader</p>
+				 <p>2:使用SAXReader方法读取XML文档并返回一个Document对象[该对象可以存储节点信息].</p>
+					<p style="text-indent:4em">Document doc = reader.read(new File("emplist.xml"));//读到元素并存储到doc</p>
+				 <p style="text-indent:4em"><span style="color:red">[注意]</span>这一步也是DOM解析耗时耗资源的地方,因为需要将XML文档都读取完毕并载入内存</p>
+				 <p>3:再通过Document对象获取根元素[根元素只有一个,规范]</p>
+					<p style="text-indent:4em">Element root = doc.getRootElement();//获取根元素</p>
+				 <p>4:通过根元素按照XML文档结构逐级获取子元素,以达到遍历XML文档数据的目的</p>
+					<p style="text-indent:4em">List<Element> list = root.element(); //获取下一级元素[或标签]</p>
+					<p style="text-indent:4em">List<Element> list = root.elements(); ////获取下一级一组元素[或标签]</p>
+				<p>5.再根据下面的方法获取自己要的东西</p>
+				<h4>xml获取元素常见方法：</h4>
+					 <p style="text-indent:4em">* Element的每一个实例用于表示一个XML文档中的一个元素(或一对标签)，Element提供了用于获取其表示的元素相关信息的方法.</p>
+					 <p style="text-indent:4em">1. String getName() --获取当前元素的名字(标签名)</p>
+					 <p style="text-indent:4em">2. String getValue() --获取属性的值</p>
+					 <p style="text-indent:4em">3. Element element(String name) --获取当前元素中指定名字的子元素</p>
+					 <p style="text-indent:4em">4. List elements() --获取当前元素中所有子元素</p>
+					 <p style="text-indent:4em">5. List elements(String name) --获取当前元素中所有同名子元素</p>
+					 <p style="text-indent:4em">6. String getText() --获取当前元素中间的文本</p>
+					 <p style="text-indent:4em">7. String elementText(String name) --获取当前标签下指定名字的子标签中间的文本</p>
+					 <p style="text-indent:4em">8. Attribute attribute(String name) --获取当前标签中指定元素名字的属性值[一对值],再根据getName()和getValue()获取</p>
+				
+				<h4>创建xml文件</h4>
+					 <p>Document提供了添加根元素的方法Element addElement(a)向当前文档中添加给定名字的根元素,并将该元素以一个 Element的实例返回,以便于对该根元素继续追加子元素等操作.</p>
+					  <p style="text-indent:4em">* 需要注意,该方法在这个基础上只能调用一次,因为一个文档中只能有一个根元素.</p>
+					  <p style="text-indent:4em">* Document <span style="color:blue">doc</span> = DocumentHelper.createDocument();</p>
+					  <p style="text-indent:4em">* Element root = <span style="color:blue">doc</span>.addElement("list");</p>
+					  <p style="text-indent:4em">* 像root元素只有一个，后面在这个基础上再次添加元素，root.addElement("html");</p>
+					  <p>【元素添加完毕后,再将元素信息写入文件】</p>
+<pre>
+	XMLWriter writer = new XMLWriter(//创建XMLWriter,使用XMLWriter将Document对象写出以生成XML文档  
+			new FileOutputStream("myemp.xml"),
+			OutputFormat.createPrettyPrint()
+		);
+		writer.write(<span style="color:blue">doc</span>);
+		System.out.println("写出完毕!");
+		writer.close();
+</pre>
+					  <h4>xml添加元素常见方法：</h4>
+					  <p style="text-indent:4em">1.Element addElement(String name) --向当前标签中添加指定名字的子标签并将其返回</p>
+
+					  <p style="text-indent:6em">Element empEle = root.addElement("emp");</p>
+					  <p style="text-indent:4em">2.Element addText(String text) --向当前标签中添加文本信息,返回值还是当前标签,这样做的目的也是便于对当前标签继续操作(老程序员偷懒必备)</p>
+
+					  <p style="text-indent:4em">3.Element addAttribute(String name,String value) --向当前标签中添加属性,返回值还是当前标签.</p>
+
+					  <h4>使用xpath检索XML信息</h4>
+
+<pre>
+Document doc = reader.read(
+	new FileInputStream("myemp.xml")
+	);
+	String xpath = "/list/emp[salary>3000 and gender='男']/name";//条件
+	List<Element> list = doc.selectNodes(xpath);//根据条件查出数据		
+	for(Element e : list){
+		System.out.println(e.getText());
+	}
+</pre>
+
+				<h4>DTD定义元素[了解]</h4>
+				<p>一个有效的XML文档必然是结构正规的，结构正规的XML文档不一定是有效的，即有效的是格式正规的一个子集</p>
+				<p>[元素格式]</p>
+				<p style="text-indent:4em">&lt;!element[关键词] name[元素名字] content[元素类型]></p>
+				<p style="text-indent:4em">empty --该元素不能含有子元素和文本，但可以有属性[空元素]</p>
+				<p style="text-indent:4em">any --该元素可以含有任何,在DTD中常定义元素内容</p>
+				<p style="text-indent:4em">#pcdata --可以含任何字符数据，但不能再其包含子元素</p>
+				<p style="text-indent:4em">纯元素类型 --只含子元素,并且这些子元素外没有文本</p>
+				<p>[修饰符号]</p>
+				<p style="text-indent:4em">( ) --用来给元素分组</p>
+				<p style="text-indent:4em">| --在列出的对象中选择一个</p>
+				<p style="text-indent:4em">? --该对象出现0-1</p>
+				<p style="text-indent:4em">+ --该对象出现1-n</p>
+				<p style="text-indent:4em">* --该对象出现0-n</p>
+				<p style="text-indent:4em">. --对象必须按指定顺序出现</p>
+			</div>
+		</div>
+	</body>
+</html>

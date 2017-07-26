@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+		<title>oracle-视图、序列、约束</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<style>
+			*{margin:0px;padding:0px}
+			body{font-size:12px;color:#666;font-family:"微软雅黑"}
+			.body{margin:10px auto;width:95%}
+			.body .content{font-size:13px;line-height: 29px;box-shadow: 0px 0px 8px #999;border-radius: 6px;padding: 20px 18px}
+			.body .content a{text-decoration:none}
+			p{text-indent:1.9em}
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>视图</h2>
+				<p># 为直观，避免代码的重复性，我们把表的子句写到视图里。</p>
+				<p>* 视图里是动态的数据，真实不存在，当用时调用它，再执行视图里sql语句</p>
+				<p>* 视图里如果有表达式或函数，需要给个别名，否则会报错,有表达式、函数、排序等称为复杂视图</p>
+				<p>* 创建视图需要权限</p>
+				<p>* grant create view to scott;//给视图创建权限</p>
+				<p>* create or replact view v_emp_10;//修改视图，没有这个视图就创建</p>
+				<p>* 对视图的dml操作[对视图操作就是对基础表操作]，只能对简单视图操作，并且不能违反视图数据来源的基础表的约束条件</p>
+				<p>* 对基础表的操作不当时会促成基本表污染，如对视图操作，但视图里又不可见，这样称之为对基础表污染</p>
+				<p>* delelte删除不会对基础表起作用,因为视图没有，无从下手</p>
+				<p>* 为了避免污染，为视图添加检查约束：with check option[该约束意思:对视图修改必须在视图可见范围内]</p>
+				<p>* 如果不会对视图进行操作，最后加只读约束:with read only</p>
+<pre>
+	create view v_emp_10
+	as 
+	select empno,ename,sal,deptno
+	from emp
+	where deptno=10;
+
+	select * from v_emp_10;
+
+	跟这个一样：
+	select * from (select empno,ename,sal,deptno
+				from emp
+				where deptno=10);
+</pre>
+
+				
+			
+				<br/>
+			
+				<h2>序列</h2>
+				<p>* 通常使用序列为表的主键字段生成值</p>
+				<p>* 创建序列：create sequence sequence_name</p>
+				<p>* start with i //i初始值</p>
+				<p>* increment by j //j为步长</p>
+				<p># 获取序列中内容：nextval i[[获取序列下一个值] currval j[获取序列当前值]</p>
+				<h2>索引</h2>
+				<p>* 建立索引：create index index_name on table 字段</p>
+				<p>* like 用不上索引的</p>
+				<p>* 表数据变动后，需要重构一下索引 后面加 rebuild 关键词:alter index_emp_ename rebuild</p>
+				<br/>
+				<h2>约束[限制行为]</h2>
+				<p># 1.not null --ename number(3,2) constraint emp_ename_nn not null；可以给约束取个别名[emp_ename_nn]</p>
+				<p>2.唯一性[但对null没有要求，插几个null都没有事] unique上关键词 建表后增加唯一性:alter table 表名 add constraint 唯一性_name unique（name）//给name字段加约束</p>
+				<p>3.主键[primary kay]非空且唯一,一但生产就不允许改,添加跟唯一性约束一样</p>
+				<p>4.外键[不常用] -其他表的主键，外键的值其他表上的主键必须有</p>
+				<p>5.检查[check-取值约束]，当给性别字段赋值时，就必须给男或女 格式:alter table 表名 add constraint 约束名 check(字段条件);</p>
+			
+			</div>
+		</div>
+	</body>
+</html>
