@@ -21,7 +21,7 @@ $(".box_x").click(function(){
 	});
 	//弹幕技术切换
 	$(".box_o").click(function(){
-		$(".map").fadeToggle();
-		$(".map").fadeToggle();
+		$(".map").fadeIn();
+		//$(".map").fadeToggle();
 	});
 
