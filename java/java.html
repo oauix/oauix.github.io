@@ -104,9 +104,18 @@
 			</div>
 		
 		</div>
-		<!--jquery官方库-->
-		<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
-		<!--自定义js-->
-		<script type="text/javascript" src="../js/note.js"></script>
+		<script>
+			function reinitIframe(){//iframe高自动被内容填充
+					var iframe = document.getElementById("java");
+					try{
+					var bHeight = iframe.contentWindow.document.body.scrollHeight;
+					var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+					var height = Math.max(bHeight, dHeight);
+					iframe.height = height;
+					console.log(height);
+					}catch (ex){}
+				}
+				window.setInterval("reinitIframe()", 200);
+		</script>
 	</body>
 </html>

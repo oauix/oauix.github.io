@@ -4,16 +4,24 @@
 	return false;
 });
 
-
-
-function reinitIframe(){//iframe高自动被内容填充
-	var iframe = document.getElementById("java");
-	try{
-	var bHeight = iframe.contentWindow.document.body.scrollHeight;
-	var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-	var height = Math.max(bHeight, dHeight);
-	iframe.height = height;
-	console.log(height);
-		}catch (ex){}
+function imgup(){
+	var map=document.getElementById("map");
+	map.style.display="block";
 }
-window.setInterval("reinitIframe()", 200);
+function imgclose(){
+	var map=document.getElementById("map");
+	map.style.display="none";
+}
+$(".box_x").click(function(){
+	//删除animated flipInY类，加animated bounceOut类，fadeOut执行完后再反过来来删除animated bounceOut类，加animated flipInY类
+	$(".map").removeClass("animated flipInY").addClass("animated bounceOut").fadeOut(1000,function(){
+		$(".map").removeClass("animated bounceOut").addClass("animated flipInY");
+	});
+		$(".map").fadeOut();
+	});
+	//弹幕技术切换
+	$(".box_o").click(function(){
+		$(".map").fadeToggle();
+		$(".map").fadeToggle();
+	});
+
