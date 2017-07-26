@@ -2,7 +2,7 @@
 			body{font-size:12px;color:#666;font-family:"Î¢ÈíÑÅºÚ"}
 			.clear{clear:both}
 
-			.bod{width:80%;margin:0px auto;min-width:992px;}
+			.bod{width:80%;margin:0px auto;min-width:992px;min-height:1000px;}
 			.bod .top{
 				font-size:36px;
 				
@@ -38,7 +38,7 @@
 				min-width:992px;
 			}
 			.bod .corse .left{
-				min-height:1000px;
+				min-height:900px;
 				border:2px #ccc solid;
 				box-shadow: 2px 3px 1px #a2e997;
 				margin-left:0.3%;
