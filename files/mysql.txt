@@ -1,0 +1,6 @@
+driver=com.mysql.cj.jdbc.Driver
+url=jdbc:mysql://176.121.99.31:3306/web?characterEncoding=gbk&useSSL=false&serverTimezone=GMT%2B8
+user=root
+password=250130
+maxactive=5
+maxwait=5000

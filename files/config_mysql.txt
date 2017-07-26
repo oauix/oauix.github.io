@@ -1,0 +1,28 @@
+status;
+mysql -u root@176.121.99.21 -p;
+
+create database mysql01 defaule character set utf8;
+//更改编码集
+alter database mysql01 defaule character set utf8;
+drop table if exists t1;
+//导入文件,批处理
+source d:test.sql;
+
+
+
+//驱动程序名
+String driver = "com.mysql.jdbc.Driver";
+
+// URL指向要访问的数据库名scutcs
+String url = "jdbc:mysql://127.0.0.1:3306/scutcs";
+
+
+//时区错误,在jdbc连接的url后面加上serverTimezone=GMT即可解决问题，如果需要使用gmt+8时区，需要写成GMT%2B8
+//再一个解决办法就是使用低版本的mysql jdbc驱动，5.1.40不会存在时区的问题
+
+driver=com.mysql.cj.jdbc.Driver
+url=jdbc:mysql://176.121.99.31:3306/web?characterEncoding=gbk&useSSL=false&serverTimezone=GMT%2B8
+user=root
+password=250130
+maxactive=5
+maxwait=5000
