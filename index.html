@@ -27,26 +27,28 @@
 			</div>
 			<!--内容区-->
 			<div class="corse">
-				<iframe id="java" name="ifra" src="start.html"  style="width:100%" frameborder="0" onload="this.height=100" scrolling="no"  > 
+				<iframe id="index" name="ifra" src="start.html"  style="width:100%" frameborder="0" onload="this.height=100" scrolling="no"  > 
 
 				</iframe>
+
 			</div>
 			<!--底部版权信息-->
 		</div>
 		<script>
 			function reinitIframe(){//iframe高自动被内容填充
-					var iframe = document.getElementById("java");
+					var iframe = document.getElementById("index");
 					try{
 						var bHeight = iframe.contentWindow.document.body.scrollHeight;
 						var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-						var height = Math.max(bHeight, dHeight);
+						//var height = Math.max(bHeight, dHeight);
+						var height = Math.max(bHeight, 0);//双自检高度,先清0,再检测高度
 						iframe.height = height;
 						console.log(height);
 					}catch (ex){
 					
 					}
 				}
-				window.setInterval("reinitIframe()", 300);
+				window.setInterval("reinitIframe()", 200);
 		</script>
 	</body>
 </html>
