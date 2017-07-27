@@ -14,6 +14,117 @@
 	<body>
 		<div class="body">
 			<div class="content">
+				<h3>计算机用8的倍数储存数据原因:计算机底层都用byte为储存单位的，8的倍数方便拆分和组装。</h3>
+				<h3>java除了8中基本数据类型,其他都是引用变量,数组也是引用变量,引用变量赋值时,默认是new一个对象,因此储存在堆中,int[] arr={0};arr栈中,{0}在堆中.java只有一种参数传递方式:值传递</h3>
+				<h3>final修饰的变量在初始化以后不能再次改变</h3>
+
+				<h3>内存溢出[泄漏]:运期间不断分配内存,直到内存耗尽。</h3>
+
+				<h3>Object obj=new Object();步骤：1加载类到方法区，2在堆分配对应空间,并将属性给默认初始化，3调用构造方法。</h3>
+<pre>
+	class A{
+		int a=6;
+		A(){
+			print();
+		}
+		void print(){
+			System.out.println(a);
+		}
+	}
+	class B extends A{
+		int a=7;
+		void print(){
+			System.out.println(a);
+		}
+	}
+	class Test{
+		static void main(String[] agrs){
+			new B(); //为0
+		}
+	}
+	//1.加载A B类文件
+	  2.堆分配2个对象空间，并将A.a=0,B.a=0;
+	  3.调用构造方法, 先调用隐形的super()->A();->将A.a=6,调用print()[这个方法是重点,这是调用B类的重写方法,而B没有运行构造方法,B.b=0]
+	  4.因此打印0;
+	  5.继续调用B的构造方法,将B.a=7;
+	  6.完成
+	  调用父类方法，还是调用重写方法 看调用对象。
+</pre>
+			
+				<h3>在100000记录中找出10条最大数据</h3>
+
+<pre>
+	public class Demo07 {
+
+    int index = 1;
+
+    TreeSet<User> result;
+
+    public static void main(String[] args) {
+        //从 1000000笔数据中筛选最大的100个
+        Demo07 demo = new Demo07();
+        demo.sort();
+        demo.print();
+    }
+
+    public void print(){
+        for (User user : result) {
+            System.out.println(user); 
+        }
+    }
+
+    public void sort(){
+        result=new TreeSet<User>(new ByScore());
+        for(int i=0; i<1000000; i++){
+            User user=getUser();
+            result.add(user);
+            //删除最后一名
+            if(result.size()>10){
+                Iterator<User> ite=result.iterator();
+                ite.next();
+                ite.remove();
+            }
+        }
+    }
+	//随机生成待选择数
+    public User getUser(){
+        String name = UUID.randomUUID()
+                .toString().substring(0,5);
+        int score = (int)(Math.random()*80000);
+        return new User(index++, name, score);
+    }
+}
+//编写比较规则
+class ByScore implements Comparator<User>{
+    public int compare(User o1, User o2) {
+        int v = o1.score - o2.score;
+        if(v==0){
+            return o1.id=o2.id;
+        }
+        return v;
+    }
+}
+
+class User{
+    int id;
+    String name;
+    int score;
+    public User(int id, String name, int score) {
+        this.id=id;
+        this.name = name;
+        this.score = score;
+    }
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", score=" + score + "]";
+    }
+
+}
+
+</pre>
+					
+				<br/><br/>
+
 				<h3>1.java编译运行过程:--------常见面试题</h3>
 				<p>1.1)编译期:.java源文件，经过编译，生成.class字节码文件</p>
 				<p>1.2)运行期:JVM加载.class并运行.class</p>
