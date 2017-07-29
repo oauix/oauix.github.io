@@ -17,14 +17,39 @@
 			<div class="content">
 				<h4>hibernate框架</h4>
 
-				》》自动生成 session save[插入数据] delete update get[查询]。
+				<p>》》自动生成 session save[插入数据] delete update get[查询]。</p>
 
-				1.导包：hidernate-core 4.3.6.final[final为终结版]  mysql-connector
-				2.添加配置文件hibernate.xml 加一个子配置文件
-				3.写实体类
+				<p>1.导包：hidernate-core 4.3.6.final[final为终结版]  mysql-connector</p>
+				<p>2.添加配置文件hibernate.xml 加一个子配置文件</p>
+				<p>3.写实体类</p>
 <pre>
 	
+</pre>			
+				<h4>hibernate 对象状态管理</h4>
+				
+				<p>三状态：</p>
+				<p>临时状态 new出来时的状态,刚刚创建的新实体对象,还没有保存数据库时候,这对象就是临时状态</p>
+				<p>持久状态 连接数据库时操作数据状态，在该状态,重要的特点:更改数据属性会影响数据库数据,</p>
+				<p>游离状态 用session.evict() 将持久状态转换成游离状态,后面操作对数据库数据将无影响</p>
+
+				<p>session.evict(Object);//将一个对象清除缓存,使其成为游离状态</p>
+				<p>session.clear(Object);//将全部对象清除缓存,使全部对象成为游离状态</p>
+				<p>session.flush(Object);//调用flush强行同步数据库并清空缓存</p>
+				<p>session.update(Object);//将一个对象又转换成为持久状态</p>
+<pre>
+	SessionFactory factory=new sessionFactory(); //获取hibernate框架内一个API工厂
+	Session session=factory.openSession();//由工厂创建session对象
+					
+	Transaction tx=session.beginTransaction();//启动事务
+	……
+	session.save(User); //User实体对象
+	//后面更改数据会影响提交
+	//session.evict(User); 跳出 变游离状态，跟事务提交无关系
+
+	tx.commit();
+	session.close();
 </pre>
+					
 			</div>		 
 		</div>
 	</body>
