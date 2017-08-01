@@ -35,6 +35,38 @@
 					<p style="text-indent:4em">3.数据库	</p>
 					<p style="text-indent:4em">4.editplus	//代码编写工具,备用</p>
 					<p style="text-indent:4em">5.FSCapture //图片快速处理工具</p>
+					<br/><br/>
+
+				<h3>做项目习惯:</h3>
+
+				<p style="text-indent:4em">第一步:写工作大致流程:</p>
+					<p style="text-indent:6em">比如:上次商城项目流程[文件]:</p><br/>
+						<p style="text-indent:8em">准备工作：</p>
+						<p style="text-indent:8em">1.设计数据库表,并创建对应表和必要的测试数据，并用命令测试查询添加二功能</p>
+						<p style="text-indent:8em">2.搭建项目环境 保证hello请求测试正常</p>
+							<p style="text-indent:9em">导入tomcat服务器包,导入spring-mvc核心包,替换web.xml文件</p>
+						<p style="text-indent:8em">3.准备svn或github做版本控制器</p><br/>
+						<p style="text-indent:8em">编写持久层</p>
+						<p style="text-indent:8em">1.导入对应支持包 spring-mybatis,junit,buiid,mysql</p>
+						<p style="text-indent:8em">2.创建对应的实体类,添加DAO接口[里面先只一个添加功能]</p>
+						<p style="text-indent:8em">3.添加map.xml配置文件</p>
+						<p style="text-indent:8em">4.添加mybatis.xml,数据库配置信息文件,配置dao接口与map.xml的对应关系</p>
+						<p style="text-indent:8em">5.编写测试类,测试功能模块</p><br/>
+						<p style="text-indent:8em">添加业务层</p>
+						<p style="text-indent:8em">1.添加servlice接口</p>
+						<p style="text-indent:8em">2.创建商品对应的servlice类</p><br/>
+						<p style="text-indent:8em">处理表示层</p>
+						<p style="text-indent:8em">1.在控制器内添加会员登录请求，并添加响应的.jsp文件,测试</p>
+						<p style="text-indent:8em">2.控制器中添加添加数据请求方法，并调servlice中方法,得到数据后直接输入.jsp文件中进行测试</p>
+						<p style="text-indent:8em">3.再返回dao添加另一个删除功能,再在测试类测试,再写控制器,一次处理一个业务,处理完后上传版本控制器备注,以便恢复</p><br/>
+						<p style="text-indent:8em">优化显示层</p>
+						<p style="text-indent:8em">1.用bootstrap框架写对应的界面</p>
+						<p style="text-indent:8em">2.添加ajax同步处理</p><br/>
+
+						<p style="text-indent:8em">调试+优化</p>
+				<p style="text-indent:6em">第二步:编写逻辑:</p>
+
+					
 				</div>	
 			
 					
