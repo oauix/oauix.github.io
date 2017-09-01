@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<title>javascript</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/web.css" type="text/css" />
+		<style>
+			span{font-size:1.1em;margin-left:1em;}
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+			
+				<h3>外部对象：</h3>
+				<div style="width:88%;margin:20px auto">
+					<P>BOM-- Browser Objcect Model,浏览器对象模型,用访问操作浏览器窗口,没有标准</P>
+					<h5>1>>.DOM文件操作对象[domcument]</h5>
+					<p>Document Object Model,文档对象模型,用来操作文档,定义标准</p>
+						<p style="color:red">获取与修改</p>
+						<p>1.var n=domcument.getElementById(id);</p>
+						<p>2.var m=domcument[objcect].getElementsByTagName("标签名");</p>
+						<p>3.var m=domcument.getElementsByName("name属性,跟id一样");但获取的值是数组,用var user=document.getElementsByName("user")[0].value;</p>
+						<p>n.nodeName;//节点名字，标签名或属性名</p>
+						<p>n.nodeType;//节点类型，一般是value的值</p>
+						<p>
+							n.innerText;获取或设置对象起始和结束标签内的<span style="color:red;margin:1px">文本</span>
+						</p>
+						<p>n.innerHTML;获取或设置对象起始和结束标签内的HTML[全部内容]</p>
+						<p>n.getAttribute("属性");根据属性获取属性里面的值</p>
+						<p>n.setAttribute("属性");根据属性改变属性里面的值</p>
+						<p>n.removeAttribute("属性");根据属性删除属性里面的值</p>
+						<p>id style className中的东西可以.出来，其他不是所有浏览器都支持[兼容问题]</p>
+						<p>4.<i style="color:green">获取标签上一级标签</i>  用：object.parentNode;object指当前标签</p>
+						<p style="color:red">创建节点</p>
+						<p>1.var n=domcument.createElement("添加标签名");//创建节点</p>
+						<p style="text-indent:4em">//设置节点信息</p>
+						<p style="text-indent:4em">n.type="text";</p>
+						<p style="text-indent:4em">n.value="mary";</p>
+						<p>2.n.appendChild("添加标签名");//再继续追加</p>
+						<p>3.n.insertBefore("添加标签名",refnote);//再继续追加,不过可以选择refnote标签前追加</p>
+						<p style="color:red">删除节点</p>
+						<p>object.removeChild("标签名");//删除object标签下的“标签名”标签</p>
+					<h5>2>>.window对象</h5>
+					<p>常用有:alert(str);confirm(str);//确认对话框</p>
+					<p>周期定时器:setInterval(exp,time)[exp为函数名,不加()];clearInterval(tID);//停止对象定时器</p>
+					<p>一次性定时器:setTimeout(exp,time);clearTimeout(tID)</p>
+					<h5>3>>.screen对象[屏幕],用于获取用户显示屏分辨率和色彩信息</h5>
+					<h5>4>>.history对象[历史]:包含用户(在浏览器窗口内)访问过的url</h5>
+					<p>history.forward(); //等同于单击"前进"按钮</p>
+					<p>history.back();//等同于单击"后退"按钮</p>
+					<p>history.go(-2);//等同于单击两次"后退"按钮</p>
+					<h5>5>>.location对象[地址栏]：包含当前url信息</h5>
+					<p>reload();重新载入当前网址，相当于按下“刷新“,location.href="#"相当于超链接a，不过这个可以用js再加以控制</p>
+					<h5>6>>.navigator对象[帮助]:获取客户端浏览器和操作系统信息</h5>
+					<p>navigator.userAgent;//获取到信息</p>
+				</div>
+				
+			</div>			
+		</div>
+	</body>
+</html>

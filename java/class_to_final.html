@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<title>类与对象</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>为什么要是是final修饰的：[网上的东西:]</h3>
+				 <p>先定义一个接口[用于创建匿名内部类的]</p>
+<pre>
+	public interface MyInter{
+		public void dorun();
+	}	
+</pre>
+				  <p>然后创建这个接口的匿名子类：</p>
+<pre>
+	public class inter{
+		
+		public void useMyInter(){
+			final int number=123;
+			System.out.println(number);
+			MyInter myinter=new MyInter(){
+				public void dirun(){
+					System.out.println(number);
+				}
+			};
+			myinter.dorun();
+			System.out.println(number);
+		}
+	}
+</pre>
+					<p>这个匿名子类会被编译成一个单独的类，反编译的结果是这样的：</p>
+
+<pre>
+	class inter$1 implements MyInter{
+		private inter this$0;
+		private int paraint;
+		//构造函数
+		inter$1(inter this$0,int paraint){
+			this.this$0=this$0;
+			this.paraint=paraint;
+		}
+		public void dorun(){
+			System.out.println(this.paraint);
+		}
+	}
+
+</pre>
+					<p>可以看到外部类和名为number的局部变量是作为构造方法的参数传入匿名内部类的</p>
+					<p style="color:red">问题出在:局部变量的生命周期与局部内部类的对象的生命周期的不一致性问题</p>
+
+			</div>		  
+		</div>
+	</body>
+</html>

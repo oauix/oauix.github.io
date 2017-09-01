@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+		<title>javascript</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/web.css" type="text/css" />
+		<style>
+			span{font-size:1.1em;margin-left:1em;}
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>内置对象:</h3>
+				<div style="width:88%;margin:20px auto">
+				<h5>1>.String:</h5>
+				<p>n.length;</p>
+				<p>charAt(n);lastcharAt(n)[从后开始查找];charCodeAt(n)[查到后返回Uniccode值];</p>
+				<p>n.indexOf(str)[查找中间字符];n.lastindexOf(str)[从后开始查找];没有返回-1</p>
+				<p>n.substring(start,end)[截取字符串，含前不含尾];</p>
+				<p>n.replace(finstr,tostr)[更换字符串];</p>
+				<p>x.split(byte);//拆分字符串</p>
+				<h5>2>.Number:</h5>
+				<p>toFixed(n);转换为字符串，并保留n位小数</p>
+				<h5>3>.Array:</h5>
+				<p>n.reverse();//f反向数组</p>
+				<p>n.sort([b]);//数组排序，中间可以调方法，用来声明比较算法</p>
+				<h5>4>.number:</h5>
+				<h5>5>.date:</h5>
+				<p>日期转换为字符串：toString();toLocaleTimeString()[根据本地时间把 Date 对象的时间部分转换为字符串];toLocaleDateString()</p>
+				<h5>6>.regexp[正则表达式]:</h5>
+				<p>表达式格式：var str=/这里写正则/;</p>
+				<p>regexpobjcest.exec(str);//指出str字符串位置,返回该值</p>
+				<p>regexpobjcest.test(str);//如果字符串regexpobjcest中含有字符串str就返回ture，n为正则表达式</p>
+				<p>n.replace(str,tostr);str为正则表达式类型</p>
+				<p>n.match(str);//获取正则表达式str匹配的字符串数组</p>
+				<p>n.search(str);//返回正则表达式str的位置</p>
+				<h5>7>.Function[函数]:</h5>
+				<p>arguments对象，一种特殊的对象，可以访问函数实现与方法</p>
+				<p>函数参数：</p>
+<pre>
+	function method(){
+		alert(arguments.length);
+		alert(arguments[0]);
+	}
+	method(10,30);//输出是2后才输出10；
+</pre>
+				<p>创建function函数一种方式：var add=new function("x","y","retrun x+y";)</p>
+				<p>正常写法：</p>
+<pre>
+	function arguments(x,y){
+		retrun x+y;
+	}
+</pre>
+				<p style="color:red">function中的eval函数，计算字符串中的值，效果：</p>
+<pre>
+	var str="2+3"
+	alert(str);//2+3
+	alert(eval(str));//5
+</pre>
+				</div>
+			</div>			
+		</div>
+	</body>
+</html>

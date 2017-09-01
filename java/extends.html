@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-继承与接口、多态</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>继承:</h2>
+			  <p>作用:1)实现代码的复用、避免代码重复</p>
+			  <p>用法:2)通过extends来实现继承</p>
+			  <p>特性:3)父类/基类:[封装]所有子类所共有的属性和行为</p>
+				<p style="text-indent:4em">子类/派生类:子类所特有的属性和行为</p>
+			  <p style="text-indent:4em">4)子类继承父类后，子类具有:父类的+子类的</p>
+			  <p style="text-indent:4em">5)一个父类可以有多个子类</p>
+				<p style="text-indent:4em">一个子类只能继承一个父类----单一继承</p>
+			  <p style="text-indent:4em">6)继承具有传递性</p>
+			  <p>注意点:[继承中的构造函数]<span style="color:red">java规定:构造子类之前必须先构造父类<span></p>
+				<p style="text-indent:4em">若子类自己不调父类构造，则编译器默认在子类构造的第一句通过super()调父类无参构造</p>
+				<p style="text-indent:4em">若子类自己调了父类构造，则不再默认提供</p>
+			<p style="text-indent:4em">super()调父类构造必须位于子类构造的第一行,继承要符合is a的关系</p>
+
+			<p>向上造型:</p>
+			  <p style="text-indent:4em">1)父类型的引用指向子类的对象</p>
+			  <p style="text-indent:4em">2)能点出来什么，看引用的类型</p>
+			 <p>向下造型：相反，称之强制转换。需要判断</p>
+
+			  <h2>接口:</h2>
+			  <p>1)是一个标准、规范----制定方  制定包</p>
+				<p style="text-indent:4em">遵守了这个标准就能干某件事---------API</p>
+			  <p>2)是一种数据类型(引用类型)</p>
+			  <p>3)(创建)由interface定义</p>
+				<p style="text-indent:4em">只能包含<span style="color:red">常量和抽象方法</span>  里的：访问控制修饰符默认：pulic</p>
+			  <p>4)接口不能被实例化，实现接口的类不算子类叫实现类，只有继承才有子类一说。</p>
+			  <p>5)接口是需要被实现/继承的，实现类/子类:</p>
+				  <p style="text-indent:4em">必须重写接口中的所有抽象方法</p>
+			  <p>6)一个类可以实现(implements)多个接口，用逗号分隔</p>
+				<p style="text-indent:4em">若又继承又实现时，应先继承后实现</p>
+			  <p>7)接口可以继承接口</p>	
+			  
+			  	<h2>多态:</h2>
+				  <P>1)意义:</P>
+					<p>1.1)同一类型的引用指向不同的对象时，有不同的实现 </p>
+						<p style="text-indent:4em">-------行为的多态: cut()、run()、study()......</p>
+					<p>1.2)同一个对象被造型为不同的类型时，有不同的功能</p>
+					<p>(同一个对象，造型成不同的类型时，会有不同的功能。)</p>
+						<p style="text-indent:4em">-------对象的多态: 我、你、水......</p>
+
+						<p style="text-indent:4em">以对象与类型来区分</p>
+				  <p>2)向上造型:</p>
+					<p style="text-indent:4em">2.1)父类型的引用指向子类的对象</p>
+					<p style="text-indent:4em">2.2)能造型为的类型有: 父类+所实现的接口</p>
+					<p style="text-indent:4em">2.3)能点出来什么，看引用的类型</p>
+				  <p>3)向下造型：</p>
+					<p style="text-indent:3em">引用类型之间强制类型转换，成功的条件有两种:</p>
+					<p style="text-indent:4em">3.1)引用所指向的对象，就是该类型[继承]</p>
+					<p style="text-indent:4em">3.2)引用所指向的对象，实现了该接口[实现]</p>
+					<p style="text-indent:3em">强转若不符合如上两个条件，则发生ClassCastException类型转换异常</p>
+					<p style="text-indent:4em">建议在强转之前通过instanceof来判断引用的对象是否是该类型</p>
+			</div>
+		</div>
+	</body>
+</html>

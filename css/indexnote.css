@@ -1,0 +1,112 @@
+			*{margin:0px;padding:0px}
+			body{font-size:12px;color:#666;font-family:"微软雅黑"}
+			.clear{clear:both}
+
+			.indexbod{width:80%;margin:0px auto;min-width:992px;min-height:1000px;
+					position:relative;
+			}
+			.indexbod .top{
+				font-size:36px;
+				
+			}
+			.indexbod .top a{text-decoration:none;font-size:15px;}
+			.indexbod .top a:hover{
+				font-size:18px;color:red;
+			}
+			.indexbod .top span{
+				font-size:25px;
+				
+			}
+			.indexbod .muent{
+				min-width:992px;
+				background: #4cbf36;
+				line-height: 2em;
+				border-radius: 3px;
+				box-shadow: 2px 3px 1px #a2e997;
+			}
+			.indexbod .muent a{
+				/*margin-left:1%;  */
+				padding:10px 4%;
+				font-size:1.2em;
+				text-decoration:none;
+				color:#fff;
+			}
+			.indexbod .muent a:hover{
+				background:#fff;
+				color:#555;
+			}
+			.indexbod .corse{
+				margin:10px auto;
+				min-width:992px;
+			}
+			.indexbod .corse .left{
+				min-height:900px;
+				border:2px #ccc solid;
+				box-shadow: 2px 3px 1px #a2e997;
+				margin-left:0.3%;
+				width:20%;
+				float:left;
+			}
+			/*	left超链接效果css	*/
+			.indexbod .corse .left a{text-decoration:none;color:#777;display:block;}
+			.indexbod .corse .left li:hover a{
+				color:#e64040;
+				background:#f6eeee;
+			}
+			.indexbod .corse .right{
+				min-height:900px;
+				
+				box-shadow: 2px 3px 1px #a2e997;
+				width:79%;
+				margin-left:0.3%;
+				float:left;
+			}
+			.indexbod .corse .left ul{
+				list-style-type:none;
+				padding-left:0.2em;
+			}
+			.indexbod .corse .left ul li{
+				padding-left:0.5em;
+				cursor: pointer;
+				line-height:2em;
+			}
+			.indexbod .corse .left ul li:hover{
+				color:#e64040;
+				background:#f6eeee;
+			}
+
+
+			.bottom{
+				text-align:center;
+				line-height:6em;
+			}
+
+			/*固定位置定位
+			#top{
+				background:#444;
+				color:#fff;
+				text-decoration:none;
+				position: fixed;
+				width: 78px;
+				right: 20%;
+				bottom: 20px;text-indent:1em;line-heighe:18px
+			}*/
+			.indexbod .both{
+				position:fixed;top:20px;right:11%;
+			}
+			.indexbod .both span{
+				color:#111;font-weight:600;background:#e7efbf;cursor: pointer;
+				padding:3px 10px;
+			}
+			.indexbod .map{
+				position:fixed;left:0;top:0;width:100%;height:100%;z-index:1
+				;height:100%;background:#222;display:none;
+			}
+			.indexbod .map .img{
+				width:60%;margin:50px auto;
+			}
+			.indexbod .map .img img{width:100%;}
+			.indexbod .map .img span{
+				position:fixed;right:20%;top:45px;
+				cursor: pointer;background:red;padding:8px 8px;
+			}

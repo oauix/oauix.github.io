@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<title>servlet</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<style>
+			*{margin:0px;padding:0px}
+			body{font-size:12px;color:#666;font-family:"微软雅黑"}
+			.clear{clear:both}
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>常用的错误码</h3>
+				<p>200:正常</p>
+				<p>202:请求被接受但处理未完成</p>
+				<p>404[找不到文件]</p>
+					<p style="text-indent:4em">-浏览器上输入地址有误</p>
+					<p style="text-indent:4em">-&lt;servlet-name>中对应的名字不同</p>
+					<p style="text-indent:4em">-部署不正确</p>
+					<p style="text-indent:4em">-Web工程部署时结构没有遵循servlet的规范</p>
+					<br/>
+				<p>500[运行代码错误]</p>
+					<p style="text-indent:4em">-程序运行错误</p>
+					<p style="text-indent:4em">-没有继承HttpServlet</p>
+					<p style="text-indent:4em">-&lt;servlet-class>配置类名输写错</p>
+					<br/>
+
+				<p>405[service方法问题]</p>
+					<p>-表示找不到处理请求的方法</p>
+					<p>-Service()方法错误，参数不对，或查找不到对应请求/响应</p>
+				<p>302</p>
+					<p>-重定向,浏览器会自动重新发送请求</p>
+				<br/><br/>
+				<h3>乱码问题</h3>
+					<p>1.jsp加指令告诉容器字符解码集</p>
+					<p style="text-indent:4em">&lt;%page pageEncoding="utf-8" contentType="text/html;charset="utf-8"" %></p>
+					<p>2.&lt;meta http-equiv=”content-type” content=”text/html;charset=utf-8”>//老版的浏览器html兼容</p>
+					<p>3.Post 用请求编码方法转化:request.setCharacterEncoding(“utf-8”);</p>
+					<p>4.Get 请求中文编码：在server.xml中加URIEncoding=”utf-8”&lt;Connector URIEncoding="utf-8" connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/></p>
+					<p>5.Js中乱码: &lt;script type="text/javascript" src="js/reg.js" charset="gbk">&lt;/script></p>
+
+					<p>6.cookie编码</p>
+						<p style="text-indent:4em">illegal错误,cookie只能保存合法的ascii字符,中文的话需要转换成对应的ascii字符串形式</p>
+						<p style="text-indent:4em">编码方法:URLEncoder.encode(String str,String charset);</p>
+						<p style="text-indent:4em">解码方法:URLDecoder.decode(String str,string charset);</p>
+					<p>7.编写js代码文件乱码,Preferences中给编码方式:utf-8，gbk</p>
+					<p>8.直接改文件乱码[html-->jsp] 更改默认转化编码:Preferences->General->Content Types[找到对应的.jsp文件]</p>
+					<p>9.ajax编码</p>
+					<p>GET:默认ie会用gbk解码,其他浏览器用utf-8解码,而服务器是iso-8859-1解码</p>
+					<p>1.Post 用请求编码方法转化:request.setCharacterEncoding(“utf-8”);</p>
+					<p>2.Get 请求中文编码：在server.xml中加URIEncoding=”utf-8”&lt;Connector URIEncoding="utf-8" connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/></p>
+					<p>10.浏览器端[客户端] 有一个编码对象[属性js,可以直接用]:encodeURI</p>
+			</div>
+		</div>
+	</body>
+</html>

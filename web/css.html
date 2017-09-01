@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<title>html-CSS</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/web.css" type="text/css" />
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<div style="color:#4cbf36;font-size:16px">CSS选择器</div>
+				<p>1.标签选择器</p>
+				<p>2.类选择器</p>
+				<p>3.ID选择器</p>
+				<p>4.相邻选择器:表达式：.bb+ .aa{};就会作用于类.bb下面相邻类.aa的元素，一是同层级，后方第一个相邻的元素</p>
+				<p>5.属性选择器:这里用的是正则表达式功能</p>
+				<p>6.伪类选择器;很多，网上看，一般不用的</p>
+				<p>#-选择标签第几个 ::nth-child(n);:nth-last-child(n)[从后面开始数];:first-child[第一个];:last-child[最后一个];</p>
+				<p>7.before和after CSS 伪元素 只能加内容和符号</p>
+						<p> *a.用法：.after:after{content:'我在后面吧'; color:#F00;} 后面加内容</p>
+						<p> *b.用法：.before:before{content:'我在前面吧'; color:#F00;} 前面加内容</p>
+				<br />
+				<div class="label">优先级，提升权限</div>
+				<p>一般优先：内联样式-->内部样式-->外部样式 [开发里面:一般用的是外外面样式,这样页面元素与样式列表可以分离,而且方便维护,提高效率]</p>
+				<p>有一种提权限的方法：在后面！important，他权限大于内联样式大于内部样式大于外部样式</p>
+				<div class="label">css注释:</div>
+				<p>css注释只有：/*注释部分*/</p>
+				<h2>常用css：</h2>
+				<p>1.&lt;label <span style="color:red">for</span>="id"></p>
+				<p>2.box-shadow: 3px 3px 4px #2fe62b;阴影</p>
+				<p>3.border-radius: 6px;边角圆角效果</p>
+				<p>4.透明度:opacuty:0.8;</p>
+
+			</div>			
+		</div>
+	</body>
+</html>

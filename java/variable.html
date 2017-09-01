@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-变量</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>变量：</h2>
+				<p>变量:存数的，代词，指代的就是它所存的那个数</p>
+				<div>1)声明:</div>
+					 <p> int a; //声明一个整型的变量，名为a</p>
+					 <p> int b,c,d; //声明三个整型的变量，名为b,c,d</p>
+				  <div>2)命名:</div>
+					<p>2.1)只能包含字母、数字、_和$符</p>
+					<p>2.2)并且不能以数字开头</p>
+					<p>2.3)严格区分大小写</p>
+					<p>2.4)不能使用关键字</p>
+					<p>2.5)可以中文命名，但不建议</p>
+					<p>建议:"见名知意"，"驼峰命名法" </p>
+				  <div>3)初始化:第一次赋值</div>
+					<p>3.1)声明的同时初始化</p>
+						 <p style="text-indent:4em"> int a = 250; //声明整型变量a并赋值为250</p>
+					<p>3.2)先声明后初始化</p>
+						  <p style="text-indent:4em">int a;   //声明整型变量a</p>
+						  <p style="text-indent:4em">a = 250; //给变量a赋值为250</p>
+				  <div>4)使用:</div> 
+					<p>4.1)对变量的使用就是对它所存的那个数的使用</p>
+						 <p style="text-indent:4em"> int a = 5; //声明整型变量a并赋值为5</p>
+						 <p style="text-indent:4em"> int b = a+10; //取出a的值5，加10后，再赋值给b</p>
+						 <p style="text-indent:4em"> System.out.println(b);   //输出b的值15</p>
+						 <p style="text-indent:4em"> System.out.println("b"); //b，双引号中的原样输出</p>
+						 <p style="text-indent:4em"> a = a+10; //取出a的值5，加10后，再赋值给a //在a本身基础之上增10</p>
+						 <p style="text-indent:4em"> System.out.println(a); //输出a的值15</p>
+					<p>4.2)变量在用之前必须声明并初始化</p>
+						 <p style="text-indent:4em"> System.out.println(m); //编译错误，m未声明int m;</p>
+						 <p style="text-indent:4em"> System.out.println(m); //编译错误，m未初始化</p>
+					<p>4.3)变量的使用必须与数据类型匹配</p>
+						 <p style="text-indent:4em"> int a = 3.14; //编译错误，数据类型不匹配</p>
+			
+			</div>
+		</div>
+	</body>
+</html>

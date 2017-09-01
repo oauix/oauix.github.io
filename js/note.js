@@ -1,4 +1,9 @@
-﻿$("#top").click(function () {//返回顶部
+﻿$(document).ready(function(){
+	//alert(1);
+	$(".corse").load("other/start.html");
+});
+
+$("#top").click(function () {//返回顶部
 	var speed=200;//滑动的速度
 	$('body,html').animate({ scrollTop: 0 }, speed);
 	return false;
@@ -24,4 +29,10 @@ $(".box_x").click(function(){
 		$(".map").fadeIn();
 		//$(".map").fadeToggle();
 	});
-
+$(".muent a").click(function(data){
+	//alert(1);
+	//console.log(data);
+	//console.log(data.currentTarget.href);
+	$(".corse").load(data.currentTarget.href);
+	return false;//让a标签不执行跳转
+});

@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+	<head>
+		<title>oracle数据库</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="#" type="text/css" />
+		<style>
+			*{margin:0px;padding:0px}
+			body{font-size:12px;color:#666;font-family:"微软雅黑"}
+			.bod{margin:10px auto;width:95%;}
+			.bod .jav{font-size:13px;line-height: 29px;box-shadow: 0px 0px 8px #999;border-radius: 6px;padding: 20px 18px}
+			p{text-indent:1.9em}
+		</style>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+		<script>
+			$("#ddl").click(function () {//返回顶部
+				var speed=200;//滑动的速度
+				$('.one').animate({ scrollTop: 0 }, speed);
+				return false;
+			 });
+		</script>
+	</head>
+	<body>
+		<div class="bod">
+			<div class="jav">
+				<h1>数据库笔记：</h1>
+				<div>快速跳转:<a id="ddl">DDL[表操作]</a><a href="#dml">DML[事务]</a>
+				<a href="#dql">DQL[查询、结果处理]</a></div>
+				<p>select object_name from user_objects  //数据库字典 查询数据库内所有对象</p>
+				<p>where object_type[数据类型]='view'; //加上这句，查询所有视图</p>
+				<p>select view_name,text[sql语句] from user_views;</p>
+			</div>
+			<br/>
+			<div class="jav">
+				<h2>数据库-数据类型</h2>
+					<h4>1.number 数字类型 格式:number(p,s);</h4>
+						<p>-p表示数字的总位数[小数点不算一位]</p>
+						<p>-s表示小数点后面的位数</p>
+					<h4>2.char 固定长度的字符类型 格式:char(n) </h4>
+						<p>* 没有p时，默认长度为1；</p>
+						<p> -n表示占用的字节数</p>
+						<p>* 最大长度2000个字节</p>
+						<p>* 若内容中没有n个字节，内容后面将补空格</p>
+					<h4>3.varchar2 变长的字符类型 [oracle中的东西]，其他数据库都是varchar  格式:varchar2(n)</h4>
+						<p>* 一定要有长度。</p>
+						<p> -n表示占用的字节数</p>
+						<p>* 最大长度4000个字节</p>
+						<p>* 内容是多少，存多少，不会加空格</p>
+						<p>* job列最大存储100个字节的字符串，占用空间是变化的</p>
+					<h4>4.long与clob 是varchar2的加长版，可以存2GB与4GB,建议使用clob</h4>
+					<h4>5.date 日期类型 长度为7个字节 精确只能到秒(s);</p>
+						<p>* to_date('str','RR-MM-DD')-格式转换方法:RR与YY有区别</h4>
+						<!--<img src="../image/date_rr.bmp">-->
+
+						<style>
+							.tabl{width:92%;margin:0px auto;border:1px #888 solid;position:relative;}
+							.tabl .tr div{border:1px #666 solid;
+								width:33.12%;float:left;text-align:center;
+								line-height:6em;
+								}
+							.tabl .tr div span{transform:rotate(194deg);width:34%;
+									border:1px #666 solid;position:absolute;top:40px;left: -4px;;
+									display:block;
+								}
+							.tabl .tr div div{border:0px #fff solid;margin-left:-1%;text-align:right;width:40%}
+
+							.clear{clear:both;}
+						</style>
+
+						<div class="tabl">
+							<div class="tr">
+								<div><span></span><div>sys[系统时间]</div><div>user</div></div><div>0-49</div><div>50-99</div>
+							</div>
+							<div class="tr">
+								<div>0-49</div><div>本世纪</div><div>上世纪</div>
+							</div>
+							<div class="tr">
+								<div>50-99</div><div>下世纪</div><div>本世纪</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<p>* to_char(date[,fmt[,nlsparams]])  to_char(hiredate,'YYYY"年"MM"月"dd"日"');</p>
+						<p>* <span style="color:red;font-size:16px">timestamp</span> 日期类型，精确到ns[纳秒]</p>
+						<p>* sysdata syatimestamp 当前时间，精度不同</p>
+			</div>
+			<br/>
+		<div class="jav">
+	<h2 class="one">数据定义语音 DDL</h2>
+
+		<h4>创建 表</h4>
+<pre>
+	create table 表名(
+		id number(4), //要用','隔开
+		name varchar2(20),
+		gender char(1),
+		birth date,
+		salary number(6,2),
+		job varchar2(30),
+		deptno number(2)
+	);	
+</pre>
+		<h4>删除表：drop table 表名</h4>
+		<h4>表的常用操作</h4>
+<pre>
+		desc 表名 -查看表的结构
+		default '内容' -添加默认内容
+		not null -约束条件 内容不能为空
+		rename 要改的名字 to 新名字 -改表名
+		alter table 表名 add (ID number(4)) -给表添加新列
+		alter table 表名 drop (ID) -删除列
+		alter table 表名 modify (ID char(45)) -修改列数据类型，默认值，应该不能该列名[待证]
+</pre>
+			</div>
+			<br/>
+			<div class="jav">
+	<h2>数据操纵语音 DML [需要提交事务]</h2>
+			
+		<h4>添加记录[数据]</h4>
+
+		<p>insert into 表名(id,name,job)</p>
+		<p>values(1001,'xiaoyu','proo');</p>
+		<h4>将查询的内容直接加入新建的表</h4>
+		
+		<p>create table 表名 as</p>
+		<p>select * from emp;</p>
+
+		<h4>更改记录</h4>
+		<p>update 表名 set name="oauix" where id='1001'; //将表中id为1001记录中 name给为oauix</p>
+
+		<h4>删除记录</h4>
+		<p>delete from 表名 where name is 'oauix'; //-如果没有where会将整个表删除，from可以不写</p>
+		<p>truncate 也是删除记录，但不能撤退</p>
+
+			</div>
+			<br/>
+			<div class="jav">
+	<h2>事务控制语音 TCL</h2>
+
+		<p>commit -提交命令</p>
+		<p>rollback -取消语句，撤退</p>
+		<p>savrpoint -保存点，供后面撤退用</p>
+			</div>
+			
+			<br/>
+			<div class="jav">
+	<h2>数据查询语音 DQL [常用]<span style="color:red">[重点]</span></h2>
+		<h4>基础类型</h4>	
+		<p>* select * from 表名 -查询表里所有内容</p> 
+
+		<p>* select * from dual -<span style="color:red">dual是伪表</span>，当查询的东西跟表没有关系时用</p>
+
+		<p>* as 别名，as可以不写。若希望别名区分大小写或者含有空格,那么可以使用双引号将别名括起来SELECT ename,sal*12 "s al"</p>
+		
+		<p># 数据库的关系符：and[&&] or[||] <>[不等于] and优先级高</p>
+
+		<p># LIKE 模糊查询， 1. _ 任意一个字符  2.% 任意字符（0-n个）</p>
+			<p style="text-indent:4rm">案列：查看名字第二个字母是a的员工： where name like '_a%';</p>
+
+		<p># in(list1,list2);not in(list1,list2);是list1，list2中一个就行，跟or差不多，缺点是：要知道list1,list2条件个数</p>
+			 <p style="text-indent:4rm">all(list1,list2) 属于里面的</p>
+			<h5>应用:--查看比职位是salesman和claerk工资都高的员工？</h5>
+<pre>
+	select ename,sal from emp_xyub
+	where sal>all(select sal from emp_xyub
+    where job in('salesman','claerk'));
+</pre>
+		
+		<p># between--and--- 查询某段范围的值 如：sal between 1200 and 2000；//选取：1200到2000</p>
+
+		<p>* any all[不能单独用] 1.>any 大于最小 2.&gt；any 小于最大  3.>all 大于最大 &lt;all 小于最小</p>
+			<p style="text-indent:4rm">select empno,sal from emp where sal >any(3500,4000,5000);</p>
+
+		<p>* distinct 过滤重复 将查询的记录中把重置的去掉</p>
+
+	<h4>查询结果排序</h4>
+		
+		<h5>order by 子句</h5>
+		<p>写select最后一句，查询好后才(再)排序</p>
+
+		<p>asc[默认] 和desc 升-降 null值视为最大 可以用在多列</p>
+
+	<h4>查询结果处理[分组函数]</h4>
+		
+		<p># max(字段) min(字段) avg(字段)[平均] sum(字段) count(字段)[共几条记录] 他们是忽略null。查询总记录常用count(1);</p>
+
+		<h5>进一步分组出来：</h5>
+				<p style="text-indent:4rm">group by 子句，查询不是整个记录的大小值时，先分组再查询</p>
+				<p style="text-indent:4rm">having 进一下控制<strong>查询分组后的范围</strong>，这个不能单独用。</p>
+
+	<h4>关联查询[多表间的查询]</h4>
+		<p>先连线在处理，where 连线 and 条件，表也可以用别名，查询的东西最好用表名.</p>
+		<p>‘笛卡尔积’是记录是x*y，不写连接条件时出现结果，通常是一个无意义的集合，</p>
+
+		<h5>内连接：</h5>
+		<p style="text-indent:4rm">select e.enme,d.dname from emp e join dept d on(e.deptno=d.deptno);快，关联连接是将其先转换内连接，直观，不容易写错</p>
+		<h5>外连接：</h5>
+				<p>关联只能查一一对应的记录，没有对应记录时需要用，用外连接，将没有数据的地方用null补位，有<span style="color:red">右补位和左补位+全外连接</span></p>
+				<p style="text-indent:4rm">1.biao1 left outer join biao2 biao1的记录多于biao2时用</p>
+				<p style="text-indent:4rm">2.biao1 right outer join biao2 biao1的记录少于biao2时用</p>
+				<p style="text-indent:4rm">3.关联连接也能实现：
+									<p style="text-indent:7rm">where e.deptno(+)=d.deptno</p>
+									<p style="text-indent:7rm">where e.deptno=d.deptno(+);全外连接不没有</p>
+
+				<p style="text-indent:4rm">5.全外连接：biao1 full outer join biao2 自动适应，不管biao1和biao2的记录问题</p>
+				
+		<p style="text-indent:4rm">6.<span style="color:red;font-size:22px">自连接：自己跟自己连</span>，解决特殊问题 树状结构;先将表拆分两个表来理解，不然内存不够的</p>
+		<img src="../image/FastStoneEditor.bmp">
+			</div>
+			<br/>
+			<div class="jav">
+	<h2>数据控制语音 DCL [数据库管理者]</h2>
+
+			</div>
+<br/>
+			<div class="jav">
+<pre>
+	<h2>操作字符串</h2>
+		concar 与 ‘||’
+		连接两个字符串，用法：concat(char1,char2),char1 || char2
+
+		length(char); 获取字符串长度
+
+		upper(char) lower(char) initcap(char) 转大写、小写、首字母大写 initcap里面是多个单词就都首字母大写
+
+		taim(c2 from c1) ltrim(c1[,c2]) rtrim(c1[,c2]) 从c1中前后截取c2[字符不能是字符串]、在c1字符串left[最前面]截取c2，在c1字符串right[z最后面]截取c2；
+
+		lpad(char1,n,char2) rpad(char1,n,char2) 分别从char1左右端用char2补足n位 又有对齐效果，
+			select lpad(ename,10,' ') as "bb" from emp;这就右对齐效果了
+
+		substr(char,m[,n]) 截取一个char字符串，这个是从m位置开始，m可以为负数，意思倒数几位，n不是位置结束，这里是长度，数据库字符串下标是从1开始的。
+
+		
+		instr （char1,char[,n[,m]]）从char1中查char2的位置，n是从什么位置开始查找，当n为负数时，m是逆时针第几次，m是指字符出现的次数。
+		
+		round(n[,m]) 用于四舍五入-select round(45.678,-1) from dual;//50,m是看的位数
+		trunc(n[,m]) 跟round一样，但不是四舍五入，后面不什么都舍去
+
+		mod(m,n) -返回m除以n的余数，n为0时，就直接返回m
+
+		ceil(n) 取大于或等于n的最小整数 select ceit(45.678) from dual //46
+		floot(n)取小于或等于n的最大整数 select floor(45.678) from dual //45
+				案例：18题:查看82年以后入职的员工的入职日期，82年以前的按照
+					1982年01月01号显示。格式都是DD-MON-RR(默认格式)
+	
+	<h2>日期操作：</h2>
+		
+		last_day(date); 获取这个月最后一天
+
+		add_months(date,i); 获取日期date加上i个月的日期值
+
+		month_between(date1,date2);获取date1与date2之间间隔多少月
+
+		NEXT_day(date,n)
+		select NEXT_day(to_date('2017-05-17','YYYY-MM-DD'),1) FROM DUAL;--从明天开始一周内的周日是哪天
+
+		extract (date from datetime) 提取年月日，
+			select id,name from dual where extract(year from sysdate)=2017;
+			select extract(hour from timestamp '2008-10-10 10:10:10') dual;
+
+	<h2>null操作</h2>
+		where id=null 要用 wher id is null
+		nvl(expr1,expr2);如果expres1为null，则取值expr2.
+		nvl2（a1,a2,a3）；像三目，a1不为null时，返回a2，为null，返回a3
+
+
+		
+
+
+</pre>
+		</div>
+<br/>
+<div class="jav">
+<h2>高级查询-子查询</h2>
+
+	<p># QL语句嵌套其他SQL语句</p>
+	<p># 在查询结果上再去查询
+	<p># 将查询的内容存储在一个表内，在进行查询
+	<p>in[是里面的其一] all[是里面的全部]应用</p>
+		<p style="text-indent:4em">案例:--查看比职位是salesman和claerk工资都高的员工？</p>
+		<p style="text-indent:4em">select ename,sal from emp_xyub</p>
+		<p style="text-indent:4em">where sal>all(select sal from emp_xyub</p>
+               <p style="text-indent:6em"> where job in('salesman','claerk'));</p>
+
+	<h4>extsts关键词</h4>
+		<p>过滤条件，常与where一起用，其后跟一个子查询，当子查询到数据，就判定满足条件</p>
+		<h5>应用：--查看有员工的部门？</h5>
+			<p style="text-indent:4em">select d.deptno,d.dname,d.loc from dept_xyu //有员工才有部门</p>
+				<p style="text-indent:7em">where extists(select * from emp e join dept_xyu on e.deptno=d.deptno);</p>
+		<h5>查看有下属的员工?</h5>
+<pre>
+	SELECT m.empno,m.ename,m.sal
+	FROM emp m
+	WHERE EXISTS(//有下属员工记录才有后面操作
+		SELECT * FROM emp e
+		WHERE e.mgr=m.empno
+	);
+</pre>
+	<h4>分页查询</h4>
+		<p>把结果分页显示，没有标准，各有各的，但实现效果一样，</p>
+		<p>rownum [oracle提供一个每列供分页操作] 我们称 伪列</p>
+		<p>rownum是查询后输出时动态生成的。因此它的数据不能，当用 rownum>1是没有记录的，但可以用rownum&lt;n</p>
+		<p>但我们需要截取中1-n数据怎么办？</p>
+		<p>解决：先把rownum值存储在一个表的列中，再取值(过滤)。【这一步我们一般将要的东西进行存储，其他的不需要的东西就没有必要存储了】数据优化</p>
+		<p>注意他们的执行顺序，排序是在结果处理完后再进行数据排序，最后做的，若生成新表，会先生成后再排序</p>
+<pre>
+	select * from (
+		select rownum rn,ename,sal from emp
+	)
+	where rn between 6 and 10;//这个地方注意用别名，否则他将当rownum-伪列
+</pre>
+		<h4>分页算法：</h4>
+<pre>
+	pageSize[页内记录数],page[页数]
+	  start: (page-1)*pageSize+1
+	    end: pageSize*page
+</pre>
+		<h4>decod函数：</h4>
+			<p>decode(expr,search1,result1,search2,result2…… default);if(expr=search1)return result1,不等，判断第二，一次类推，都比满足return default</p>
+			<p>用法：当一个表里有几组数，但我就想把他们分成2组时，可以将他们想分成一组的数取个值，用一个字段存储，在根据该字段分组就ok。</p>
+<pre>
+default(job,
+	'a','b'
+	"c","b"
+	'f') def //然后别名def列里只有b，f了，再分组，很容易得到2组
+</pre>
+		<h4>排序函数[用的比较少]</h4>
+
+			<p>解决分组后再排序，在分组里又有排序，这样又可直观查看分组里的排名</p>
+<pre>
+	SELECT ename,sal,deptno,
+	row_number() over(
+		PARTITION BY deptno//分组
+		order by sal desc//排序
+	) bb
+	from emp;
+</pre>
+			<p>上面的排序后发现数据一样的数排名还是随机+1，如下图，因此可以用rank() over[相同数据会一个排名，但他们的原位置还占用]与dense_rank() over[有顺序排序，不占位置]</p>
+			<br/>
+			<img src="../image/rank.bmp">
+
+
+			<h4>集合操作[用的少]</h4>
+
+			<p>1.union[两个都有的] 、union all[两个都有的,并共同的会重复] 合集</p>
+			<p>2.intersect[取共同的] 交集</p>
+			<p>3.minus [第一个集减去第二个的] 差集</p>
+			<p>下面有应用</p>
+
+			<h4>高级分组函数[知道就行]</h4>
+
+			<p>rollup() [里面的参数一个个减少]处理特殊情况的函数，当一个老板要同时查询一年，一月，一天的业绩，他们之间有规律分组时，可用rollup</p>
+				<p>group by a,b,c//一天的分组</p>
+				<p>uninou all</p>
+				<p>group by a,b//一月的分组</p>
+				<p>uninou all</p>
+				<p>group by a</p>
+
+				<p>可用group by rollup（a,b,d）一次解决</p>
+
+			<h5>cube()函数 会将所有参数的每种组合都来一次执行查询</h5>
+
+			<h5>sets() 自定义分组函数，每个参数是种分组方式。后面将他们合并显示出来[用的比较多]</h5>
+			</div>
+			<br/>
+			<div class="jav">
+				<h2>视图</h2>
+				<p># 为直观，避免代码的重复性，我们把表的子句写到视图里。</p>
+				<p>* 视图里是动态的数据，真实不存在，当用时调用它，再执行视图里sql语句</p>
+				<p>* 视图里如果有表达式或函数，需要给个别名，否则会报错,有表达式、函数、排序等称为复杂视图</p>
+				<p>* 创建视图需要权限</p>
+				<p>* grant create view to scott;//给视图创建权限</p>
+				<p>* create or replact view v_emp_10;//修改视图，没有这个视图就创建</p>
+				<p>* 对视图的dml操作[对视图操作就是对基础表操作]，只能对简单视图操作，并且不能违反视图数据来源的基础表的约束条件</p>
+				<p>* 对基础表的操作不当时会促成基本表污染，如对视图操作，但视图里又不可见，这样称之为对基础表污染</p>
+				<p>* delelte删除不会对基础表起作用,因为视图没有，无从下手</p>
+				<p>* 为了避免污染，为视图添加检查约束：with check option[该约束意思:对视图修改必须在视图可见范围内]</p>
+				<p>* 如果不会对视图进行操作，最后加只读约束:with read only</p>
+<pre>
+	create view v_emp_10
+	as 
+	select empno,ename,sal,deptno
+	from emp
+	where deptno=10;
+
+	select * from v_emp_10;
+
+	跟这个一样：
+	select * from (select empno,ename,sal,deptno
+				from emp
+				where deptno=10);
+</pre>
+
+				
+			</div>
+			<br/>
+			<div class="jav">
+				<h2>序列</h2>
+				<p>* 通常使用序列为表的主键字段生成值</p>
+				<p>* 创建序列：create sequence sequence_name</p>
+				<p>* start with i //i初始值</p>
+				<p>* increment by j //j为步长</p>
+				<p># 获取序列中内容：nextval i[[获取序列下一个值] currval j[获取序列当前值]</p>
+				<h2>索引</h2>
+				<p>* 建立索引：create index index_name on table 字段</p>
+				<p>* like 用不上索引的</p>
+				<p>* 表数据变动后，需要重构一下索引 后面加 rebuild 关键词:alter index_emp_ename rebuild</p>
+				<h2>约束[限制行为]</h2>
+				<p># 1.not null --ename number(3,2) constraint emp_ename_nn not null；可以给约束取个别名[emp_ename_nn]</p>
+				<p>2.唯一性[但对null没有要求，插几个null都没有事] unique上关键词 建表后增加唯一性:alter table 表名 add constraint 唯一性_name unique（name）//给name字段加约束</p>
+				<p>3.主键[primary kay]非空且唯一,一但生产就不允许改,添加跟唯一性约束一样</p>
+				<p>4.外键[不常用] -其他表的主键，外键的值其他表上的主键必须有</p>
+				<p>5.检查[check-取值约束]，当给性别字段赋值时，就必须给男或女 格式:alter table 表名 add constraint 约束名 check(字段条件);</p>
+			</div>
+		</div>
+	</body>
+</html>

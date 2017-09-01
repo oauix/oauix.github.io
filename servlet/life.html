@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<title>servlet-life</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<style>
+			*{margin:0px;padding:0px}
+			body{font-size:12px;color:#666;font-family:"微软雅黑"}
+			.clear{clear:both}
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+		<h3>生命周期分成哪几个阶段？[面试题]</h3>
+		<pre>
+	1.实例化
+		-容器收到请求之后，才会创建（默认）。
+		-可以容器启动之后，立即创建。需要配置：在web.xml的servlet标签中加&lt;load-on-startup>1&lt;/load-on-startup>
+		注意：容器在默认情况下，只会创建一个实例[即初始化]。
+	2.初始化
+		-容器在创建好servlet对象之后，会立即调用该对象的init方法。
+		-GenericServlet已经实现了init方法。先调用init(getServletConfig)，它的里面再调用init();
+		-调用ServletConfig提供的getInitParameter方法，可以配置初始化参数,初始化会显示出来
+		&lt;!--配置初始化参数-->
+		&lt;init-param>
+			&lt;param-name>xioayu&lt;param-name>
+			&lt;param-value>达内科技&lt;param-value>
+		&lt;/init-param>
+	3.就绪(调用)
+		service方法,而它又调用了doGet()和doPost(),他们的方法对应处理自己请求类型
+	4.销毁
+		- 容器在销毁servlet对象之前，会调用该对象的destroy方法。GenericServlet已经实现了该方法。
+		</pre>
+		</div>
+	</div>
+	</body>
+</html>

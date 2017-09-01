@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-文件操作</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>IO操作[基于输入输出,java整理了这一套方案]</h3>
+				<p>[在操作文件方面]RandomAccessFile提供Data流的读写功能，可以把基本数据写到文本里，而且还能随意定位文件读取位置。FileInputStream/FileOutputStream只是普通的读取文件，按照文本的方式读取，就是当普通字符串处理，特殊类型数据没法解读，读出来就和乱码一样。</p>
+				<p>【IO不仅仅操作文件,键盘鼠标输入输出也属于IO】</p>
+				<br/>
+				<h3>节点流与处理流[高级流]</h3>
+				<p>节点流[或称低级流]:可以从或向一个特定的地方[如磁盘/内存/设备等]读写数据。</p>
+				<p>处理流[高级流]:对一个已存在的流连接和封装[处理]</p>
+
+				<p>*InputStream是所有字节输入流的父类，OutputStream是所有字节输出流的父类,他们有跟RandomAccessFile一样的读写方法</p>
+				<h4>FileInputStream FileOutputStream  is,os文件流</h4>
+
+				<p>#FileOutoutStream(object,true);//在文件内容后面添加，默认是false，覆盖的，这种又称:追加模式</p>
+				<p>输出文件流</p>
+<pre>
+	
+	FileOutoutStream fos=new FileOutoutStream(new File("test.txt"),true);//根据File对象创建文件输出流,可以直接用路径
+	fos.write("helloword".gerBytes());//-输出一组字节
+	fos.close();//-释放/关闭系统资源
+</pre>
+				<p>输入文件流</p>
+<pre>
+	FileInoutStream fis=new FileInoutStream("test.txt",true);
+	int d=-1;//定义一个数作为开关
+	String str=null;//用于存储读到的数据
+	while((d=fis.read())!=-1){//fis.read() 一个个读取，当到末尾时，停止读取
+		str+=str;
+	}
+	System.out.println(str);//打印读到的数
+	fis.close();//-释放/关闭系统资源
+</pre>
+				<h4>InputStreamReader OutputStreamWriter转换流</h4>
+
+				<p>* InputStreamReader OutputStreamWrite都可以设置字符编码,功能将字节数据btye转换成字符char,并读取或写出</p>
+				<p>* 转换流是字符流的一对实现类.   </p>
+			
+				<h4>BufferedInputStream,BufferedOutputStream缓冲流[跟字符缓冲流区别在Line换行]</h4>
+
+				<p>*在向硬件做写操作时，每次读一组数据效率还是不高，因此推出一次性批量写出。</p>
+				<p>*缓冲流是一对高级流,作用是提高读写效率.实现一车一车的送，</p>
+				<p>#程序关闭前，缓冲流才会一次性写出。否则：用flush方法</p>
+				<p>*flush方法会强制将缓冲区中已经缓存的数据一次性写出.写出流才有。</p>
+
+				<h4>BuffererReader PrintWriter字符流缓冲流</h4>
+
+				<p>#基于转换流之上。</p>
+				<p>*大部分低级流都是字节流,而字符流基本都是高级流</p>
+				<p>*只适合度文本文件</p>
+				<p>*java.io.BufferedReader</p>
+				<p>*缓冲字符输入流,可以按行读取字符串</p>
+				<p>#String readLine()</p>
+						 <p style="text-indent:6em">* 该方法会使缓冲流读取若干字符,直到读取到换行符为止,然后将换行符之前的所有字符组成一个字符串返回.但是返回的字符串中含有最后的换行符.</p>
+						 <p style="text-indent:6em">* 若返回值为NULL,则表示本次没有读取到任何内容(读文件的话就是文件末尾).只有通过该流不能再次读取到内容时返回NULL.</p>	
+				<br/>
+				<h4>ObjectOutputStream对象流</h4>
+
+				<p>* 对象输出流,用于将对象转换为一组字节后写出.保存对象文件</p>
+				<p>*将一个对象转换为一组字节写到文件中</p>
+						 <p style="text-indent:6em">* 经历了两个步骤:</p>
+						 <p style="text-indent:6em">* 1:将一个对象转换为一组字节</p>
+							 <p style="text-indent:8em">这个过程称为:对象序列化  反之为：反序列化 </p>
+				<p>序列化时需要实现Serrallzable接口。实现不用重写方法，它只是作为可序列化的标志， 但需要提供常量serialVersionUID这个版本号，为了跨平台兼容。      </p>
+						 <p style="text-indent:6em">* 2:将这组字节写入文件(磁盘中)长久保存</p>
+						 <p style="text-indent:6em">*   这个过程称为:持久化    </p>
+			</div>
+		</div>
+	</body>
+</html>

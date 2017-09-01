@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-数组</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>数组:</h2>
+				  <p>1)相同数据类型元素的集合称之为数组</p>
+				  <p>2)是一种数据类型(引用类型)</p>
+				  <p>3)数组的定义:</p>
+					  <p>int[] arr = new int[4];</p>
+				  <p> 4)数组的初始化:</p>
+					  <p style="text-indent:4em">int[] arr = new int[4]; //0,0,0,0</p>
+					  <p style="text-indent:4em">int[] arr = {1,4,6,8}; //1,4,6,8不能分开写</p>
+					  <p style="text-indent:4em">int[] arr = new int[]{1,4,6,8}; //1,4,6,8</p>
+				  <p style="text-indent:3em">二维数组：</p>
+					  <p style="text-indent:4em">int[][] arr = new int[][];int类型的不规则数组,n行n列</p>
+					  <p style="text-indent:4em">int[][] arr = new int[2][3];int类型二维数组2行3列的空间大小</p>
+					  <p style="text-indent:6em">arr = new int[][]{{1,2,3},{1,2,3}};</p>
+					  <p style="text-indent:4em">int[][] arr = new int[4][];int类型不规则数组,4行n列</p>
+				  <p>5)数组的访问:</p>
+						<p style="text-indent:4em">5.1)通过(数组名.length)可以获取数组的长度</p>
+						<p style="text-indent:4em"> int[] arr = new int[3];</p>
+						<p style="text-indent:4em">System.out.println(arr.length); //3</p>
+						<p style="text-indent:4em">5.2)通过下标/索引来访问数组中的元素</p>
+						<p style="text-indent:4em"> 下标从0开始，最大到(数组长度-1),sql下标从1开始</p>
+						<p style="text-indent:4em">date中的月份从0-11的,实际用时得+1;周期是从1开始的,星期日为1.<>
+				  <p>6)数组的遍历:</p>
+					<p style="text-indent:4em">Math.arrays(arr);一个遍历的方法</p>
+					<p style="text-indent:4em"> int[] arr = new int[10];</p>
+					<p style="text-indent:4em">for(int i=0;i&gt;arr.length;i++){ //遍历赋值</p>
+						<p style="text-indent:6em">arr[i] = 100;</p>
+					  <p style="text-indent:4em">}</p>
+					  <p style="text-indent:4em">for(int i=0;i&gt;arr.length;i++){</p>
+						<p style="text-indent:6em">System.out.println(arr[i]);</p>
+					  <p style="text-indent:4em">}</p>
+					  <p style="text-indent:4em">for(int i=arr.length-1;i&lt;=0;i--){</p>
+						<p style="text-indent:6em">System.out.println(arr[i]);</p>
+					 <p style="text-indent:4em">}</p>
+					 <h5 style="text-indent:4em"><span style="color:red">迭代器[Iterater]实现遍历：</span></h5>
+					 <p style="text-indent:4em">while(数组或集合变量.hasNext()){</p>
+						<p style="text-indent:6em">System.out.println(数组或集合变量.next());</p>
+					 <p style="text-indent:4em">}</p>
+					 <h5 style="text-indent:4em"><span style="color:red">增强for[又称新循环]</span></h5>
+					 <p style="text-indent:4em">for(数据类型 变量 : 数组[集合]){//数据类型是数组或集合中数据类型</p>
+						<p style="text-indent:6em">System.out.println(变量);//循环一次，获取一次值，这个存储在这个变量中</p>
+					 <p style="text-indent:4em">}</p>
+				  <p>7)数组的复制:</p>
+					<p style="text-indent:4em">7.1)System.arraycopy(a,1,a1,0,4);【参数1：原数组名，参数2：原数组开始，参数3：目标数组名，参数4：目标数组开始，参数5：长度】//比较灵活</p>
+					<p style="text-indent:4em">7.2)int[] a1 = Arrays.copyOf(a,6);</p>
+						<p style="text-indent:6em">a = Arrays.copyOf(a,a.length+1); //常用于扩容</p>
+				  <p>8)数组的排序:</p>
+					<p style="text-indent:4em">8.1)Arrays.sort(arr); //升序、效率高、首选中间有比较规程的。关联 集合排序</p>
+						
+					<p style="text-indent:4em">8.2)冒泡排序原则：<a href="sort.html">冒泡原代码</a></p>
+						<p style="text-indent:6em">8.2.1)4个数冒3轮
+						8.2.2)每一轮都是从第1个元素开始冒
+							  每一次都是和它的下一个元素比
+						8.2.3)冒出来了就不带它玩了</p>
+			</div>
+		</div>
+	</body>
+</html>

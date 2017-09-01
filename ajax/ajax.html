@@ -1,62 +1,90 @@
 <!doctype html>
 <html>
 	<head>
-		<title>jsp篇</title>
+		<title>ajax</title>
 		<meta charset="utf-8" />
 		<meta name="decription" content="说明书" />
 		<meta name="keywords" content="关键词" />
 		<!-- 显示区缩放 适用于手机 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!--
-			<link rel="stylesheet" href="#" type="text/css" />
-		-->
-		<link rel="stylesheet" href="../css/note.css" type="text/css">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
 		<style>
-			.bod{width:100%}
+			
 		</style>
 	</head>
 	<body>
-		<div class="bod">
-			<!--top内容,放logo-->
-			
-			<!--菜单导航-->
-				
-			<!--内容区-->
-			<div class="corse">
-				<div class="left">
-					<ul class="jdbc">
-						<li><a href="ajax/ajax.html" target="ifraajax">ajax</a></li>
-						<li><a href="ajax/ajaxche.html" target="ifraajax">ajax代码</a></li>
-				
-						
-						
-					</ul>
+		<div class="body">
+			<div class="content">
+				<h3>ajax:异步的js与xml</h3> 
+				<p>本质是利用浏览器提供的一个特殊对象。XmlHttpRequest 或称ajax</p>
+				<p>异步请求,指的是当ajax对象发送请求时，浏览器不会销毁当前页面,用户仍然可以对当前页面做其他操作。</p>
+				<br/>
+				<p>activeXObject ie</p>
+				<p>new ActiveXObject("MicroSoft.XMLHttp");</p>
+				<p>XmlHttpRequest 其他浏览器</p>
+<PRE>
+	function getAjax(){
+		var xhr=null;
+		if(window.XMLHttpRequest){
+			xhr=new XMLHttpRequest();
+		}else{
+			//ie浏览器获取ajax对象
+			xhr=new ActiveXObject("MicroSoft.XMLHttp");
+		}
+		return xhr;
+	}
+</PRE>
+				<h3>Ajax重要属性</h3>
+				<p>1.onreadystatechange 绑定一个事件处理函数 注:readystatechange状态改变事件</p>
+				<p>2.readyState 有五个状态（0,1,2,3,4）,用来获取Ajax对象与服务器通信的进展状态,其中4表示已获取返回数据。</p>
+				<p>3.responseText 返回的文本数据</p>
+				<p>4.responseXML	返回xml数据</p>
+				<p>5.states 获取服务器返回的状态码 如:200 正常</p>
 
-				</div>
-				<div class="right">
-					<iframe id="java" name="ifraajax" src="ajax/ajaxche.html"  style="width:100%" frameborder="0" onload="this.height=100" scrolling="no"  > 
+				<H3>Ajax方法</H3>
+				<p>1.xhr.open(请求类型,请求地址,同步还是异步);xhr('get','www.baidu.com',true);//ture异步,false同步,同步时浏览器会锁定当前页面,建议用户少用同步</p>
+				<p>2.xhr.send();提交请求 还可以post请求中实体内容,参数的提交格式和GET方法中url的写法一样。 xhr.send("user="+username+"&pwd="+password);</p>
+				<p>xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')ajax post默认不会添加消息头,所以需要要setRequestHeader方法添加</p>
+				<h3>缓存问题</h3>
+				<p>ie浏览器的Ajax在发送get请求时,会检测地址是否访问过,若访问过就不会发送请求[解决方式:加随机数]</p>
 
-					</iframe> 
-				</div>
-			</div>
-			<!--底部版权信息-->
-			<div class="bottom">
-				因兴趣而玩转编程,这里主要是一些本人接触java知识与自己的心得
-				@ouaix制作，仅供学习用途
-			</div>
+				<h3>json:轻量级的数据交换格式【类似xml,跟平台无关的,xml很复杂】</h3>
+				<p>[语法]</p>
+				<p>表示一个对象 {属性名:属性值,属性名:属性值,……} 注意:属性名必须使用双引号。属性值是String也得用双引号</p>
+				<br/>
+				<p>【java对象转换json类型的字符串】</p>
+				<p>1.导包 [导入支持转换的包] jackson-annotation:2.2.3 jackson-core:2.2.3 jackson-databind:2.2.3</p>
+				<p>2.java中代码转换</p>
+<pre>
+	//要转换的Hello对象
+	Hello h=new Hello();
+	//创建转换对象
+	ObjectMapper om=new ObjectMapper();
+	//调用转换方法转换
+	String jack=om.writeValueAsString(h);
+</pre>			
+				<p>【浏览器接收数据后转换为js对象】</p>
+				<p>用一个JSON内置对象,它类似于Math对象[Math.random()].它有一个方法将字符串转换为对象，如下:</p>
+				<p>var str='{"name":"xiaoyu","age":28}';</p>
+				<p>var json=JSON.parse(str);//转换为json对象</p>
+
+				<h3>jqeury对ajax编程的支持</h3>
+
+				<p>$.ajax({"url":"hello.do","type":"get","data":"请求参数","dataType":"json"[返回类型],"success":function(date){},"error":function(){}});</p>
+				<p>data:有"name=xiaoyu&age=22"、{"name":"xiaoyu","age":28}等格式</p>
+				<p>datatype:json/text/html/xml/script</p>
+				<p>async:同步或异步关键词</p>
+				<p>.empty() 清空标签内容</p>
+				<h3>ajax另一种方式:load方法</h3>
+				<p>作用:向服务器发送异步请求,并且将服务器返回的数据直接添加到符合要求的节点之上。</p>
+				<p>$obj.load(url,[date]); $obj jqeury对象,url请求地址,data 指定请求参数</p>
+
+				<h3>serialize[一组数据发送[不是全部表单发送]],还留在网页中</h3>
+				<p>【用法】</p>
+					<p>function f1(){$('#h1').load('saveInfo.do',$('#form1').serialize());}</p>
+			</div>		 
+		
+		
 		</div>
-		<script>
-			function reinitIframe(){//iframe高自动被内容填充
-					var iframe = document.getElementById("java");
-					try{
-					var bHeight = iframe.contentWindow.document.body.scrollHeight;
-					var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-					var height = Math.max(bHeight, dHeight);
-					iframe.height = height;
-					console.log(height);
-					}catch (ex){}
-				}
-				window.setInterval("reinitIframe()", 200);
-		</script>
 	</body>
 </html>

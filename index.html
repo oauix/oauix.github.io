@@ -10,35 +10,12 @@
 		<!--
 			<link rel="stylesheet" href="#" type="text/css" />
 		-->
-		<link rel="stylesheet" href="css/note.css" type="text/css">
-		<style>
-			.bod{
-				position:relative;
-			}
-			.bod .both{
-				position:fixed;top:20px;right:11%;
-			}
-			.bod .both span{
-				color:#111;font-weight:600;background:#e7efbf;cursor: pointer;
-				padding:3px 10px;
-			}
-			.bod .map{
-				position:fixed;left:0;top:0;width:100%;height:100%;z-index:1
-				;height:100%;background:#222;display:none;
-			}
-			.bod .map .img{
-				width:60%;margin:50px auto;
-			}
-			.bod .map .img img{width:100%;}
-			.bod .map .img span{
-				position:fixed;right:20%;top:45px;
-				cursor: pointer;background:red;padding:8px 8px;
-			}
-		</style>
+		<link rel="stylesheet" href="css/indexnote.css" type="text/css">
+		
 		<link type="text/css" rel="stylesheet" href="css/animate.css"></link>
 	</head>
 	<body>
-		<div class="bod">
+		<div class="indexbod">
 			<div class="both">
 				<span onclick="imgup()" class="box_o">疏导图map</span>
 				<span ><a href="other/files.html" target="ifra">My Files</a></span>
@@ -48,43 +25,22 @@
 			<div class="top">oauix<span>学习笔记系统</span></div>
 			<!--菜单导航-->
 			<div class="muent">
-				<a href="web/web.html" target="ifra">web</a>
-				<a href="java/java.html" target="ifra">java</a>
-				<a href="database/oracle.html" target="ifra">database</a>
-				<a href="servlet/jsp.html" target="ifra">servlet & jsp</a>
-				<a href="ajax/ajax.html" target="ifra">ajax & json</a>
-				<a href="iframe/index.html" target="ifra">iframe</a>
+				<a href="web.html" target="ifra">web</a>
+				<a href="java.html" target="ifra">java</a>
+				<a href="oracle.html" target="ifra">database</a>
+				<a href="jsp.html" target="ifra">servlet & jsp</a>
+				<a href="ajax.html" target="ifra">ajax & json</a>
+				<a href="iframe.html" target="ifra">iframe</a>
 			</div>
 			<!--内容区-->
 			<div class="corse">
-				<iframe id="index" name="ifra" src="other/start.html"  style="width:100%" frameborder="0" onload="this.height=100" scrolling="no"  > 
-
-				</iframe>
-
+				<!--ajax加载区-->			
 			</div>
 			<div class="map animated bounceIn" id="map">
 				<div class="img"><img src="img/imgboot.png" /><span class="box_x" onclick="imgclose()">X</span></div>
 			</div>
 			<!--底部版权信息-->
-			<div><a href="testweb/index.html">xxxx</a></div>
 		</div>
-		
-		<script>
-			function reinitIframe(){//iframe高自动被内容填充
-					var iframe = document.getElementById("index");
-					try{
-						var bHeight = iframe.contentWindow.document.body.scrollHeight;
-						var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-						//var height = Math.max(bHeight, dHeight);
-						var height = Math.max(bHeight, 0);//双自检高度,先清0,再检测高度
-						iframe.height = height;
-						console.log(height);
-					}catch (ex){
-					
-					}
-				}
-				window.setInterval("reinitIframe()", 200);
-		</script>
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="js/note.js"></script>
 	</body>

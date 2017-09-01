@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<title>java-异常处理</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/java.css" type="text/css">
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h3>异常处理：</h3>
+					<p>Try{}</p>
+					<p>Cath(Exleption e){}</p>
+					<p>finally块：</p>
+					<p>*finally块必须定义在异常处理机制的最后.</p>
+					 <p style="text-indent:4em">* finally块可以保证无论try块中的代码是否出现异常,finally块中的代码都会执行.</p>
+					 <p style="text-indent:4em">* 通常会将诸如释放资源等操作放在finally中确保执行.</p>
+					<p>throws异常抛出</p>
+					<p>#可以自己建立异常，提醒别人处理：</p>
+	<pre style="background:#ccf2d0;border-radius: 7px;box-shadow: 1px 2px 10px #888">
+	class Poe extends RunTimeException{
+		private int age;
+		public int getage(int age) throws Exception{ //声明该方法有异常，告知后者处理
+			if(age&gt;0 && age&lt;){
+				throw new Exception("异常，输入的年龄不合法！！");//建立一个异常
+			}
+			return age;
+		}
+	}</pre>
+			
+					<p>#异常不处理，否则编译不通过.而处理手段有两种:</p>
+								 <p style="text-indent:7em">* 1:使用try-catch捕获并处理</p>
+								 <p style="text-indent:7em">* 2:继续在当前方法上使用throws将该异常声明继续向外抛出</p>
+			</div>
+			<br/>
+			<div class="jav">
+				<h3>RuntimeException 非检测异常[又称常识错误,大家都知道常识就不用检测]</h3>
+					<p>检测异常需要处理，否则编译器不通过，不允许编译，非检测异常就不用</p>
+					<p>但只是编译时不去检测异常，运行时有异常程序还是会停止运行</p>
+			</div>
+			<br/>
+			<div class="jav">
+				<h3>自定义异常</h3>
+				<p>建议创建版本号（实现可视化接口有这个标号）</p>
+				<p>后面捕获异常时，会显示doc注释的内容</p>
+			</div>
+			<br/>
+			<div class="jav">
+				<h3>常见的异常 [关联异常处理]</h3>
+				<p>引用=null 、NullPointerException </p>
+				<p>null:空，没有指向任何对象</p>
+					   <p style="text-indent:7em">若引用的值为null，则不能再进行任何操作了</p>
+					   <p style="text-indent:7em">若操作则空指针异常</p>
+
+			</div>
+		</div>
+	</body>
+</html>

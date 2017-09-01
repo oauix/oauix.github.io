@@ -1,68 +1,174 @@
 <!doctype html>
 <html>
 	<head>
-		<title>jsp篇</title>
+		<title>servlet</title>
 		<meta charset="utf-8" />
 		<meta name="decription" content="说明书" />
 		<meta name="keywords" content="关键词" />
 		<!-- 显示区缩放 适用于手机 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!--
-			<link rel="stylesheet" href="#" type="text/css" />
-		-->
-		<link rel="stylesheet" href="../css/note.css" type="text/css">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
 		<style>
-			.bod{width:100%}
+			*{margin:0px;padding:0px}
+			body{font-size:12px;color:#666;font-family:"微软雅黑"}
+			.clear{clear:both}
 		</style>
 	</head>
 	<body>
-		<div class="bod">
-			<!--top内容,放logo-->
+		<div class="body">
+			<div class="content">
+				<h3>jsp特性</h3>
+
+				<p>1.&lt;%代码%>代码块 照搬到service()方法内</p>
+				<p>2.&lt;%=代码%>表达式 照搬到service()方法内的out.println();中</p>
+				<p>3.html代码 照搬service()方法内的out.write();中</p>
+				<p>4.&lt;%!代码%>照搬到service容器类中</p></p>
+				<p>5.jsp指令&lt;%@ page 后面可以有这些属性：</p>
+				<p style="text-indent:4em">pageEncoding contentType session pageEncoding errorPage isErrorPage pageinclude file taglib[jstl标签]</p>
+				<p style="text-indent:4em">&lt;%@ page  contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="true"%>中session如果是fasle,session隐藏对象将不能用</p>
+				<p style="text-indent:4em">&lt;%@ page  contentType="text/html; charset=utf-8" pageEncoding="utf-8" errorPage="a4.jsp" isErrorPage="true"%></p>
+				<p style="text-indent:6em">中errorPage属性,异常处理转向的页面</p>
+				<p style="text-indent:6em">中isErrorPage="true"属性，默认是false,不可以使用隐藏exception对象</p>
 			
-			<!--菜单导航-->
-			<!--内容区-->
-			<div class="corse">
-				<div class="left">
-					<ul class="jdbc">
-						<li><a href="servlet/servlet.html" target="ifraservlet">servlet容器</a></li>
-						<li><a href="servlet/life.html" target="ifraservlet">servlet-生命周期</a></li>
-						<li><a href="servlet/state.html" target="ifraservlet">servlet-状态码与中文乱码</a></li>
-						<li><a href="servlet/url.html" target="ifraservlet">servlet-重定向|转发</a></li>
-						<li><a href="servlet/cookie.html" target="ifraservlet">servlet-状态管理</a></li>
-						<li><a href="servlet/filter.html" target="ifraservlet">servlet-转发器|监听器|上下文</a></li>
-						<li><a href="servlet/cound.html" target="ifraservlet">应用-访问次数[session]</a></li>
+				<p>6.&lt;%@ taglib uri="" prefix="" %>jstl标签 导包</p>
+				<h3>jsp隐藏对象</h3>
+					
+					<br/>
+					<p>[常用5个对象]</p>
+					<p>out  -|-  request -|-  response -|-  session -|-  application[上下文对象]</p> 
+					<p>[很少用4个对象]</p>
+					<p>exception -|-  page [jsp对应的servlet对象--jsp实例]  -|-  pageContext[上下文实列] -|-  config</p>
 
-						<li><a href="servlet/img.html" target="ifraservlet">应用-验证码[session]</a></li>	
-					</ul>
+					<p style="text-indent:4em">jsp中的application是ServletContext是web容器的东西,pageContext一个与jsp对应一个，并且只能对应的jsp访问它</p>
 
-				</div>
-				<div class="right">
-					<iframe id="java" name="ifraservlet" src="servlet/jsp.html"  style="width:100%" frameborder="0" onload="this.height=100" scrolling="no"  > 
+				<h3>内加载器</h3>
+				<p>内加载器格式：DBUtil.class.getClassLoader().getResourceAsStram(“文件”);</p>
 
-					</iframe> 
-				</div>
-				<div class="clear"></div>
-			
+				<p style="text-indent:4em">DBUtil.class  --获取加载类为DBUtil名的类加载器</p>
+				<p style="text-indent:4em">.getClassLoader().getResourceAsStram() –类加载器方法,会依据类路径去查找”文件”，并将其转换为输入流[InputStream]</p>
+				<p style="text-indent:4em">这里"文件"需要放在java resources->src/main/resources中,容器会拷贝到WEB-INF\classes下</p>
+
+						
+				<h3>jsp标签和el表达式</h3>
+					<br/>
+					<h5>jsp标签</h5>
+					<p>jsp标签语法类似html标签,用来替换jsp文件当中的java代码块【目的是可以直观,并且方便维护，也方便美工读取】</p>
+					<p>jstl标签:apache开发的一套jsp标签,后来捐献给sun,sun将其命名为jstl</p>
+					<p>[利用jstl标签编程步骤]</p>
+					<p style="text-indent:4em">1.导包 jstl[1.2.jar] 查找信息:包内-->META-INF-->c.tld-->uri标签</p>
+					<p style="text-indent:4em">2.使用taglib指令引入要使用的标签</p>
+					<p style="text-indent:6em">&lt;%@ taglib uri="" prefix="" %> //uri 命名空间[为了区分同名的元素而添加的一个限定] ；//prefix 前缀[命名空间的别名]</p>
+					<p>常用核心标签</p>
+						<p style="text-indent:4em">1.&lt;c:if test="${user.gender=='m'}" var="指定绑定名" scope="绑定范围">男&lt;/c:if> //test中的el表达式为true时,会执行标签内的东西</p>
+
+						<p style="text-indent:4em">2.when[when 当什么时候 像if] | otherwise[像else]</p>
+<pre>
+	&lt;c:choose>
+		&lt;c:when test="${user.gender=='m'}">男&lt;/c:when>
+		&lt;c:when test="${user.gender=='f'}">女&lt;/c:when>
+		…
+		&lt;c:otherwise>未填写&lt;/c:otherwise>
+	&lt;/c:choose>
+</pre>
+						<p style="text-indent:4em">3.forEach[遍历数据或集合]</p>
+							<p style="text-indent:6em">&lt;c:forEach itams="集合或数组,可以用表达式" var="绑定名,注:绑定范围是pageContext" varStatus="绑定范围,注:绑定范围是pageContext">&lt;/c:forEach></p>
+							<p style="text-indent:6em;color:red">【该标签遍历时会创建一个遍历状态对象varStatus,getIndex()获取遍历时的下标,getcount()获取遍历时的第几个元素】</p>
+						<p>[应用]</p>
+<pre>
+	&lt;c:forEash items="${user}" var="u" varStatus="s"> //u为每次循环的了那个变量 s为循环次数[循环状态]
+		&lt;tr>
+			&lt;td>${u.name}&lt;/td>
+			&lt;td>${u.age}&lt;/td>
+			&lt;td>${s.index}&lt;/td> //index下标
+			&lt;td>${s.count}&lt;/td>//count第几个元素
+		&lt;/tr>
+	&lt;/c:forEash>
+	[类似:]
+	for(int i=0;i&lt;user.length;i++){ //上面s相当于i；u相当于che
+		User che=user[i];
+	}
+</pre>
+						<p>4.自定义标签</p>
+							<p style="text-indent:4em">[制作]</p>
+							<p style="text-indent:4em">-->写一个java类,继承SimpleTagSupport[简单标签技术]类</p>
+							<p style="text-indent:4em">-->重写doTag()方法,编写处理逻辑</p>
+							<p style="text-indent:4em">-->在tld文件配置标签</p>
+<pre>
+	//一个输出xx的qty次的自定义标签
+	public class abc extends SimpleTagSupport{
+		private String msg;//参数
+		private int qty;
+		public void doTag() throws JspException,IOException{
+			//获取out:
+			PageContext pctx=(PageContext)getJspContext();//获取上下文
+			PrintWriter out=pctx.getOut();//获取out
+			for(int i=0;i&lt;qty;i++){
+				out.println(msg+"");
+			}
+		}
+	}
+</pre>
+						<p>配置标签文件<span style="color:red">[红色为需要配置的]</span></p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8" ?>
+&lt;taglib xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">    
+  &lt;description>JSTL 1.1 core library&lt;/description>
+  &lt;display-name>JSTL core&lt;/display-name>
+  &lt;tlib-version>1.1&lt;/tlib-version>
+  <span style="color:red">&lt;short-name>c&lt;/short-name> //建议别名[prefix="c"]</span>
+  <span style="color:red">&lt;uri>test&lt;/uri> //uri="" </span>
+  &lt;tag>
+    &lt;description>
+        //标签描述内容
+    &lt;/description>
+    <span style="color:red">&lt;name>test&lt;/name> //标签名&lt;c:test 属性=""></span>
+    <span style="color:red">&lt;tag-class>java类路径&lt;/tag-class></span>
+    <span style="color:red">&lt;body-content>JSP&lt;/body-content></span>  //是empty表示没有标签没有结束标签
+    &lt;attribute>				//是scriptless表示标签体内容不能出现java代码
+        &lt;description>			//是jsp表示可以有java代码,简单标签技术不支持
+	    //属性描述内容
+        &lt;/description>
+        <span style="color:red">&lt;name>属性名&lt;/name></span>
+        <span style="color:red">&lt;required>false&lt;/required> //是否需要赋值,false可选</span>
+        <span style="color:red">&lt;rtexprvalue>false&lt;/rtexprvalue> //是否可以动态赋值,为true时可以用el表达式赋值</span>
+    &lt;/attribute>
+  &lt;/tag>
+&lt;/taglib>
+</pre>
+					<br/><br/>
+					<h5>el标签</h5>
+					<p>el表达式:一套简单的运算规则,用于给jsp标签的属性赋值,也可以直接输出</p>
+					<br/>
+					<p>用法格式:</p>
+						<p style="text-indent:4em;color:red">${User.属性} ---或--->${User["属性"]}</p> 
+							<p style="text-indent:6em">执行过程:容器会依次从pageContext,request,session,applicateion中查找名称为“User”的对象。再调用它的getName();</p>
+							<p style="text-indent:6em">el表达式若没有User对象,会返回null[不报空指针错],若没有属性,会找不到属性错误</p>
+							<p style="text-indent:4em">为了处理找不到属性错误,推出-${User["属性"]},"属性"这里又可以是对象,继续查找,没有返null</p>
+							<p style="text-indent:4em">若在pageContext,request,session,applicateion中指定一个要查找的对象,并且查到值后将不会再继续往下查找。指定查找对象:${requestScope.user.属性}[其他对象都是在后面+Scope]</p>
+							<p>[类似 以查找requset为列，找name属性]</p>
+<pre>
+	&lt;%
+		User user=(User)request.getAttribute("user");
+		out.print(user.getName());
+	%>
+</pre>
+					<p>运算符</p>
+					<p>1. +[只能求和,不连接] - * / %</p>
+					<p>2. empty运算:判断集合内容是否为空或者是否为空字符串。</p>
+					<p style="text-indent:4em">${empty obj}集合、字符串为空或null,找不到的值返回true,如下:</p>
+<pre>
+	${empty abc} //true
+ 	${empty null} //true
+ 	${empty ""}  //true
+ 	${empty aa}  //true
+</pre>
+					<p>【其他常用方法】</p>
+					<p style="text-indent:4em">${param.name} --相当于-> request.getParameter("name");</p>
+					<p style="text-indent:4em">${paramValues.interest[0]} 跟上面一样,不过参数传送过来有多个相同的</p>
 			</div>
-			<!--底部版权信息-->
-			<div class="bottom">
-				因兴趣而玩转编程,这里主要是一些本人接触java知识与自己的心得
-				@ouaix制作，仅供学习用途
-			</div>
-		
 		</div>
-		<script>
-			function reinitIframe(){//iframe高自动被内容填充
-					var iframe = document.getElementById("java");
-					try{
-					var bHeight = iframe.contentWindow.document.body.scrollHeight;
-					var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-					var height = Math.max(bHeight, dHeight);
-					iframe.height = height;
-					console.log(height);
-					}catch (ex){}
-				}
-				window.setInterval("reinitIframe()", 200);
-		</script>
 	</body>
 </html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<title>oracle-dql</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="说明书">
+		<meta name="keywords" content="数据类型,oracle,数据库">
+		<link rel="stylesheet" href="css/oracle.css" type="text/css">
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h2>数据查询语音 DQL [常用]<span style="color:red">[重点]</span></h2>
+				<h4>基础类</h4>	
+				<p>* 1. select * from 表名 -查询表里所有内容</p> 
+
+				<p>* 2. select * from dual -<span style="color:red">dual是伪表</span>，当查询的东西跟表没有关系时用</p>
+
+				<p>* 3. as 别名，as可以不写。若希望别名区分大小写或者含有空格,那么可以使用双引号将别名括起来SELECT ename,sal*12 "s al"</p>
+				
+				<p># 4. 数据库的关系符：and[&&] or[||] <>[不等于] and优先级高</p>
+
+				<p># 5. LIKE 模糊查询， 1. _ 任意一个字符  2.% 任意字符（0-n个）</p>
+					<p style="text-indent:4em">案列：查看名字第二个字母是a的员工： where name like '_a%';</p>
+
+				<p># 6. in(list1,list2);not in(list1,list2);是list1，list2中一个就行，跟or差不多，缺点是：要知道list1,list2条件个数</p>
+					 <p style="text-indent:4em">all(list1,list2) 属于里面的</p>
+					<p>应用:--查看比职位是salesman和claerk工资都高的员工？</p>
+<pre>
+	select ename,sal from emp_xyub
+	where sal>all(select sal from emp_xyub
+    where job in('salesman','claerk'));
+</pre>
+		
+					<p># 7. between--and--- 查询某段范围的值 如：sal between 1200 and 2000；//选取：1200到2000</p>
+
+					<p>* 8. any all[不能单独用] 1.>any 大于最小 2.&gt；any 小于最大  3.>all 大于最大 &lt;all 小于最小</p>
+						<p style="text-indent:4em">select empno,sal from emp where sal >any(3500,4000,5000);</p>
+
+					<p>* 9. distinct 过滤重复 将查询的记录中把重置的去掉</p>
+
+				<h4>查询结果排序[order by 子句]</h4>
+					<p>写在select最后一句，查询好后才(再)排序</p>
+
+					<p>asc[默认] 和desc 升-降 null值视为最大 可以用在多列</p>
+
+				<h4>查询结果处理[分组函数]</h4>
+					
+					<p># max(字段) min(字段) avg(字段)[平均] sum(字段) count(字段)[共几条记录] 他们是忽略null。查询总记录常用count(1);</p>
+
+					<p>* 进一步分组处理：</p>
+							<p style="text-indent:4em">group by 子句，查询不是整个记录的大小值时，先分组再查询</p>
+							<p style="text-indent:4em">having 进一下控制<strong>查询分组后的范围</strong>[条件]，这个不能单独用。</p>
+
+				<h4>关联查询[多表间的查询]</h4>
+					<p style="text-indent:2.7em">先连线再处理，where 连线； and 条件，表也可以用别名，查询的东西最好用表名.</p>
+					<p>‘笛卡尔积’是记录是x*y，不写连接条件时出现结果，通常是一个无意义的集合，</p>
+
+					<p>内连接[join……on……]：</p>
+					<p style="text-indent:4em">select e.enme,d.dname from emp e join dept d on(e.deptno=d.deptno);快，关联连接是将其先转换内连接，直观，不容易写错</p>
+					<p>外连接：</p>
+							<p style="text-indent:4em">关联只能查一一对应的记录，没有对应记录是没有的，但没有对应的记录需要用，用外连接，将没有数据的地方用null补位，有<span style="color:red">右补位和左补位+全外连接</span></p>
+							<p style="text-indent:4em">1.biao1 left outer join biao2 biao1的记录多于biao2时用</p>
+							<p style="text-indent:4em">2.biao1 right outer join biao2 biao1的记录少于biao2时用</p>
+							<p style="text-indent:4em">3.全外连接：biao1 full outer join biao2 自动适应，不管biao1和biao2的记录问题</p>
+							<p style="text-indent:4em">4.关联连接也能实现：
+												<p style="text-indent:7em">where e.deptno(+)=d.deptno;</p>
+												<p style="text-indent:7em">where e.deptno=d.deptno(+);</p>
+												<p style="text-indent:7em">全外连接关联连接就没有</p>
+
+							
+							
+					<p style="text-indent:4em">5.<span style="color:red;font-size:22px">自连接：自己跟自己连</span>，解决特殊问题 树状结构;先将表拆分两个表来理解，不然老袋内存不够的</p>
+					<p style="text-indent:5em">理解图:</p>
+					<div style="text-align:center"><img src="image/FastStoneEditor.bmp"></div>
+			</div>
+		</div>
+	</body>
+</html>
