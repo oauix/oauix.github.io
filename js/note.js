@@ -37,9 +37,6 @@ $(".muent a").click(function(data){
 	return false;//让a标签不执行跳转
 });
 $(".both a").click(function(data){
-	//alert(1);
-	//console.log(data);
-	//console.log(data.currentTarget.href);
 	$(".corse").load(data.currentTarget.href);
 	return false;//让a标签不执行跳转
 });

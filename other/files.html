@@ -7,12 +7,23 @@
 		<meta name="keywords" content="关键词" />
 		<!-- 显示区缩放 适用于手机 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../web/web/css/web.css" type="text/css" />
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
 		<style>
-			.body{width:99.98%}
 			a{
 				padding:6px 10px;margin:2px 8px;
 			}
+			*{margin:0px;padding:0px}
+			body{font-size:12px;color:#666;font-family:"微软雅黑"}
+			.body{width:99.98%;margin:3px auto;}
+			.body .content{font-size:13px;line-height: 29px;box-shadow: 0px 0px 8px #999;border-radius: 6px;padding: 20px 18px}
+			.body .content a{text-decoration:none}
+			.body .content .label{
+				color:#4cbf36;
+				font-size:16px;
+			}
+			p{text-indent:1.9em}
+			.clear{clear:both;}
+			pre{background:#ccf2d0;border-radius: 7px;box-shadow: 1px 2px 10px #888}
 		</style>
 		<script type="text/javascript">
 			
@@ -21,16 +32,25 @@
 	<body>
 		<div class="body">
 			<div class="content">
-				<h5>我的文件收藏[点击下载]</h5>
+				<h4>我的文件收藏[点击下载]</h4>
+				<h4>个人文件备份</h4>
 				<a href="../files/个人简历.doc" download="个人简历.doc">个人简历</a>
 				<a href="../files/个人简历824.doc" download="个人简历824.doc">简历备份</a>
+				<br/>
+				<p>[数据库]</p>
 				<a href="../files/mysql.txt" download="mysql">MYSQL配置</a>
 				<a href="../files/oracle.txt" download="oracle">Oracle配置</a>
-				<a href="../files/settings.xml" download="settings">maven镜像</a>
-				<a href="../files/springmvc.xml" download="springmvc">springmvc</a>
-				<a href="../files/spring-mybatis.xml" download="spring-mybatis">spring-mybatis</a>
-				<a href="../files/EmpMapper.xml" download="EmpMapper">mybatis-sql</a>
+				<br/>
+				<p>[框架]</p>
+				<a href="../files/settings.xml" download="settings">maven镜像[配置文件]</a>
+				<a href="../files/springmvc.xml" download="springmvc">springmvc[配置文件]</a>
+				<a href="../files/spring-mybatis.xml" download="spring-mybatis">spring-mybatis[mybatis整合文件]</a>
+				<a href="../files/EmpMapper.xml" download="EmpMapper">mybatis-sql[SLQ映射文件]</a>
 				<a href="../files/spring-aop.xml" download="spring-aop">spring-AOP</a>
+				<h4>自整项目</h4>
+				<a href="../files/login+jdbc.zip" download="login+jdbc.zip">Login-spring+springMVC+jdbc实现</a>
+				<a href="../files/login+mybatis.zip" download="login+mybatis.zip">Login-spring+springMVC+Mybtis实现</a>
+				<h4>其他</h4>
 			</div>		
 		</div>
 	</body>

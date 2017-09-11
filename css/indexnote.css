@@ -103,10 +103,10 @@
 				;height:100%;background:#222;display:none;
 			}
 			.indexbod .map .img{
-				width:60%;margin:50px auto;
+				width:70%;margin:50px auto;
 			}
 			.indexbod .map .img img{width:100%;}
 			.indexbod .map .img span{
-				position:fixed;right:20%;top:45px;
+				position:fixed;right:15%;top:45px;
 				cursor: pointer;background:red;padding:8px 8px;
 			}
