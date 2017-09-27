@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>生成日志</title>
+  <style>
+		.bod{
+			width:94%;margin:0.2em auto;
+		}
+		.bod input{
+			width:100%;padding:0.6em 0.2em;
+			font-size:1.2em;
+		}
+		.bod textarea{
+			width:100%;padding:0.6em 0.2em;margin:0.2em auto;
+			resize:none;font-size:1.2em;
+			height:26em;
+		}
+		.bod .set{text-align:right;}
+		.bod .set span{
+			padding:0.1em 0.2em;margin:0.3em 0.3em;cursor:pointer;background:#33ff33;
+			color:#222;
+		}
+		.bod .set span:hover{
+			opacity: 0.5;
+		}
+  </style>
+ </head>
+ <body>
+	<div class="bod">
+		<h4>创建/更新日志</h4>
+		<div>
+			<input text="text" placeholder="日志标题"/>
+		</div>
+		<div>
+			<textarea placeholder="..."></textarea>
+		<div>
+		<div class="set">
+			<span class="return">取消</span>
+			<span class="reset">重置</span>
+			<span class="copy">保存</span>
+			<span class="submit">提交</span>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/create.js"></script>
+ </body>
+</html>

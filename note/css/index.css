@@ -1,0 +1,41 @@
+html{font-size:62.5%;}
+.bod{width:94%;margin:2% auto;color:#666;font-size:1.6em;min-width:32em;}
+.left{width:78%;float:left;
+/*border-right: 2px #3399cc dotted;*/
+padding-right: 1.7em;
+}
+.right{width:16%;float:right;text-align:right;
+border-left: 2px #3399cc dotted;
+}
+.left .create{text-align:right;}
+.left .create a{background:#669900;color:#fff;
+font-size:1.6em;padding:0em 0.3em;opacity: 0.3;cursor: pointer;
+text-decoration: none;
+}
+.left .textshowche{
+border-bottom:1px #777 solid;
+}
+.left .textshowche div{
+margin:1.6em 0em;
+}
+.left .textshowche .show{
+color:#333;
+}
+.left .textshowche .bottom{
+text-align:right;font-size: 0.8em;
+}
+.right ul{
+text-align:left;list-style-type:none;
+}
+.right ul li{padding:0.2em 0em;font-size:0.8em;}
+p{
+margin:0px 0px;
+}
+.clear{clear:both}
+.footer{text-align:center;margin:2.2em 0em;color:#888}
+.button{
+position:fixed;right:0em;top:18%;font-size:2.6em;background:#66ff00;padding:0.1em 0.2em;color:#fff;cursor: pointer;border-radius: 0.2em;
+}
+.button:hover{
+opacity: 0.5;
+}

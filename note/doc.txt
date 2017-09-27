@@ -1,0 +1,5 @@
+1.方式一:
+	直接写成:html
+2.方式二:
+	写成txt文本,用js读写,类似数据库
+	index+createpage+显示page
