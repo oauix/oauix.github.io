@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	//alert(1);
 });
-//隐藏/显示菜单
+//隐藏/显示菜单按钮
 $(".button").click(function () {
 	//alert(1);
 	var left=document.getElementById("left");
@@ -17,16 +17,21 @@ $(".button").click(function () {
 		this.innerHTML=">";
 	}
 });
-$(".munt a").click(function(){
+$(".munt a").click(function(data){
 	//alert(1);
 	//console.log(data);
 	//console.log(data.currentTarget.href);
 	$(".content").empty();
 	//var textche=$.ajax({url:"textche/web.txt",async:false});
-	//console.log(textche);
 	//$(".content").html(textche.responseText);
-	$.post("textche/web.html",function(result){
-		$(".content").html(result);
-	  });
+	$(".content").load(data.currentTarget.href);
 	return false;//让a标签不执行跳转
 });
+function toaction(data){
+	//alert(1);
+	console.log(data.getAttribute("value"));
+	var textche=data.getAttribute("value");
+	$(".button").click();
+	$(".content").empty();
+	$(".content").load(textche);
+}
