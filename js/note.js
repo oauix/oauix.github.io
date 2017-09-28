@@ -1,42 +1,38 @@
-﻿$(document).ready(function(){
+$(document).ready(function(){
+	$(".content").load("textche/init.html");
+});
+//隐藏/显示菜单按钮
+$(".button").click(function () {
 	//alert(1);
-	$(".corse").load("other/start.html");
+	//alert(this.innerHTML);
+	//alert(this.innerHTML=="＞");
+	if(this.innerHTML=="&gt;"){
+		$("#right").hide(500,function(){
+			$("#left").animate({width:"100%"},300);
+		});	
+		this.innerHTML="<";
+	}else{
+		$("#left").animate({width:"78%"},500,function(){
+			$("#right").show(300);
+		});
+		this.innerHTML=">";
+	}
 });
-
-$("#top").click(function () {//返回顶部
-	var speed=200;//滑动的速度
-	$('body,html').animate({ scrollTop: 0 }, speed);
-	return false;
-});
-
-function imgup(){
-	var map=document.getElementById("map");
-	map.style.display="block";
-}
-function imgclose(){
-	var map=document.getElementById("map");
-	map.style.display="none";
-}
-$(".box_x").click(function(){
-	//删除animated flipInY类，加animated bounceOut类，fadeOut执行完后再反过来来删除animated bounceOut类，加animated flipInY类
-	$(".map").removeClass("animated flipInY").addClass("animated bounceOut").fadeOut(1000,function(){
-		$(".map").removeClass("animated bounceOut").addClass("animated flipInY");
-	});
-		$(".map").fadeOut();
-	});
-	//弹幕技术切换
-	$(".box_o").click(function(){
-		$(".map").fadeIn();
-		//$(".map").fadeToggle();
-	});
-$(".muent a").click(function(data){
+$(".munt a").click(function(data){
 	//alert(1);
 	//console.log(data);
 	//console.log(data.currentTarget.href);
-	$(".corse").load(data.currentTarget.href);
+	$(".content").empty();
+	//var textche=$.ajax({url:"textche/web.txt",async:false});
+	//$(".content").html(textche.responseText);
+	$(".content").load(data.currentTarget.href);
 	return false;//让a标签不执行跳转
 });
-$(".both a").click(function(data){
-	$(".corse").load(data.currentTarget.href);
-	return false;//让a标签不执行跳转
-});
+function toaction(data){
+	//alert(1);
+	console.log(data.getAttribute("value"));
+	var textche=data.getAttribute("value");
+	$(".button").click();
+	$(".content").empty();
+	$(".content").load(textche);
+}

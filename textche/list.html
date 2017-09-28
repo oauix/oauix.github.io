@@ -1,0 +1,204 @@
+<div class="textshowche">
+  <h5><a href='#'>集合 list set Arrayslist LinkedList HashSet</a></h5>
+  <div class="show">
+     <p>list是可重复集,且有序; set不可重复集，大部分是无序</p>
+     <p>1.Collection c=new ArrayList();Collection c=new HashSet();//创建集合</p>
+     <p>2.常用方法：add() contains()[是否含元素] addAll() containsAll()[是否含一个集合] clean() size() isEmpty()[是否不包含如何元素]，remove()</p>
+     <p>3.hasNext() next()就是为while设计的，俩个方法只能用一次，多次会报错</p><br/>
+     <p>线性表ArrayList与双向性表LinkedList的方法</p>
+     <p>*LinkedList是像项链的东西</p>
+     <p>1.get()</p>
+     <p>*String a=obj.get(int b);获取集合中的元素，ArrayList时正常，LinkedList到中间有性能差异</p>
+     <p>2.set()</p>
+     <p>*String a=obj.set(int a,str);更换指定元素为str，并返回原元素。</p>
+     <p>3.remove()</p>
+     <p>*String a=obj.remove(int a);删除指定元素，并将该元素返回。</p>
+     <p>4.subList()</p>
+     <p>*List a=obj.subList(int a,int b)截取中的元素为另一个集合，它只是指向原集合地址，改变子集合，原集合也会变，改原集合时，操作子集合会报错。</p><br/>
+     <p>集合与数组转换</p>
+     <p>1.toArray();</p>
+     <p>* String[] a=ojb.toArray(new String(){});一个集合转换为数组，</p>
+     <p>* new toArray(){}这个数组长度小时，就直接撑大。</p>
+     <p>* new toArray(){}这个数组长度大时,把元素全放进去,然后+1一个为null，后面多的保持不变</p>
+     <p>2.asList()</p>
+     <p>*List a=Arrays.asList(arr);</p>
+     <p>*集合与数组共享地址，对其修改时，数组和集合都会随之改变，注意：不能对转换过来的集合增删元素操作，会报错</p><br/>
+     <p>集合排序</p>
+     <p>#Collections.sort(obj);该方法必须要有比较规则。</p>
+     <p>*比较算法(规则)不同，会产生不同排序</p>
+     <p>*String类型提供了字符串大小比较的方法：</p>
+     <p>Str.compareTo(str2);str与str2比较</p>
+     <p>*java公司定义：compareTo方法有三种状态：</p>
+     <p>Int n= Str.compareTo(str2)；n>0,Str大，n&lt;0，str2大；n=0,str=str2.</p>
+     <p>*很多java给的类都有compraceTo方法，故把他写在一个父类上，这个类叫Compraable。</p>
+     <p>*常见有compareTo方法的类有：String Date Integer</p>
+     <p>*compareTo非常严谨，一般自定义类(自己建的类)不建议实行compareTo方法。</p>
+     <p>#自定义排序(自定义排序规则)：</p>
+     <p>*重写方法：Collections.sort(list,比较器);</p>
+     <p>*自定义比较有个接口：Comparator</p>
+     <p>*下图案列：</p>
+     <p>*调用：Collections.sort(list,new ByAge() );</p>
+<pre>
+	class byage implements Compartor&lt;Cat>{
+		/**
+		*自定义的比较算法：按照猫对象的年龄比较大小
+		*如果返回&lt;0；则o1&lt;o2;
+		*如果返回&gt;0；则o1&gt;o2;
+		*如果返回=0；则o1=o2;
+		*/
+		public int compare(Cat o1,Cat o2){
+			int a1=o1.age;
+			int a2=o2.age;
+			return a1-a2;
+			//if(a1>a2){return 1;}
+			//if(a1&gt;a2){return -1;}
+			//else{return 0;}
+		}
+	}
+</pre>
+  </div>
+  <div class="bottom">@2017-09-28 21:06:44 小ol鱼 阅读(0) 评论(0) <a href="#">编辑</a></div>
+</div>
+<div class="textshowche">
+  <h5><a href='#'>队列和栈：Queue Deque</a></h5>
+  <div class="show">
+     <p>1.队列：Queue</p>
+     <p>* Queue 先进先出原则：一端进一端出</p>
+     <p>* LinkedList实现Queue接口原因：Queue常常进行添加删除操作，而在LinkedList在这方效率较高</p>
+     <p>* boolean offer(E e) 将一个对象添加到队尾，成功会返回true</p>
+     <p>* E poll() 从队首删除元素，并返回删除的元素</p>
+     <p>* E peek() 只返回里面的元素，不删除元素</p>
+     <p><br/></p>
+     <p>[应用案例]</p>
+<pre>
+	public void testqueue(){
+		Queue&lt;String> queue=new LinkedList()&lt;String>;
+		queue.offer("a");
+		queue.offer("b");
+		queue.offer("c");
+		System.out.println(queue);//[a,b,c]
+		String str=queue.peek();
+		System.out.println(str);//a
+		String strs=queue.peek();
+		//b 再执行一次就会返回下一个数,但不删除元素,像复制一份,再一个个删除取元素,不改变原结构
+		System.out.println(strs);
+		while(queue.size()>0){
+			str=queue.queue.pll();
+			System.out.println(str+" ");//a b c
+		}
+	}
+</pre>
+     <p><br/></p>
+     <p>2.Deque 双端队列(又称栈)</p>
+     <p>* 先进后出原则：一端堵死，一个端进出</p>
+     <p>* Deque是双端队列,但是若只从一段进出队就实现了栈结构.</p>
+     <p>* 继承Queue接口，故有上面的方法,对于栈而言：入栈称之为push，出栈称之为pop</p>
+     <p>故有这些方法:</p>
+     <p>* obj.push()进栈</p>
+     <p>* obj.pop()出栈，[删除]</p>
+     <p>* obj.speek()出栈，[不删除] 跟队列一样</p>
+     <p>* 栈结构常被用来实现"后退"功能</p>
+     <p><br/></p>
+     <p>[应用案例]</p>
+<pre>
+	public void teststack(){
+		Deque&lt;String> stack=new Deque()&lt;String>;
+		stack.push("a");
+		stack.push("b");
+		stack.push("c");
+		System.out.println(stack);//[c,b,a]
+		String str=stack.speek();
+		System.out.println(sta);//c
+		while(stack.size>0){
+			str=stack.pop();
+			System.out.println(str+" ");// c b a
+		}
+	}
+</pre>
+  </div>
+  <div class="bottom">@2017-09-28 21:11:52 小ol鱼 阅读(0) 评论(0) <a href="#">编辑</a></div>
+</div>
+<div class="textshowche">
+  <h5><a href='#'>查询表(map接口) Map 影响散列表(HashMap)</a></h5>
+  <div class="show">
+     <p>* java.util.Map</p>
+     <p>* 查找表,以key-value对的形式存储元素;常用实现类:java.util.HashMap.</p>
+     <p>* HashMap:散列表,以散列算法实现的Map</p>
+     <p>* Map要求key不允许重复,是否重复取决于key元素 与 equals方法比较的结果</p><br/>
+     <p>【常用方法】</p>
+     <p>1.V put(K k,V v)方法：添加一对key-value元素，并返回value值</p>
+     <p>*将对应的键值对存入到Map中.由于Map要求key不允许重复,所以使用已有的key存入新的value则是替换该key原来对应的value值,并将其返回.若指定的key在Map中不存在,则返回值为null.加值数据没有排序的</p>
+     <p>*尽量不使用基本类型去接收返回值.因为若返回为值NULL,触发自动拆箱时会引起空指针异常.int num = map.put("化学", 99);回出现异常[有一个隐形的拆装:int num = map.put.inValue();]</p>
+     <p>2.V get(K k)方法：返回value值 [查询value值]</p>
+     <p>* 获取指定key所对应的value</p>
+     <p>* 若指定的key在map中不存在则返回值为null</p>
+     <p>实例:</p>
+     <p>* Integer num = map.get("语文");</p>
+     <p>* System.out.println("语文:"+num);</p>
+     <p>3.V remove(K k)：2017/6/10 星期六添加一对key-value元素 返回value值</p>
+     <p>* 将给定的key对应的键值对从map中删除</p>
+     <p>* 返回值为该key对应的value</p>
+     <p>* 如：删除数学</p>
+     <p>* Integer num = map.remove("数学");</p>
+     <p>* System.out.println("remove:"+num);</p>
+     <p>4.boolean containsKey(K k) boolean containsValue(V v) [判断是否包含元素]</p>
+     <p>* 判断当前map是否包含给定的key或value</p>
+     <p>* 判断标准还是参考元素equals比较的结果.</p><br/><br/>
+     <p>遍历Map</p>
+     <p>[有三种方式:]</p>
+     <p>1:遍历所有的key</p>
+     <p>* Set keySet()方法</p>
+     <p>* 该方法会将当前Map中所有的key存入一个,Set集合后返回.</p>
+     <p></p>
+     <p>[应用代码]</p>
+     <p>Set keySet = map.keySet();</p>
+     <p>for(String key : keySet){</p>
+     <p>	System.out.println("key:"+key);</p>
+     <p>}</p>
+     <p>2:遍历所有键值对</p>
+     <p>* Set entrySet()</p>
+     <p>* Entry是Map的内部类,其每一个实例用于表示Map中一组键值对</p>
+     <p>* entrySet方法会将当前map中每一组键值 对以一个Entry实例的形式存入Set集合后，将该Set集合返回.</p>
+     <p>* 常用getKey(),getValue()方法再用于获取该组键值对中的key与value</p>
+     <p></p>
+     <p>[应用代码]</p>
+     <p>Set<Entry> entrySet = map.entrySet();</p>
+     <p>for(Entry e : entrySet){</p>
+     <p>String key = e.getKey();</p>
+     <p>Integer value = e.getValue();</p>
+     <p>System.out.println(key+":"+value);</p>
+     <p>}</p>
+     <p>3:遍历所有的value(相对前两种不太常用)</p>
+     <p>* Collection values()</p>
+     <p>* 将当前Map中所有的value存入一个集合后返回.</p>
+     <p></p>
+     <p>[应用代码]</p>
+     <p>*Collection values = map.values();</p>
+     <p>*for(Integer value : values){</p>
+     <p>System.out.println("value:"+value);</p>
+     <p>*}</p><br/><br/>
+     <p>影响散列表(HashMap)查询性能的一个主要原因</p>
+     <p>是: 在HashMap中产生链表.产生链表的主要情况有两种:</p>
+     <p>1:元素多,概率问题(通过加载因子解决,避免扩容rehash)</p>
+     <p>2:作为key元素equals方法与hashcode方法的重写不当.</p>
+     <p>* 当两个key的hashcode值相同时,它们在HashMap内部数组(散列桶)中的位置就相同,若这两个key的equals,方法比较为false时就会产生链表.</p>
+     <p># 当一个类在重写equals方法时就应当连同重写hashcode方法.并且遵循以下原则:</p>
+     <p>稳定性:</p>
+     <p>在一个对象参与equals比较的属性值没有发生改变的前提下,多次调用hashcode值返回的数字必须相同.不能是随机数.</p>
+     <p>一致性:</p>
+     <p>当两个对象equals比较为true时,hashcode值要相等.反过来若连个对象hashcode值相等equals方法也应当为true,若不然则可能会在HashMap中出现链表影响查找性能.</p>
+     <p></p>
+     <p>[下面最后段落是自己理解的]</p><br/><br/>
+     <p>扩展--hashcode()</p>
+     <p>hashcode()跟equals()一样，都在object里的</p>
+     <p>## 看两个key[可以将key成a,它就是一个变量]是不是相同，鉴定与他们的hashcode是不是相同,若相同则为同一个引用类型，再判定他们是不是同一个对象，java是看他们的equals比较结果，若equals比较是false，那就是俩个对象，变量key里面就会存两个对象,[返回map]这样map里的key存了两个数，即产生链表</p>
+     <p>[下面以这个东西再解释,这个东西要理解]</p>
+     <p>当两个引用类型，他们类型相同，但equals比较是false的，那key里面就会存两个数【即产生链表，产生链表会影响散列表(HashMap)查询性能】</p>
+     <p>范传奇老师说这样的列子：自己是通缉犯，拿身份证去住酒店，如果没有登记系统，警察来抓，要一个一个房间查找，有了登记系统可以直接查到房间号，但如果几个人拿的身份证[里面的名字等信息一样]一样，身份证号又不同，那登记时只会分配到同一个房间[假如登记系统只会一个身份证分配一个房间]，当警察查到房间号，进入房间，里面又有很多人，又有一个个的找，这样就影响性能了。</p>
+     <p>产生链表的还有一种情况：元素多时，列子：3个房间要分配5个人住，那出现重复的概率很大</p>
+     <p>为了减少元素多的情况，>加载因子解决&lt;java规定一个map容量为16，当存储的集合到3/4时会扩容一次，但扩容很可怕，key查询表会变，尽量避免</p>
+     <p>LinkHashMap</p>
+     <p>可以美观的排序</p>
+  </div>
+  <div class="bottom">@2017-09-28 21:14:18 小ol鱼 阅读(0) 评论(0) <a href="#">编辑</a></div>
+</div>

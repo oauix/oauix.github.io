@@ -1,0 +1,191 @@
+<div class="textshowche">
+  <h5><a href='#'>java自定义的类</a>:
+  <a href="#str">String</a>
+  <a href="#strb">StringBuilder</a>
+  <a href="#obj">Object</a>
+  <a href="#date">Date</a>
+  <a href="#cal">Calendar</a></h5>
+  <div class="show">
+     <p><span id="str" style="color:red">String </span>：字符串是不变对象,即:字符串对象创建后内容不可变，改变内容会创建新对象，再创建时会先查询常量池，无才创建</p><br/>
+     <p>正则表达式： [0123456789]、[0-9]、\d:代表一个0-9的一个字符；[a-z]:一个a-z的一个字符；[^12]:除了12其他的一个字符 ^取非；Boolean a=object.matches(str);object为正则表达式；[0-9][0-9][0-9]--简写--[0-9]{3};//{3}是数量值；</p>
+     <p>正则表达式之数量词：</p>
+     <p>x？  0个或一个；x*   0个或多个；x+   1个或多个；x{n}   n个字符；x{n,} n个或多个；x{n,m}   n到m个</p>
+     <p>. 任意一个字符</p>
+     <p>\d 任意一个数字字符，相当于[0-9]</p>
+     <p>\w 任意一个字母或数字，相当于[a-zA-Z0-9_]</p>
+     <p>\s 任意空符，相当于[\t\n\xoB\f\r]</p>
+     <p>\D</p>
+     <p>\W 与上意思相反</p>
+     <p>\S</p>
+     <p>“^”与”$”边界匹配符:</p>
+     <p>^:开始</p>
+     <p>$:结束</p>
+     <p>相对而言的：用查询功能：ctrl+f，String str=”abcd_123456789”;边界匹配当他们等时，才返回true</p><br/>
+     <p>String常用方法:</p>
+     <p>1.length() 返回字符串长度</p>
+     <p>2.indexOf()--取字符位置</p>
+     <p>* int indexOf(String str) 重载：int indexOf(String str,a) a为位置。</p>
+     <p>* 返回给定字符串在当前字符串中的位置,若当前字符串不含有给定字符串则返回-1.</p>
+     <p>* int a=object.indexOf(str);</p>
+     <p>3.substring()--截取字符</p>
+     <p>* String substring(int start,int end)</p>
+     <p>* 截取当前字符串指定范围内的字符串并返回.</p>
+     <p>* 在java api中通常使用两个数字表示范围时,都是"含头不含尾"的.</p>
+     <p>* String a=object.subString(2,4);</p>
+     <p>4.charAt()--获取字符</p>
+     <p>* char charAt(int index)</p>
+     <p>* 返回当前字符串中指定位置的字符</p>
+     <p>* char a=object.charAt(5);</p>
+     <p>5.trim()--去前后空白符</p>
+     <p>* String trim()</p>
+     <p>* 去除当前字符串两边的空白字符</p>
+     <p>* String a=object.trim();</p>
+     <p>6.statsWith() endsWith(String str)--前后匹配</p>
+     <p>* boolean startsWith(String str)</p>
+     <p>* boolean endsWith(String str)</p>
+     <p>* 判断字符串是否是以给定字符串开始或结尾的</p>
+     <p>* boolean a=object.startsWith(“ab”); boolean b=object.endWith(“ab”);</p>
+     <p>7.toUpperCase()toLowerCase()--转换大小写[限字母]</p>
+     <p>* String toUpperCase()</p>
+     <p>* String toLowerCase()</p>
+     <p>* 将当前字符串中的英文部分转换为全大写或全小写</p>
+     <p>* String a=object. toUpperCase()</p>
+     <p>8.valueOf()--转换为字符串</p>
+     <p>* static String valueOf(...)</p>
+     <p>* String提供了一组重载的静态方法valueOf</p>
+     <p>* 作用是将java其他类型转换为字符串</p>
+     <p>* 常用于将基本类型转换为字符串</p>
+     <p>* String a=String.valueOf(field);</p>
+     <p>9.toCharArray()--换行成数字</p>
+     <p>* Char[] str=s.toCharArray();//把s字符串转换为char数组</p>
+     <p>10.equals("str")--字符串对比</p>
+     <p>* 判断string内容是否相同：用:字符串.equals(对比字符串);</p>
+     <p>[String:正则API方法]</p>
+     <p>11.matches()//匹配方法</p>
+     <p>* boolean flag=Object.matches("str");</p>
+     <p>12.split(a)//拆分方法，a是正则表达式。</p>
+     <p>* String[] array=object.split(正则表达式);拆分后边几个数组了</p>
+     <p>13.replaceAll();//替换方法</p>
+     <p>* String a=object.replaceAll(“正则表达式”,”要替换的内容”);</p>
+     <p></p>
+     <p>[String不可改变,因此java没有向字符串中间添加/删除的方法]</p>
+	 <p>用StringBuffer来自定义方法:StringBuffer stringBuffer = new StringBuffer(str);</p>
+     <p></p><br/><br/>
+     <p><span id="strb"style="color:red">StringBuilder</span>：对于String不能更改，推出该类，【 java.lang.StringBuilder】</p>
+     <p>* StringBuilder是为了解决频繁修改字符串对系统资源开销问题.</p>
+     <p>* StringBuilder内部是一个可变的字符数组,可以通过扩容来实现长度变换,而不是每次创建新对象</p><br/>
+     <p>StringBuilder提供了方便修改字符串内容的方法.</p>
+     <p>1. object.append(",为了找个好工作!");// 内容拼接到当前字符串末尾.</p>
+     <p>2. object.replace(9, 16, "改变世界");//当前字符串中指定范围内的内容替换为给定内容</p>
+     <p>3. replaceAll();//替换方法 正则表达式里的</p>
+     <p>* String a=object.replaceAll(“正则表达式”,”要替换的内容”);</p>
+     <p>4. object.delete(0, 8);// 删除指定范围内的内容</p>
+     <p>5. object.insert(0, "活着");//在当前字符串指定位置插入指定字符串内容</p>
+     <p>6. object.reverse();//翻转字符串</p>
+     <p></p><br/><br/>
+	 <p><span id="obj"style="color:red">Object</span>:没有指定继承的类，默认都继承Object</p><br/>
+     <p>toString()</p>
+     <p>toString()返回对象的东西，将其转换为字符串输出，但引用类型的东西是抽象的，所以最好指定一下需要返回的东西</p>
+     <p>该方法是sun公司在object定义了,是返回：类名@散列吗;,大多数java内部类已重写，自己定义类最好要自己重写。最好是返回重要的数据</p><br/>
+     <p>equals()</p>
+     <p>跟toString()一样，不能比较引用类型的东西，如果一定要比较，他们是比较引用上的指向的内存地址，是不是同一个指向</p>
+     <p>重写格式：</p>
+<pre>
+boolean equals(Object obj){
+	if(obj==null){
+		return false;
+	}
+	if(this==obj){
+		return true;
+	}
+	if(obj instanceof 要对比的类Oo){
+		Oo oo=(String) obj;
+		return oo.name==obj.name;
+	}else{
+		return false;
+	}
+}
+</pre>
+     <p></p><br/><br/>
+	 <p><span id="date"style="color:red">Date</span></p>
+     <p>* Date库类(从java1.1已不用了)</p>
+     <p>* getTime()与setTime();前者将date类型值转换为long，后者相反</p>
+<pre>
+	import java.util.Date;
+	/**
+	*使用Date输出当前系统时间，并告知3天后这一刻的时间
+	*
+	*/
+
+   public class test{
+		public static void main(String[] agrs){
+			Date date=new Date();//获取一个时间节点，当前系统时间
+			System.out.println(date);
+			long time = date.getTime();//转换为自1970.1.1到截取时间的毫秒数
+			System.out.println(time);
+			time+=24*60*60*1000*3;
+			date.setTime(time);//再转换为日期格式
+			System.out.println(date);
+		}
+   }
+</pre>
+	<br/>
+	<p>SimpleDateFormat[格式类，java.text.SimpleDateFormat]</p>
+	<p>自定义格式：object.format();[日期格式>自定义]object.parse();[相反]</p>
+<pre>
+	import java.util.Date;
+	import java.text.SimpleDateFormat;
+	/**
+	*将当前系统时间转换以"yyyy-MM-dd HH:mm:ss"格式输出
+	*
+	*/
+	public class tests{
+		public static void main(String[] agrs){
+			Date date = new Date();
+			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String str = sd.format(date);//将日期格式转换为指定格式
+			Date sb= sd.parse(str);//再将指定格式反转换为日期格式
+			System.out.println(str+","+sb);
+		}
+	}
+</pre>
+	 <br/>
+	 <p><span id="cal"style="color:red">Calendar</span></p>
+	 <p>*getInstance();获取时间分量</p>
+	 <p>*Get(int field);获取当前Catendar中的时间分量。</p>
+<pre>
+	import java.util.Calendar;
+	public class CalenderTest{
+		public static void main(String[] agrs){//<span style="color:red">获取时间信息</span>
+			//创建cal,也是获取当前时间，但内容很多，显示不直观
+			Calendar cal = Calendar.getInstance();
+			System.out.println(cal);
+			Date d=cal.getTime();//转换日期格式
+			System.out.println(d);
+			int year=cal.get(Calender.YEAR);
+			int month=cal.get(Calendar)+1;//月的计数是0-11；
+			int day = cal.get(Calendar.DAY_OF_MONTH);
+			System.out.println(year+"年"+month+"月"+day+"日");
+			int h=cal.get(Calendar.HOUR_OF_DAY);
+			int m=cal.get(Calendar.MINUTE);
+			int s=cal.get(Calendar.SECOND);
+			System.out.println(year+"年"+month+"月"+day+"日"+" "+h+"："+m+":"+s);
+			int w=cla.get(Calendar.DAY_OF_YEAR);//一年的第几天
+			int mo=cal.get(Calendar.DAY_OF_WEEK)-1;//这个点星期几，这个里周日为1，星期一位2；故-1
+			char[] che = {'日','一','二','三','四','五','六'};
+			System.out.println("今年的第"+w+"天，星期:"+che[mo]);
+		}
+	}
+	public class CalenderTests{
+		public static void main(String[] agrs){//<span style="color:red">更改时间信息</span>
+			Calendar cal = Calendar.getInstance();
+			cal.set(Calendar.YEAR,2004);//将年改为2004
+			cal.set(Calendar.MONTH,3);//将月改为3月，  <span style="color:red">其他时间分量会跟着变，即同步</span>
+			cal.add(Calendar.YEAR,20);//将时间增加20年
+			System.out.println(cal.getTime());
+		}
+	}
+</pre>
+  </div>
+  <div class="bottom">@2017-09-28 20:31:55 小ol鱼 阅读(0) 评论(0) <a href="#">编辑</a></div>
+</div>
