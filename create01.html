@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>生成日志</title>
+  <style>
+		.bod{
+			width:94%;margin:0.2em auto;
+		}
+		.bod input{
+			width:99%;padding:0.6em 0.2em;
+			border: 0.1em #d3d6da solid;
+			box-shadow: 2px 2px 5px #d3d6da;
+			font-size:1.2em;
+		}
+		.bod .gettext{
+			width:100%;padding:0.6em 0.2em;margin:0.2em auto;font-size:1.2em;border:0.1em #666 solid;
+			height:20em;overflow:auto;
+		}
+		.bod .showtextblack{
+			display:none;position:fixed;top:0px;left:0px;width:100%;
+			height:100%;background:#999;opacity:0.4;
+			z-index:1;
+		}
+		.bod .showtext{
+			display:none;position:fixed;top:1%;left:5%;width:90%;
+			height:98%;background:#FFF;z-index:10;
+		}
+		.bod .set{text-align:right;}
+		.bod .set span{
+			padding:0.1em 0.2em;margin:0.3em 0.3em;cursor:pointer;background:#33ff33;
+			color:#222;
+		}
+		.bod .set span:hover{
+			opacity: 0.5;
+		}
+		.textshowche{
+			border-bottom:1px #777 solid;padding:0.2em 1.6em;
+		}
+		.textshowche div{
+			margin:1.6em 0em;
+		}
+		.textshowche .show{
+			color:#333;
+		}
+		.textshowche .bottom{
+			text-align:right;font-size: 0.8em;
+		}
+		
+  </style>
+	<!--文件编辑器样式-->
+		<link rel="stylesheet" href="css/public-demo.css" type="text/css">
+		<link rel="stylesheet" href="css/onlinedemo.css" type="text/css">
+		<link href="css/umeditor.min.css" type="text/css" rel="stylesheet">
+		<style type="text/css">
+        .disabled {
+            opacity: 0.5;
+            cursor: default;
+            *filter: alpha( opacity=50 );
+        }
+        .links a{
+            color: #ff5400;
+            margin-right: 5px;
+        }
+        .links a.green{
+            color: green;
+        }
+    </style>
+	<!--文件编辑器js支持-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/template.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/umeditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/umeditor.min.js"></script>
+		<script type="text/javascript" src="js/zh-cn.js"></script>
+ </head>
+ <body>
+	<div class="bod">
+		<h4>创建/更新日志 <a href="http://ueditor.baidu.com/website/umeditor.html">来源</a><span class="success"></span></h4>
+		<div class="gettype">
+			<input text="text" placeholder="日志标题"/>
+		</div>
+		<!--文件编辑区-->
+		
+			<div style="width:100%;margin:20px auto;padding:0.2em 0.2em">
+				<script type="text/plain" id="editor" style="width:100%;height:360px;"></script>
+			</div>
+		
+		<!--文件编辑器加载后js支持-->
+		<script type="text/javascript" src="js/gettext.js"></script>
+		<div style="display:none">
+			<script>
+				var _hmt = _hmt || [];
+				(function() {
+				var hm = document.createElement("script");
+				hm.src = "https://hm.baidu.com/hm.js?0e7410a148298a5c4a8dee1af59879d1";
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
+
+			<script type="text/javascript" src="js/ueditor.js"></script>
+		</div>
+			
+		<div class="set">
+			<span class="return">取消</span>
+			<span class="reset">重置</span>
+			<span class="show">预览</span>
+			<span class="submit">保存</span>
+		</div>
+		<div class="showtextblack">	
+		</div>
+		<div class="showtext">
+			<div class="toclose">预览  关闭</div>
+			<div class="showche" style="overflow:auto;height:90%"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/create.js"></script>
+ </body>
+</html>

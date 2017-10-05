@@ -7,17 +7,53 @@ $(".return").click(function () {
 });
 
 $(".reset").click(function () {
-	$("input").val("");
-	$("textarea").val("");
+	var boolean=confirm("确定清空数据，数据将不可恢复！");
+	if(boolean){
+		$("input").val("");
+		$("#editor").empty();
+	}
 });
 
-$(".copy").click(function () {
-	//写文件函数
-	towrite();
+$(".show").click(function () {
+	//alert(1);
+	$(".showtextblack").fadeIn(900);
+	$(".showtext").fadeIn(900);
+
+	var type=$("input").val();
+	var text=$("#editor").html();
+	console.log(text);
+	var str='<div class="textshowche">'
+				+'<h5><a href="#">'+type+'</a></h5>'
+				+'<div class="show">'
+				+text
+				+'</div>'
+				+'<div class="bottom">@ ' +getNowFormatDate()+'小ol鱼 阅读(0) 评论(0) <a href="#">编辑</a></div>'
+			+'</div>';
+		$(".showche").html(str);
+});
+
+$(".toclose").click(function () {
+	//alert(1);
+	$(".showtextblack").fadeOut(900);
+	$(".showtext").fadeOut(900);
 });
 
 $(".submit").click(function () {
 	//写文件+记录写入时间
+	aleat(1);
+	var type=$("input").val();
+	var text=$(".gettext").html();
+	var time=getNowFormatDate();
+	var admin_type="小ol鱼";
+	$.ajax({"url":"type/add.do","type":"post",
+		"data":{"notetype.type":type,"notetype.text":text,"notetype.time":time,"notetype.admin_type":admin_type},
+		"dataType":"json",
+		"success":function(date){
+			alert("保存成功！");
+			if(date.state=1)
+				$(".success").html("操作成功！");
+		},
+		"error":function(){}});
 });
 //获取当前时间
 function getNowFormatDate() {
@@ -69,4 +105,33 @@ function towrite(){
 	//var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
 	//saveAs(blob, "hello world.txt");
 	
+}
+$("#b").click(function(){
+	//console.log(getSelectText());
+	
+	var str=$("#editor").html().replace(/<b>/g,"").replace(/<\/b>/g,"");
+	var che=getSelectText(str);
+	console.log(str);
+	var strs=str.replace(che,"<b>"+che+"</b>");
+	console.log(strs);
+	$(".gettext").html(strs);
+	//getSelectText();
+});
+//获取选中的文本
+function getSelectText(str) {
+	 if (document.selection) //IE
+    { 
+        return document.selection.createRange().text; 
+    }else{//webkit内核（chrome、UC等）、firefox浏览器以及IE11以上等
+		//获取Selection对象  
+		var se = window.getSelection();  
+		//获取起始位置，这个是字符的序号位置，而不是坐标  
+		var start = se.anchorOffset; 
+		console.log(start);
+		//获取结束位置  
+		var end = se.focusOffset;
+		console.log(end);
+		
+		return str.substring(start, end);
+	}	
 }
