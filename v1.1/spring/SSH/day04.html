@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>day04</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>SSH</h1>
+<h2>整合Spring Hibernate 续</h2>
+<p>Spring 提供了 HibernateTemplate类 用于封装Session接口, 在Session接口基础之上提供了更加简洁高效的API方法. 使用HibernateTemplate可以替代Sesison接口. 并且更加简洁方便.</p>
+<p>案例:</p>
+<ol>
+<li>
+<p>在spring-hibernate.xml 中配置HibernateTemplate:</p>
+<pre><code>&lt;bean id=&quot;hibernateTemplate&quot; class=&quot;org.springframework.orm.hibernate4.HibernateTemplate&quot;&gt;
+    &lt;property name=&quot;sessionFactory&quot; 
+        ref=&quot;sessionFactory&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+</li>
+<li>
+<p>添加实体类 User</p>
+<pre><code>public class User implements Serializable{
+    private static final long serialVersionUID = 4791239487936751712L;
+
+    private Integer id;
+    private String name;
+    private String password;
+    private Integer age;
+    private Double salary;
+    private Date hiredate;
+
+    public User() {
+    }
+
+    public User(Integer id, String name, String password, Integer age, Double salary, Date hiredate) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.age = age;
+        this.salary = salary;
+        this.hiredate = hiredate;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
+    public Date getHiredate() {
+        return hiredate;
+    }
+
+    public void setHiredate(Date hiredate) {
+        this.hiredate = hiredate;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;User [id=&quot; + id + &quot;, name=&quot; + name + &quot;, password=&quot; + password + &quot;, age=&quot; + age + &quot;, salary=&quot; + salary
+                + &quot;, hiredate=&quot; + hiredate + &quot;]&quot;;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+
+
+}
+</code></pre>
+
+</li>
+<li>
+<p>添加映射文件 hbm/User.hbm.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC 
+    &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+    &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;
+&lt;hibernate-mapping&gt;
+    &lt;class name=&quot;cn.tedu.entity.User&quot;
+        table=&quot;t_user&quot;&gt;
+        &lt;id name=&quot;id&quot; column=&quot;u_id&quot;&gt;&lt;/id&gt;
+        &lt;property name=&quot;name&quot; column=&quot;u_name&quot;/&gt;
+        &lt;property name=&quot;password&quot; column=&quot;u_password&quot;/&gt;
+        &lt;property name=&quot;age&quot; column=&quot;u_age&quot;/&gt;
+        &lt;property name=&quot;salary&quot; column=&quot;u_salary&quot;/&gt;
+        &lt;property name=&quot;hiredate&quot; column=&quot;u_hiredate&quot;/&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</code></pre>
+
+</li>
+<li>
+<p>添加测试案例 </p>
+<pre><code>public class TestCase {
+    ClassPathXmlApplicationContext ctx;
+    HibernateTemplate template;
+
+    @Before 
+    public void init(){
+        ctx = new ClassPathXmlApplicationContext(
+                &quot;conf/spring-hibernate.xml&quot;);
+        template = ctx.getBean(
+                &quot;hibernateTemplate&quot;, 
+                HibernateTemplate.class);
+    }
+
+    @Test
+    public void testGet(){
+        User user=template.get(User.class,1);
+        System.out.println(user); 
+    }
+}
+</code></pre>
+
+</li>
+<li>
+<p>测试 ...</p>
+</li>
+</ol>
+<h2>使用HibernateTemplate 实现UserDao</h2>
+<p>HibernateTemplate天生就是用于实现Dao接口的. 并且可以利用Spring声明式事务管理事务.</p>
+<ol>
+<li>
+<p>配置spring-hibernate.xml:</p>
+<pre><code>&lt;!-- 配置Hibernate事务管理器 --&gt;
+&lt;bean id=&quot;txMgr&quot; 
+    class=&quot;org.springframework.orm.hibernate4.HibernateTransactionManager&quot;&gt;
+    &lt;property name=&quot;sessionFactory&quot;
+        ref=&quot;sessionFactory&quot;/&gt;
+&lt;/bean&gt;
+&lt;!-- 开启基于注解的声明式事务管理 --&gt;
+&lt;tx:annotation-driven 
+    transaction-manager=&quot;txMgr&quot;/&gt;
+
+&lt;context:component-scan 
+    base-package=&quot;cn.tedu.dao&quot;/&gt;
+</code></pre>
+
+</li>
+<li>
+<p>编写UserDao接口</p>
+<pre><code>public interface UserDao {
+
+    int addUser(User user);
+
+    int updateUser(User user);
+
+    int deleteUser(Integer id);
+
+    User findById(Integer id);
+
+    List&lt;User&gt; findAll();
+
+    User findByName(String name);
+}
+</code></pre>
+
+</li>
+<li>
+<p>实现UserDao接口</p>
+<pre><code>@Repository(&quot;userDao&quot;)
+@Transactional
+public class UserDaoImpl implements UserDao {
+
+    @Resource 
+    private HibernateTemplate hibernateTemplate;
+
+
+    public int addUser(User user) {
+        Object id=hibernateTemplate.save(user);
+        return id==null ? 0 : 1;
+    }
+
+    public int updateUser(User user) {
+        hibernateTemplate.update(user);
+        return 1;
+    }
+
+    public int deleteUser(Integer id) {
+        User user = 
+          hibernateTemplate.get(User.class, id);
+        hibernateTemplate.delete(user);
+        return 1;
+    }
+
+    public User findById(Integer id) {
+        User user = 
+          hibernateTemplate.get(User.class, id);
+        return user;
+    }
+
+    public List&lt;User&gt; findAll() {
+        String hql=&quot;from User&quot;;
+        List&lt;User&gt; list=(List&lt;User&gt;)
+            hibernateTemplate.find(hql);
+        return list;
+    }
+
+    public User findByName(String name) {
+        String hql=&quot;from User where name=?&quot;;
+        List&lt;User&gt; list=(List&lt;User&gt;)
+            hibernateTemplate.find(hql,name);
+        if(list.isEmpty()){
+            return null;
+        }else{
+            return list.get(0);
+        }
+    }
+}
+</code></pre>
+
+</li>
+<li>
+<p>测试:</p>
+<pre><code>public class DaoTestCase {
+    ClassPathXmlApplicationContext ctx;
+    UserDao dao;
+    @Before 
+    public void init(){
+        ctx = new ClassPathXmlApplicationContext(
+                &quot;conf/spring-hibernate.xml&quot;);
+        dao = ctx.getBean(
+                &quot;userDao&quot;, UserDao.class);
+    }
+
+    @Test
+    public void testAddUser(){
+        User user=new User(2, &quot;Jerry&quot;, &quot;123&quot;,
+                2, 3.4, new Date(0));
+        int n = dao.addUser(user);
+        System.out.println(n); 
+    }
+
+    @Test
+    public void testUpdate(){
+        User user=dao.findById(1);
+        user.setName(&quot;光头强&quot;);
+        dao.updateUser(user);
+    }
+
+    @Test
+    public void testFindAll(){
+        List&lt;User&gt; users=dao.findAll();
+        for (User user : users) {
+            System.out.println(user); 
+        }
+    }
+}
+</code></pre>
+
+</li>
+</ol>
+<h2>持久对象生存周期管理</h2>
+<p>Hibernate 为了自动化的处理ORM, 设计了对象持久状态管理.</p>
+<ol>
+<li>
+临时状态: 刚刚创建的新实体对象, 还没有保存到数据库时候, 这是对象是临时状态. 
+<ul>
+<li>从Hibernate中删除的对象也是临时状态.</li>
+</ul>
+</li>
+<li>
+持久状态: 已经保存到数据库的对象, 并且缓存到了session中, 持久状态对象有个非常重要的特点, 在更改属性时候会自动的更新的到数据库中.
+<ul>
+<li>session.get, session.save, session.update 以后的对象是持久状态的.</li>
+</ul>
+<blockquote>
+<p>Hibernate4 需要利用 session.flush 手动执行更新功能</p>
+</blockquote>
+</li>
+<li>
+游离状态: 是指持久状态的对象, 被从session缓存中清除, 这时候更新对象的属性不再影响数据库, 可以利用 session.update方法使对象返回到持久状态.
+<ul>
+<li>session.evict() session.clear() 可将对象从session清除, 使对象变成游离状态.</li>
+</ul>
+</li>
+</ol>
+<p><img src="hbm.png" /></p>
+<p>案例:</p>
+<pre><code>public class TestCase {
+    ClassPathXmlApplicationContext ctx;
+    HibernateTemplate template;
+
+    @Before 
+    public void init(){
+        ctx = new ClassPathXmlApplicationContext(
+                &quot;conf/spring-hibernate.xml&quot;);
+        template = ctx.getBean(
+                &quot;hibernateTemplate&quot;, 
+                HibernateTemplate.class);
+    }
+
+    @Test
+    public void testGet(){
+        User user=template.get(User.class,1);
+        System.out.println(user); 
+    }
+
+    @Test
+    public void testState1(){
+        SessionFactory factory =
+                template.getSessionFactory();
+        Session session=factory.openSession();
+        Transaction tx = session.beginTransaction();
+        //新创建的user对象状态是游离状态的
+        User user=new User(3, &quot;Andy&quot;, &quot;123&quot;, 
+                4, 3.4, new Date(0));
+        session.save(user);
+        //save以后对象状态变成持久状态
+        //持久状态对象属性更改将影响到数据库
+        user.setPassword(&quot;456&quot;); 
+        tx.commit();
+        session.close();
+    }
+
+    @Test
+    public void testState2(){
+        SessionFactory factory =
+                template.getSessionFactory();
+        Session session=factory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        User user=(User)session.get(User.class, 2);
+        //持久状态
+        user.setName(&quot;熊大&quot;);
+        session.flush(); //调用flush清空缓存
+        //session.evict(user);
+        //evict(user)将一个对象从缓存中清除, 
+        // 使其成为游离状态
+        session.clear();
+        // 将当前session中的全部对象从缓存中清除
+        // 使其全部成为游离状态
+        //游离状态
+        user.setName(&quot;李洪鹤&quot;);
+        session.flush();
+        tx.commit();
+        session.close();
+    }
+
+    @Test
+    public void testState3(){
+        SessionFactory factory =
+                template.getSessionFactory();
+        Session session=factory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        User user=(User)session.get(User.class, 3);
+        session.evict(user);
+        user.setPassword(&quot;7788&quot;);
+        user.setName(&quot;John&quot;);
+        session.update(user);
+
+        tx.commit();
+        session.close();
+    }
+
+
+    @Test
+    public void testState4(){
+        SessionFactory factory =
+                template.getSessionFactory();
+        Session session=factory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        User user=(User)session.get(User.class, 3);
+        session.delete(user);
+        user.setName(&quot;ABC&quot;);
+        tx.commit();
+        session.close();
+    }
+}
+</code></pre>
+
+<h1>SSH 整合案例: 用户管理</h1>
+<h2>用户列表功能</h2>
+<p>原理:</p>
+<p><img src="list.png" /></p>
+<h3>1. 持久层</h3>
+<ol>
+<li>
+<p>编写持久层接口 UserDao</p>
+<pre><code>List&lt;Map&lt;String, Object&gt;&gt; findAllUser();
+</code></pre>
+
+</li>
+<li>
+<p>实现持久层接口 UserDaoImpl</p>
+<pre><code>public List&lt;Map&lt;String, Object&gt;&gt; 
+    findAllUser() {
+    String hql = &quot;select new map(id as id, &quot;
+            + &quot;name as name, &quot;
+            + &quot;age as age) &quot;
+            + &quot;from User&quot;;
+    List&lt;Map&lt;String, Object&gt;&gt; list=
+            (List&lt;Map&lt;String, Object&gt;&gt;)
+            hibernateTemplate.find(hql);
+    return list;
+}
+</code></pre>
+
+</li>
+<li>
+<p>测试 DaoTestCase</p>
+<pre><code>@Test
+public void testFindAllUser(){
+    List&lt;Map&lt;String, Object&gt;&gt; list=
+            dao.findAllUser();
+    for (Map&lt;String, Object&gt; map : list) {
+        System.out.println(map);
+    }
+}
+</code></pre>
+
+</li>
+</ol>
+<h3>2. 业务层</h3>
+<ol>
+<li>
+<p>定义业务层接口:</p>
+<pre><code>public interface UserService {
+    List&lt;Map&lt;String, Object&gt;&gt; userList();
+}
+</code></pre>
+
+</li>
+<li>
+<p>实现业务层接口:</p>
+<pre><code>@Service(&quot;userService&quot;)
+@Transactional
+public class UserServiceImpl 
+    implements UserService {
+
+    @Resource
+    private UserDao userDao;
+
+    public List&lt;Map&lt;String, Object&gt;&gt; userList() {
+        return userDao.findAllUser();
+    }
+}
+</code></pre>
+
+</li>
+<li>
+<p>测试:</p>
+<pre><code>public class ServiceTestCase {
+    ClassPathXmlApplicationContext ctx;
+    UserService service;
+
+    @Before 
+    public void init(){
+        ctx = new ClassPathXmlApplicationContext(
+                &quot;conf/spring-hibernate.xml&quot;,
+                &quot;conf/spring-service.xml&quot;);
+        service = ctx.getBean(
+                &quot;userService&quot;, UserService.class);
+    }
+    @After
+    public void destory(){
+        ctx.close();
+    }
+    @Test
+    public void testUserList(){
+        List&lt;Map&lt;String, Object&gt;&gt; list=
+            service.userList();
+        for (Map&lt;String, Object&gt; map : list) {
+            System.out.println(map);
+        }
+    }
+}
+</code></pre>
+
+</li>
+</ol>
+<h3>3. 控制器</h3>
+<ol>
+<li>
+<p>添加JsonResult封装Json返回值</p>
+<pre><code>public class JsonResult&lt;T&gt; implements Serializable {
+    private static final long serialVersionUID = -2722313840903428077L;
+
+    public static final int SUCCESS = 1;
+    public static final int ERROR = 0;
+
+    private int state;
+    private String message;
+    private T data;
+
+    public JsonResult() {
+    }
+
+    public JsonResult(int state, String message) {
+        this.state = state;
+        this.message = message;
+    }
+
+    public JsonResult(Throwable e) {
+        this.state = ERROR;
+        this.message = e.getMessage();
+    }
+
+    public JsonResult(T data) {
+        this.state = SUCCESS;
+        this.data = data;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;JsonResult [state=&quot; + state + &quot;, message=&quot; + message + &quot;, data=&quot; + data + &quot;]&quot;;
+    }
+
+}
+</code></pre>
+
+</li>
+<li>
+<p>编写控制器类:</p>
+<pre><code>@Controller
+@Scope(&quot;prototype&quot;)
+public class UserAction {
+
+    @Resource 
+    private UserService userService;
+
+    private JsonResult result;
+    public void setResult(JsonResult result) {
+        this.result = result;
+    }
+    public JsonResult getResult() {
+        return result;
+    }
+
+    public String list(){
+        List&lt;Map&lt;String, Object&gt;&gt; list=
+                userService.userList();
+        result = new JsonResult(list);
+        return &quot;json&quot;;
+    }
+}
+</code></pre>
+
+</li>
+<li>
+<p>配置注解扫描 spring-struts.xml</p>
+<pre><code>&lt;context:component-scan 
+    base-package=&quot;cn.tedu.action&quot;/&gt;
+</code></pre>
+
+</li>
+<li>
+<p>配置控制器 struts.xml</p>
+<pre><code>&lt;constant name=&quot;struts.action.extension&quot; 
+    value=&quot;do&quot;/&gt;
+&lt;package name=&quot;user&quot; namespace=&quot;/user&quot;
+    extends=&quot;json-default&quot;&gt;
+    &lt;action name=&quot;list&quot; class=&quot;userAction&quot;
+        method=&quot;list&quot;&gt;
+        &lt;result type=&quot;json&quot; name=&quot;json&quot;&gt;
+            &lt;param name=&quot;root&quot;&gt;result&lt;/param&gt;
+        &lt;/result&gt;
+    &lt;/action&gt;   
+&lt;/package&gt;
+</code></pre>
+
+</li>
+<li>
+<p>测试:</p>
+<pre><code>http://localhost:8080/ssh3/user/list.do
+</code></pre>
+
+</li>
+</ol>
+<h3>4. 编写HTML界面</h3>
+<ol>
+<li>编写静态HTML, 包含一个表格</li>
+<li>引入JQuery</li>
+<li>编写JS, 利用AJAX获取用户数据</li>
+<li>
+<p>利用JS将用户数更新到表格上</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;用户管理&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; 
+    src=&quot;jquery/jquery-3.2.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var SUCCESS=1;
+
+$(function(){
+    loadUsers();
+});
+function loadUsers(){
+    var url='user/list.do'; 
+    $.getJSON(url, function(result){
+        if(result.state==SUCCESS){
+            var users = result.data;
+            console.log(users);
+            showUsers(users);
+        }else{
+            alert(result.message);
+        }
+    });
+}
+function showUsers(users){
+    var tbody = $('#users tbody');
+    tbody.empty();
+    for(var i=0; i&lt;users.length; i++){
+        var u = users[i];
+        var tr=template.replace('[id]', u.id)
+            .replace('[name]', u.name)
+            .replace('[age]', u.age);
+        tbody.append(tr);
+    }
+}
+var template='&lt;tr&gt;&lt;td&gt;[id]&lt;/td&gt;'+
+    '&lt;td&gt;[name]&lt;/td&gt;'+
+    '&lt;td&gt;[age]&lt;/td&gt;&lt;/tr&gt;';
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;h1&gt;用户管理&lt;/h1&gt;
+        &lt;table id=&quot;users&quot;&gt;
+            &lt;thead&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;编号&lt;/th&gt;
+                    &lt;th&gt;姓名&lt;/th&gt;
+                    &lt;th&gt;年龄&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;1&lt;/td&gt;
+                    &lt;td&gt;Tom&lt;/td&gt;
+                    &lt;td&gt;5&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;    
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+</li>
+</ol>
+<h2>作业:</h2>
+<ol>
+<li>添加用户功能</li>
+</ol>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
