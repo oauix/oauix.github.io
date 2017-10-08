@@ -23,9 +23,11 @@ $(".box_x").click(function(){
 		$(".map").removeClass("animated bounceOut").addClass("animated flipInY");
 	});
 		$(".map").fadeOut();
+		$(".mapback").fadeOut();
 	});
 	//弹幕技术切换
 	$(".box_o").click(function(){
+		$(".mapback").fadeIn();
 		$(".map").fadeIn();
 		//$(".map").fadeToggle();
 	});
