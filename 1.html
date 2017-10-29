@@ -20,24 +20,13 @@
  <body onload="ft()"><!-- 加载完之后才能读取完整的document对象 -->
 	<div class="top">logo</div>
 	<div class="content">
-		<iframe id="myiframe" src="http://www.q2002.com"></iframe>
+		
 
 	</div>
-	
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 	<script>
 		function ft(){
-			console.log(document.getElementById("myiframe"));
-			//console.log(document.getElementById("myiframe").contentWindow.document);
-			var Doc;
-			 try{ 
-                Doc = document.getElementById("myiframe").contentWindow.document;// For IE5.5 and IE6 
-            } 
-            catch(ex){} 
-            if(!Doc) 
-            { 
-                Doc = document.getElementById("myiframe").contentDocument;// For NS6 
-            } 
-			console.log(Doc);
+			$(".content").load("http://www.q2002.com");
 		}
 	</script>
 
