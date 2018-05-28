@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<!--
+		根据分辨率来确定时钟表面的半径x,假设x=300px.
+		计算对应值:
+		height>300px
+		1.秒钟长>=300px;
+		2.分钟长<300 & >150
+		3.时钟长<150 & >50
+		对应坐标:
+		0 Lx(x坐标)：xpx,Ly(y坐标)：0px
+		1 Lx：x+1/2x,Ly：x-√3/4x 50+250-√3/4*250
+		2 Lx：x+√3/4x,Ly：x+1/2x
+		3 Lx：2x,Ly：x
+		
+	-->
+	<head>
+		<title>时间同步</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--link rel="stylesheet" href="../v1.1/css/web.css" type="text/css" /-->
+		<style>
+			.centent{margin:2px auto;width:800px}
+			.time{position:absolute;width:800px;height:600px;background:#181b14;border-radius:25em}
+			.h{width:100px;background-color:#cc99cc;height:5px}
+			.m{width:180px;background-color:#66ff00;height:4px}
+			.s{width:250px;background-color:#ff3333;height:3px}
+			.h,.m,.s{position:absolute;left:50%; top:50%;transform-origin:0% 50%;transform:rotate(270deg);border-radius: 0 0 0.6em 0}
+
+			.k0{width:3px;height:10px;background:#ff9999;position:absolute;left:50%; top:50px;}
+			
+			.k1{width:2px;height:8px;background:#fff;position:absolute;left:525px; top:84px;transform:rotate(30deg)}
+			.k2{width:2px;height:8px;background:#fff;position:absolute;right:184px; top:175px;transform:rotate(60deg)}
+
+			.k3{width:10px;height:3px;background:#ff9999;position:absolute;right:150px; top:50%;}
+			.k4{width:8px;height:2px;background:#fff;transform:rotate(30deg);position:absolute;right:184px; bottom:175px}
+			.k5{width:8px;height:2px;background:#fff;position:absolute;left:525px; bottom:84px;transform:rotate(60deg)}
+			.k6{width:3px;height:10px;background:#ff9999;position:absolute;left:50%; bottom:52px;}
+			.k7{width:2px;height:8px;background:#fff;position:absolute;left:275px; bottom:84px;transform:rotate(30deg)}
+			.k8{width:2px;height:8px;background:#fff;position:absolute;left:184px; bottom:175px;transform:rotate(60deg)}
+			.k9{width:10px;height:3px;background:#ff9999;position:absolute;left:150px; top:50%;}
+			.k10{width:8px;height:2px;background:#fff;position:absolute;left:184px; top:175px;
+			transform:rotate(30deg)}
+			.k11{width:8px;height:2px;background:#fff;position:absolute;left:275px; top:84px;
+			transform:rotate(60deg)}
+			.clear{clear:both}
+		</style>
+		<script type="text/javascript">
+			
+		</script>
+	</head>
+	<body>
+		<div class="centent">
+		<div class="time">
+			<div id="h" class="h"></div>
+			<div id="m" class="m"></div>
+			<div id="s" class="s"></div>
+
+			<div class="k0"></div>
+			<div class="k1"></div>
+			<div class="k2"></div>
+			<div class="k3"></div>
+			<div class="k4"></div>
+			<div class="k5"></div>
+			<div class="k6"></div>
+			<div class="k7"></div>
+			<div class="k8"></div>
+			<div class="k9"></div>
+			<div class="k10"></div>
+			<div class="k11"></div>
+
+			<div class="clear"></div>
+		</div>
+		</div>
+	</body>
+	<script>
+		//获取时间函数
+		function getTime(){
+			//alert("2");
+			var myDate = new Date();//获取系统当前时间
+			var H=myDate.getHours();//系统当前时间小时
+			var M=myDate.getMinutes(); //获取当前分钟数(0-59)
+			var S=myDate.getSeconds(); //获取当前秒数(0-59)
+			
+			//改变时针角度
+			//var hh=M/12
+			document.getElementById('h').style.transform = 'rotate('+(30*H+M/2-90)+'deg)';
+			//改变分针角度
+			document.getElementById('m').style.transform = 'rotate('+(6*M-90)+'deg)';
+			//改变秒针角度
+			document.getElementById('s').style.transform = 'rotate('+(6*S-90)+'deg)';
+		}
+		setInterval(getTime,1000);
+	</script>
+</html>
