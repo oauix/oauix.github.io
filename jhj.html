@@ -110,9 +110,9 @@
 				<p>3.将一个端口划到多个VLAN。让该端口可以访问多个VLAN</p>
 				<p>int e 1/1(比如端口1接服务器的)</p>
 				<p>port link-type trunk</p>
-				<p>port trunk permit vlan 100 200 300</p>
-				<p>注意：要接TRUNK端口的服务器网卡支持802.1Q。否则，既使该端口属于多个VLAN，也不会PING通。这是我在实际中碰到过的。</p>
-				<p>在实际中，可以有多种方式实现此功能：1、trunk;2、hybrid;3、multi;4、PVLAN这几个方式我都试过了，都是可行的。但是这几种方式只能用其中一种。</p>
+				<p>port trunk permit vlan 100 200 ...允许VLAN 100和VLAN 200通过</p>
+				<p>注意：要接TRUNK端口的服务器网卡支持802.1Q。否则，既使该端口属于多个VLAN，也不会ping通。这是我在实际中碰到过的。</p>
+				<p>在实际中，端口可以有多种方式实现此功能：1、trunk； 2、hybrid； 3、multi； 4、PVLAN。这几个方式都是可行的。但是这几种方式只能用其中一种。</p>
 				<br/>
 				<h3>配置VLANIF 接口的IP 地址[vlan:是物理端口,vlanif：是逻辑端口]</h3>
 				<p>【那么在配置玩vlan之后还需要配置vlanif接口IP地址；以便于telnet管理或者是用于作为vlan的网关地址】</p>
@@ -125,7 +125,7 @@
 				<h3>VLAN添加端口</h3>
 				<p>vlan 140  进入140号vlan</p>
 				<p>添加端口  port GigabitEthernet 0/0/40 to 0/0/42</p>
-				<p>//单端口加入vlan</p>
+				<p>单端口加入vlan：</p>
 				<p>[输入interface e0/0/1,进入端口1</p>
 				<p>port link-type access ,设置端口1为access类型</p>
 				<p>port default vlan 2,把端口1加入VLAN2]</p>
@@ -142,12 +142,27 @@
 				
 				<br/>
 				<h3>端口之Pvid的特性</h3>
-
-				<p>pvid的作用，分为端口接收和发送数据两个方向：</p>
-				<p>1、当端口收到一个未标记的帧时，就把该帧打上vlan id，这个id值等于pvid的值，然后转发到VID和PVID相等的VLAN 中。</p>
-				<p>2、当帧从端口向外发送出去时，如果帧头中的VID和端口的PVID值相同，就把这个标识去掉，再送出去。</p>
-				<p>个人理解：加上trunk pvid 指定pvid号，交换机就会接收时去掉vlan标识，然后再加上标识，比如上面：交换机sw2接收时会将包中pvid=2去掉，转发时加上pvid=3的标识，所以pc1和pc2他们能通信</p>
+				<p>vlan中的pvid其实就是处理标签的一种方式，在端口为access模式的时候pvid=access端口本身的vlan，也无法单独配置</p>
+				<p>端口为trunk时pvid的作用，分为交换机接收和发送数据两个方向：</p>
+				<p>1、当trunk端口收到｛有个方向：理解成进交换机方向 以trunk口交换机为参照物｝一个【untagged】未标记的帧时，就把该帧打上vlan id【trunk端口pvid号，trunk默认是vlan1】，然后转发到VID和PVID相等的VLAN 中。</p>
+				<p>2、当帧从端口向外发送｛出交换机方向｝出去时，如果帧头中的VID和端口的PVID值相同，就把这个标识去掉，变成未标记的帧再送出去。</p>
+				<p>个人理解：给trunk pvid 指定pvid号，交换机接收时会将未标记的数据包加上vlan标识，然后转发.比如上面：交换机sw2接收时会将包中没有pvid号加上pvid=2，转发给pc1，返回：pc1返回数据包中pvid=2，与trunk的pvid号相同，就会去掉pvid=2，把没有pvid号的数据包转发出去。如下图，所以pc1和pc2他们能通信</p>
 				<p><img src="img/t2.png" width="93%" alt="图片1 - 郁金香" /></p>
+				<br/>
+				<h3>交换机端口数据处理{以交换机为参照物}</h3>
+				<p>1、access端口</p>
+				<p>access入：入方向的打上其所属VLAN标签，如果有VLAN标签抛弃，换言之只能接受不带VLAN标签的数据。一般是pc发送数据到交换机</p>
+				<p>access出：直接剥离标签。就是去掉VLAN标签，一般是交换机发送数据到pc</p>
+				<p>2.trunk端口</p>
+				<p>trunk入：如果无标签，打上VLAN标签[默认是valn1]；如果有标签看trunk allowed vlan 配置允许那些vlan通过，对比进入数据的vlan标签，如果在允许列表中找到则放行，反之直接丢弃，另外默认情况下是让vlan1通过的。</p>
+				<p>trunk出：出时PVID（默认VLAN标签）剥离。自己理解：看VLAN标签,如果等于trunk默认VLAN标签，去掉标签转发。如果不相等则直接转发</p>
+				<p>3、hybrid端口</p>
+				<p>而hybrid的特别之处就在于，hybrid允许通过的vlan是在以下两个命令出现的vlanID都是允许进入端口VLAN，如果在以上两个命令中没有出现的直接丢弃。</p>
+				<p>port hybrid tagged vlan vlanID -配置Hybrid类型接口加入的VLAN，这些VLAN的帧以Tagged方式通过接口。</p>
+				<p>port hybrid untagged vlan vlanID –可以允许多个vlan 进行untagged操作,出去时去掉vlanID，其他原样转发。</p>
+				<p>————————————————</p>
+				<p>undo port hybrid vlan vlanID -命令用来删除Hybrid类型接口加入的VLAN</p>
+				
 				<br/>
 				<p>[理论此处完结]</p>
 				<br/>
