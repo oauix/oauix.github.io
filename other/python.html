@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<title>资料库首页</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/web.css" type="text/css" />
+		<style>
+
+		</style>
+		<script type="text/javascript">
+		
+		</script>
+	</head>
+	<body>
+		<div class="body">
+			<div class="content">
+				<h4>Python基础 (更新|9:50 2023-03-29)</h4>
+				<br/>
+							
+				<h5>计算机技术发展：</h5>
+				<p>1946-1981年 计算机系统结构时代  计算能力问题</p>
+				<p>1981-2008年 网络和视窗时代      交互问题</p>
+				<p>2008-2016年 复杂信息系统时代    数据问题【安全问题】</p>
+				<p>2017-现在   人工智能时代        人类的问题</p>
+				<br/>
+				<p>c语言重视性能，常用于系统开发</p>
+				<p>Vb 桌面应用</p>
+				<p>Java跨平台</p>
+				<p>Python数据处理，通用语言,但是开发用的很少，跟批处理差不多</p>
+				<br/>
+				<h5>【函数】</h5>
+				<p>Import turtle as xt //海龟库；from turtle import * 会出现函数名相同</p>
+				<br/>
+				<h5>画笔函数</h5>
+				<p>[实例如下]</p>
+				<p><img src="../img/ph_1.png" width="82%" alt="图片1 - 郁金香" /></p>
+				<p>画笔控制函数：</p>
+				<p>Turtle.penup() 别名turtle.pu() 画笔抬起</p>
+				<p>turtle.pendown() 别名turtle.pd() 画笔放下写</p>
+				<p>Turtle.pensize(25) //别名turtle.width() 画笔宽度</p>
+				<p>Turtle.pencolor(“purple”)//画笔颜色 紫色</p>
+
+				<p>画笔移动控制函数</p>
+				<p>Turtle.forward(d)  别名turtle.fd(d) 向前行进，走直接</p>
+				<p>Turtle.circle(r,extent) 圆心在左侧，以半径r绘制图形。Extent为度数，取度数对应的弧度</p>
+
+				<p>画笔方向控制函数 </p>
+				<p>Turtle.settheading(angle)别名 Turtle.seth(angle) 改变行进方向，海龟走角度 ||绝对角度</p>
+				<p>Turtle.left(angle) turtle.right(angle)行进方向旋转角度</p>
+				<br/>
+				<h5>数据处理函数</h5>
+				<p>Pow(x,y) 计算x的y次方</p>
+				<p>Round(x,d) 对x四舍五入，d为小数截取位数</p>
+				<p>&lt;a>e&lt;b> 解释：ax10的b次方</p>
+				<p>复数 x的2次方=-1，由于j=根号-1，数学里这个数是不存在的，python里把它作为复数</p>
+
+				<p>x%y  取余  X//y  x除y取整数  x**y  x的y次方，如果y是小数 就是x的y根号</p>
+				<p>Abs（x） 得到x绝对值</p>
+				<p>Divmod(x,y)  同时得到商和余</p>
+				<p>Pow（x,y,z） 等同于x**y%z</p>
+				<p>Max（x1,x2,x3...）比较一组数的大小，然后返回最大的</p>
+				<p>Min（x1,x2,x3...）比较一组数的大小，然后返回最小的</p>
+				<p>数据类型转换：Int（x） float（x） complex(x)//x变为复数</p>
+				<br/>
+				<h5>时间函数：Time库</h5>
+				<p>Time.time()  获取时间戳</p>
+				<p>Time.ctime()  获取读的时间</p>
+				<p>Time.gmtime() 获取时间变量（一种形式）</p>
+				<p>时间格式化：</p>
+				<p>Time.strtime(tpl,ts)  如time.stetime(“%Y-%m-%d %H:%M:%S”,time.gmtime())</p>
+				<p>Time.strptime(str,tpl) 返回时间变量： </p>
+				<p>time.strptime(“2018-01-26 12:50:00”,“%Y-%m-%d %H:%M:%S”)</p>
+
+				<p>Time.perf_counter() start=time.perf_counter() end=time.perf_counter() end-start</p>
+				<p>Time.sleep(s) 等待s秒</p>
+				<br/>
+				<h5>其他</h5>
+				<p>循环</p>
+				<p>For 变量 in range（参数）：  //i++</p>
+				<p>Break 跳出循环</p>
+				<p>Continue 跳出当次循环</p>
+
+				<p>Range(n)函数 产生一个0到n-1的整数列表【0,1,2...n-1】</p>
+				<p>randdom函数 random.randint(0,3)生成0-3的随机整数</p>
+				<br/>
+				<h4>Python进阶 (更新|9:50 2023-03-29)</h4>
+				<br/>
+				<h5>Python第三方打包库——PyInstaller：</h5>
+
+				<p>pip install pyinstaller #安装第三方库，安装之后会提示successfully installed</p>
+
+				<p>在PyInstaller安装完成后，会在Python目录下额Scripts目录下生成运行文件。此时在命令行下使用Pyinstaller -F <.py文件地址>命令就可以打包程序</p>
+				<p>如：PyInstaller -F D:/xyu/12.py</p>
+				<p>打包完成后，除了用于存放.exe文件的dist文件夹，另外两个存放临时文件的文件夹均可手动删除。</p>
+				<br/>
+				<h5>Flask库[简单web]</h5>
+				<h5>pip库[库管理工具]</h5>
+				<h5>Django库[企业级web]</h5>
+				<h5>Admin数据表可视化【后台管理系统】</h5>
+				<p>出处：http://c.biancheng.net/django/</p>
+				<br/>
+				<p>[此处完结]</p>
+			</div>		
+		</div>
+	</body>
+</html>

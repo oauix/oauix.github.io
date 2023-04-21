@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+	<head>
+		<title>javascript</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/web.css" type="text/css" />
+		<style>
+			span{font-size:1.1em;margin-left:1em;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>
+				<div>
+				<h5>鼠标事件:</h5>
+				<p><span>onclick[点击]</span><span>ondblclick</span>
+					<span>onmousedown[按钮被按下]</span><span>onmouseup[鼠标按下后，松开时]</span>
+					<span>onmouseover[鼠标移动到某对象]</span><span>onmouseout[移出]</span>
+				</p>
+				<h5>键盘事件:</h5>
+				<p><span>onkeydown</span><span>onkeyup</span></p>
+				<h5>状态事件:</h5>
+					<p><span>onload[页面加载后事件]</span><span>onchange[内容改变时触发事件]</span>
+					<span>onfocus[获取焦点事件]</span><span>onblur[释放焦点事件]</span><span>onsubmit</span>
+				</p>
+				<h3>event对象：</h3>
+				<p>事件触发后会产生event对象,event对象记录了事件发生时鼠标位置、键盘按键状态、触发对象等信息</p>
+				<p>获取鼠标位置：event.clintX/Y;</p>
+				<p>浏览器兼容问题，有些浏览器event不能直接用，可用当参数传入</p>
+<pre>
+		onclick="func(event);"
+		//js代码:
+		function func(e){
+			aleat(e.clientX+","+e.clicntY):
+		}
+</pre>
+				<h4>获取事件源:enent.srcElement[ie];event.target[Firefox]</h4>
+				<p>案例:计算器</p>
+<pre>
+	&lt;script>
+    	window.onload = function() {
+    		//给div绑定单击事件
+    		var div = document.getElementById("jsq");
+    		div.onclick = function(e) {
+    			//获取事件源
+    			var obj = e.srcElement || e.target;//获取事件源:enent.srcElement[ie];event.target[Firefox]
+    			//处理其中的INPUT
+    			if(obj.nodeName == "INPUT") {
+    				var p = document.getElementById("screen");
+    				if(obj.value == "=") {
+    					try {
+	    					p.innerHTML = eval(p.innerHTML);
+    					} catch(ex) {
+    						p.innerHTML = "Error";
+    					}
+    				} else if(obj.value == "C") {
+    					p.innerHTML = "";
+    				} else {
+    					p.innerHTML += obj.value;
+    				}
+    			}
+    		}
+    	}
+    &lt;/script>
+  &lt;/head>
+  &lt;body>
+    &lt;div class="panel" id="jsq">
+      &lt;div>
+        &lt;p id="screen">&lt;/p>
+        &lt;input type="button" value="C">
+        &lt;div style="clear:both">&lt;/div>
+      &lt;/div>
+      &lt;div>
+        &lt;input type="button" value="7">
+        &lt;input type="button" value="8">
+        &lt;input type="button" value="9">
+        &lt;input type="button" value="/">
+        
+        &lt;input type="button" value="4">
+        &lt;input type="button" value="5">
+        &lt;input type="button" value="6">
+        &lt;input type="button" value="*">
+        
+        &lt;input type="button" value="1">
+        &lt;input type="button" value="2">
+        &lt;input type="button" value="3">
+        &lt;input type="button" value="-">
+        
+        &lt;input type="button" value="0">
+        &lt;input type="button" value=".">
+        &lt;input type="button" value="=">
+        &lt;input type="button" value="+">
+        
+        &lt;div style="clear:both">&lt;/div>
+      &lt;/div>
+    &lt;/div>    
+</pre>
+				<h4>事件处理机制:冒泡机制【一次激活其他事件】</h4>
+				<p>事件冒泡,就像在水底产生的一个水泡,一层一层向上走如在button上的click事件,会一层层向上走,最后document会得到一个click事件</p>
+				<p>event.stopPropagation停止事件的冒泡</p>
+				<p>设置cancelBubble =true后, 就不会向上冒泡了.[默认是false向上冒泡]</p>
+				</div>
+
+				<div>8.自定义对象:</div>
+<pre>
+function start(){
+	var student={
+	"name":"xiaoyu",
+	"age":"28",
+	"say":"function(){
+		alert("我是我");
+		}"
+	}
+	alert(student.name);//xiaoyu
+	student.say();
+
+}
+</pre>
+				<p>自定义对象中：构造器名首字母大写[规范]</p>
+			</div>			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<title>html-jqury</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/web.css" type="text/css" />
+		<style>
+			
+		</style>
+		<script type="text/javascript">
+			
+		</script>
+	</head>
+	<body>
+		<div >
+			<div>
+				<div style="color:#4cbf36;font-size:16px">jquery选择器</div>
+					<p>$(function(){});//等同于window.onload</p>
+					<h3>层次选择器:</h3>
+					<p>1.$("父级+~");</p>
+					<h3>过滤选择器:</h3>
+					<p>:first[第一个]，:last[最后一个]，:not(li)[除去li其他元素]，:even[偶数]，:odd[奇数]:eq[index=n]，gt[n>index]，lt[n&lt;index]</p>
+					<p>内容选择器 :$(li:contains("北京"));//选择中内容包含"北京"的标签li</p>
+					<p>:empty属性选择器</p>
+					<h3>jquery操作:</h3>
+					<br/>
+					<h4>读写</h4>
+					<p>obj.html("有内容写,无内容读"); obj.text()[一样，但只读文本,不读标签];obj.val()[value];obj.attr()[属性];obj.val("属性","属性值");</p>
+					<h4>增删</h4>
+					<p>obj.after("插入的内容");在obj后插入</p>
+					<p>obj.before("插入的内容");在obj前插入</p>
+					<p>obj.remove();删除obj;obj.empty();清空节点</p>
+					<h3>区分:jquery中的对象和dom</h3>
+					<p>通过$获取的是jquery对象</p>
+					<p>$("p");$(p)[p为object];$("<p></p>");</p>
+					<br/>
+					<p>修改方法返回的jquery对象</p>
+					<p>obj.html("内容");</p>
+
+					<h3>自动加载函数</h3>
+					<p>windos.onload,调用多次会覆盖前面的，</p>
+					<p>$(function(){});这种就不会被覆盖，多次调用有效</p>
+					<br/>
+					<p>$(document).ready(function(){});也可以，应该是一些兼容</p>
+
+					<h3>事件：</h3>
+					<p>obj.trigger("事件名[click]");调触发事件函数【模拟事件】</p>
+					<p>e.targer;获取事件源</p>
+					<h3>动画:</h3>
+					<p>显示与隐藏原理它采用定时器连续不断的修改元素的样式</p>
+					<p>回调函数在动画完成时调用，在某种事物完成时调用，我们称之为回调函数</p>
+					<br/>
+					<h4>显示与隐藏：</h4>
+					<p>1. show(s,回调函数);hide();直接显示与隐藏，没有什么效果;复合为toggle();</p>
+					<p>2. slideDown()[显示];slideUp()[隐藏],-上下滑动效果;复合为fadeToggle(),fadeTo()设置透明度，默认谈变为0的，这个方法可以设置</p>
+					<p>3. fadeIn()/fadeOut(),淡入淡出效果</p>
+					<h4>自定义动画:</h4>
+					<p>animate("偏移位置","执行时间","回调函数");</p>
+					<p>利用自定义对象来创建自定义动画</p>
+					<p>$("div").click(function(){$(this).animate({"top":"399px";"left":"500px"},3000)});</p>
+				</div>
+				<h3>jquery绑定hover事件：</h3>
+<pre>
+	$(function(){
+		$("#divs").hover(
+			function(){
+				$(this).animate({"right":"0px"},600);
+			},
+			fuction(){
+				$(this).animate({"right":"400px"},600);
+			})
+	}):
+	
+</pre>
+					<p>
+						<!-- readonly:只读,框中的值依然可以提交给服务器.disabled:禁用,框中的值无法提交给服务器.--></p>
+				<p>账号:&lt;input type="text" disabled/></p>
+			</div>			
+		</div>
+	</body>
+</html>

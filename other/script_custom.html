@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<title>javascript自定义对象</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/web.css" type="text/css" />
+		<style>
+			span{font-size:1.1em;margin-left:1em;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div >
+				<h3>自定义对象：java雷同</h3>
+				<div>1.通过object创建自定义对象:</div>
+<pre>
+		function obj(){//
+			var aobj=new Object();//创建对象
+			aobj.name="xyu";//添加属性
+			aobj.age="28";
+			aobj.say=new Function("alear("你好！");");//添加方法
+			aobj.say();//测试
+		}
+</pre>
+				<div>2.创建自定义对象:</div>
+<pre>
+function start(){
+	var student={
+	"name":"xiaoyu",
+	"age":"28",
+	"say":"function(){
+		alert("我是我");
+		}"
+	}
+	alert(student.name);//xiaoyu
+	student.say();
+
+}
+</pre>
+				<p>自定义对象中：构造器名首字母大写[规范]</p>
+			</div>			
+		</div>
+	</body>
+</html>
