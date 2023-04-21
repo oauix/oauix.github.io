@@ -13,9 +13,9 @@
 				padding:6px 10px;margin:2px 8px;
 			}
 			*{margin:0px;padding:0px}
-			body{font-size:12px;color:#666;font-family:"微软雅黑";}
+			body{font-size:12em;color:#666;font-family:"微软雅黑";}
 			.body{width:69.98%;margin:10px auto;}
-			.body .content{font-size:13px;line-height: 29px;box-shadow: 0px 0px 8px #2d304d;border-radius: 6px;padding: 20px 18px;min-width:560px}
+			.body .content{font-size:0.1em;line-height: 2em;box-shadow: 0px 0px 8px #2d304d;border-radius: 6px;padding: 20px 18px;min-width:560px}
 			.body .content a{text-decoration:none}
 			.body .content .label{
 				color:#4cbf36;
@@ -25,6 +25,7 @@
 			span{color:#2b2424}
 			.clear{clear:both;}
 			pre{background:#ccf2d0;border-radius: 7px;box-shadow: 1px 2px 10px #888}
+			.span_{background:#ccf2d0;}
 		</style>
 		<script type="text/javascript">
 		
@@ -36,7 +37,7 @@
 				
 				<h3>交换机常用命令收集 (更新|14:50 2023-02-27)</h3>
 				<a href="index.html">【返回首页】</a>
-				<a href="https://oauix.github.io/files/交换机配置.doc" download="交换机配置.doc">交换机配置.doc<span>[点击下载]</span></a>
+				<a href="file/交换机配置.doc" download="交换机配置.doc">交换机配置.doc<span>[点击下载]</span></a>
 				<br/>
 				<h5>基础命令【交换机路由器】</h5>			
 				<p>System-viem  切换[系统视图]</p>
@@ -45,8 +46,8 @@
 				<p>undo 加命令，no掉该命令</p>
 				<p>info-center loghost timestamp none 即可关闭时间戳</p>
 				<p>查看IP路由表 display ip routing-table</p>
-				<p>查看转发表MAC地址 display mac-address</p>
-				<p>关闭日志滚屏 undo info-cenrer renable</p>
+				<p>查看转发表MAC地址 display mac-address 精确查找display mac-address | in 2938</p>
+				<p><b style="color:red">关闭日志滚屏 undo info-cenrer enable</b></p>
 				<p>syname 改主机名</p>
 				<p>display history-command 查看历史命令</p>
 				<p>display version 查看vrp版本</p>
@@ -55,6 +56,7 @@
 				<p>更改端口速率 speed 10/100/1000 </p>
 				<p>disply this 显示当前视图做过的配置 如接口IP等等</p>
 				<p>displan current-configuration 查看当前路由配置 类似思考 的 show run</p>
+				<p>dis ip interface brief 查询虚拟接口信息</p>
 				<br/>
 				<h5>配置文件管理</h5>
 				<p>display saved-configuration 查看已保存的配置</p>
@@ -104,7 +106,13 @@
 				<p>2、基于ip地址的vlan划分，这个是用hybrid模式做，用于主机移动的办公环境（比如公司经常部门调整地理位置），原理是将vlan-id与ip网段进行映射绑定，只要主机的ip网段不变，那么他不管连接那个sw的那个接口都属于同一个vlan，不用担心频繁换地区导致连接sw的端口需要进行vlan的调整</p>
 				<p>vlan 2</p>
 				<p>ip-subnet-vlan <span style="color:red">2</span> ip 192.168.1.0 255.255.255.0  将192.168.1.0/24与vlan2绑定，红色的数字2是id号，不是vlan号，可以随意,但是一个vlan中最多可以绑定最多12个子网网段，只有12个id号</p>
-				<p><img src="img/eg_tulip.png" width="650" alt="图片1 - 郁金香" /></p>
+				<p><img src="img/eg_tulip.png" width="92%" alt="图片1 - 郁金香" /></p>
+				<p>3.将一个端口划到多个VLAN。让该端口可以访问多个VLAN</p>
+				<p>int e 1/1(比如端口1接服务器的)</p>
+				<p>port link-type trunk</p>
+				<p>port trunk permit vlan 100 200 300</p>
+				<p>注意：要接TRUNK端口的服务器网卡支持802.1Q。否则，既使该端口属于多个VLAN，也不会PING通。这是我在实际中碰到过的。</p>
+				<p>在实际中，可以有多种方式实现此功能：1、trunk;2、hybrid;3、multi;4、PVLAN这几个方式我都试过了，都是可行的。但是这几种方式只能用其中一种。</p>
 				<br/>
 				<h3>配置VLANIF 接口的IP 地址[vlan:是物理端口,vlanif：是逻辑端口]</h3>
 				<p>【那么在配置玩vlan之后还需要配置vlanif接口IP地址；以便于telnet管理或者是用于作为vlan的网关地址】</p>
@@ -139,9 +147,126 @@
 				<p>1、当端口收到一个未标记的帧时，就把该帧打上vlan id，这个id值等于pvid的值，然后转发到VID和PVID相等的VLAN 中。</p>
 				<p>2、当帧从端口向外发送出去时，如果帧头中的VID和端口的PVID值相同，就把这个标识去掉，再送出去。</p>
 				<p>个人理解：加上trunk pvid 指定pvid号，交换机就会接收时去掉vlan标识，然后再加上标识，比如上面：交换机sw2接收时会将包中pvid=2去掉，转发时加上pvid=3的标识，所以pc1和pc2他们能通信</p>
-				<p><img src="img/t2.png" width="650" alt="图片1 - 郁金香" /></p>
+				<p><img src="img/t2.png" width="93%" alt="图片1 - 郁金香" /></p>
 				<br/>
-				<p>[此处完结]</p>
+				<p>[理论此处完结]</p>
+				<br/>
+				<h3>实操记录</h3>
+				<p class="span_">[VLAN操作]</p>
+				<p>vlan 30 //创建vlan30</p>
+				<p>[Huawei-vlan30]port GigabitEthernet 0/0/1 //将端口1加到vlan30</p>
+				<p>[Huawei]vlan batch 10 20 30 //批量创建vlan10 vlan20 vlan30</p>				
+				<p  class="span_">[创建虚拟网关]</p>
+				<p>[Huawei]interface Vlanif 10 //为vlan10创建虚拟接口</p>
+				<p>[Huawei-Vlanif10]ip address 192.168.1.1 24 //为虚拟接口指定IP</p>
+				<p>【或192.168.1.1 255.255.255.0】</p>
+				<p  class="span_">[端口配置]</p>
+				<p>[Huawei]interface g0/0/2 //进入端口g0/0/2</p>
+				<p>[Huawei-GigabitEthernet0/0/2]port link-type access //配置端口模式为access</p>
+				<p>[Huawei-GigabitEthernet0/0/2]port default vlan 20  //将端口丢进vlan20</p>
+				<p>[Huawei-GigabitEthernet0/0/2]port link-type trunk  //配置端口模式为trunk</p>
+				<p>[Huawei-GigabitEthernet0/0/2]port trunk allow-pass vlan all //所有VLAN都可以通过</p>
+				<p  class="span_">[多端口配置]</p>
+				<p>[Huawei]port-group group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10 //将接口GE1/0/1～GE1/0/10加入到临时端口组</p>
+				<p>[Huawei-port-group]quit //退出临时端口组后，会自动删除这个临时端口组</p>
+				<p  class="span_">[永久端口组]</p>
+
+				<p>[SW]vlan 10 //创建vlan10</p>
+
+				<p>[SW]port-group vlan10 //创建名为vlan10的永久端口组</p>
+
+				<p>[SW-port-group-vlan10]group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10 //把GE0/0/1到GE0/0/10端口加入到vlan10的端口组中</p>
+
+				<p>[SW-port-group-vlan10]port link-type access //配置端口为access口</p>
+
+				<p>[SW-port-group-vlan10]port default vlan 10 //把端口组下的端口划入vlan 10</p>
+
+				<p>使用命令display port-group all查看永久端口组信息</p>
+
+				<p>[SW]undo port-group vlan10 //直接undo 相应端口组名即可删除永久端口组</p>
+				<p class="span_">[交换机配置复制到另一台]</p>
+				<p>1.undo info-cenrer enable 关闭日志滚动</p>
+				<p>2.displan current-configuration 查看当前所有配置</p>
+				<p>3.要复制粘贴的内容【从 hostname开始就行】</p>
+				<p>4.检测结果：displan current-configuration</p>
+				<p class="span_">[三层交换机管理IP和默认网关区别]</p>
+				<p>Switch(config)#interface vlan 10</p>
+				<p>Switch(config-if)#ip address 192.168.1.254 255.255.255.0 --这里是设置默认网关</p>
+				<p>加下面命令秒变交换机管理IP：</p>
+				<p>Switch(config)#ip default-gateway 192.168.1.1 --将默认网关地址配置为192.168.1.1</p>
+				<p>或者是：ip route-static 0.0.0.0 0.0.0.0 192.168.1.1</p>
+				<p class="span_">[交换机Telnet登录配置:aaa认证]</p>
+				<p>1.开启telnet服务：telnet server enable </p>
+				<p>2.配置虚拟IP</p>
+				<p>[h3c]interface vlan-interface 1</p>
+				<p>[h3c-vlan-interface1]ip address 192.168.2.1 255.255.255.0</p>
+				<p>3.配置VTY用户界面的验证方式为aaa</p>
+				<p>[Switch] user-interface maximum-vty 15 //用来设置登录用户的最大数目15个</p>
+				<p>[Switch] user-interface vty 0 14 //进入vty 0 14 接口</p>
+				<p>[Switch-ui-vty0-14] authentication-mode aaa //vty 0 14 接口下启用aaa认证</p>
+				<p>[Switch-ui-vty0-14] protocol inbound telnet</p>
+				<p>[Switch-ui-vty0-14] quit</p>
+				<p>4.配置AAA本地认证</p>
+				<p>[h3c]aaa //进入aaa视图模式</p>
+				<p>[Huawei-aaa]local-user local-user admin password cipher 123456 //aaa视图下创建用户名设置用户密码</p>
+				<p>[Huawei-aaa]local-user admin privilege level 3　配置用户的服务类型为Telnet且命令级别为3</p>
+				<p>[Huawei-aaa]local-user admin service-type telnet terminal ssh http设置新用户可使用的服务，可设置telnet，terminal，http<p>
+				<p>5.验证结果</p>
+				<p class="span_">[交换机Telnet登录配置:Scheme认证（用户名+密码认证）]</p>
+				<p>1.开启telnet服务：telnet server enable </p>
+				<p>2.调用虚拟接口0 4 设置认证模式为Scheme认证</p>
+				<p>[H3C]user-interfacc  vty 0 4 ------进入vty控制台</p>
+
+				<p>[H3C-line-vty0-4]authentication-mode scheme-----使用认证模式为scheme</p>
+
+				<p>[H3C-line-vty0-4]user-role level-15 -----设置用户优先级</p>
+
+				<p>[H3C]local-user admin class manage -----创建新用户admin</p>
+
+				<p>[H3C-luser-manage-li]password simple 123.com -----创建类型为密文的密码 –123.com</p>
+
+				<p>[H3C-luser-manage-li]authorization-attribute user-role level-15 -----创建用户等级为15</p>
+
+				<p>[H3C-luser-manage-li]authorization-attribute user-role network-admin -----权限为admin</p>
+
+				<p>[H3C-luser-manage-li]service-type telnet  -----服务方式为telnet</p>
+				<p>————————————————</p>
+				<p class="span_">[交换机Telnet登录配置:Scheme认证（仅密码验证）]</p>
+				<p>1.开启telnet服务：telnet server enable </p>
+				<p>2.调用虚拟接口0 4 设置认证模式为密码认证</p>
+				<p>[H3C]user-interfacc  vty 0 4 ------进入vty控制台</p>
+				<p>[H3C-line-vty0-4]authentication-mode password     //改为密码认证</p>
+
+				<p>[H3C-line-vty0-4]set authentication password 123.com   //设置密码</p>
+
+				<p>[H3C-line-vty0-4]user-role level-15   //配置权限等级</p>
+				<p>————————————————</p>
+
+				<p>【扩展命令】</p>
+				<p>[Huawei-ui-vty0-4]protocol inbound telnet 配置VTY0 4用户界面支持Telnet协议</p>
+				<p>[Huawei-ui-vty0-4]screen-length 30 配置VTY0 4用户界面终端显示屏的一屏显示30行命令</p>
+				<p>[Huawei-ui-vty0-4]history-command max-size 20 配置VTY0 4用户界面的历史命令缓冲区可存放20条命令</p>
+				<p>[Huawei-ui-vty0-4]idle-timeout 6 配置VTY0 4用户界面的超过时间为6分钟</p>
+				<p>5.检测结果</p>
+				<p>注：还有None认证模式配置：</p>
+				<p>[H3C]telnet server enable //开启Telnet 服务</p>
+				<p>[H3C]user-interface vty 0 4 //允许远程用户0-4共5个账户同时登陆</p>
+				<p>[H3C-line-vty0-4]authentication-mode none //认证模式为none</p>
+				<p class="span_">[其他命令解释]</p>
+				<p>mdc Admin id 1 //MDC功能[MDC是高端设备一虚多的功能，不是所有设备都支持的。高端设备也需要通过购买授权之后激活才能正常使用的]</p>
+				<p>forward-path-detection enable //开启转发通道自动检测功能,看是否正常，不正常打印报文</p>
+				<p>irf mode normal  //是H3C自主研发的软件虚拟化技术[使用这种虚拟化技术可以集合多台设备的硬件资源和软件处理能力，实现多台设备的协同工作、统一管理和不间断维护]</p>
+				<p>ospf 1 router-id 11.1.1.1 //对路由器进行ospf命名</p>
+				<p>import-route direct  //把外部路由引入进来</p>
+				<p>area 0.0.0.0 //进入骨干区</p>
+				<p>network 11.1.1.1 0.0.0.0 //宣告网段 后面的是反掩码</p>
+				<p>ip unreachables enable //作用是目的设备回复“目的端口不可达”，使得源设备知道已到达目的设备，记录目的设备地址</p>
+				<p>ip ttl-expires enable //作用是tracert路径中的设备对tracert报文的ttl-1进行"回复ttl超时"，使得源设备能记录途中设备地址。这条命令开启后，tracert的下一跳设备的地址就会显示。</p>
+				<p>lldp global enable //开启链路层发现协议</p>
+				<p>system-working-mode standard //将设备设置为标准模式</p>
+				<p>xbar load-balance //网络负载均衡</p>
+				<p>password-recovery enable //开启了密码恢复功能</p>
+				<br/>
 			</div>		
 		</div>
 	</body>

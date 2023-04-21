@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html id="top">
+	<head>
+		<title>技术性文档</title>
+		<meta charset="utf-8" />
+		<meta name="decription" content="说明书" />
+		<meta name="keywords" content="关键词" />
+		<!-- 显示区缩放 适用于手机 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			a{
+				padding:6px 8px;margin:2px 8px;
+			}
+			*{margin:0px;padding:0px}
+			body{font-size:12px;color:#666;font-family:"微软雅黑";}
+			.body{width:69.98%;margin:10px auto;}
+			.body .top{width:0px;position:fixed;top:0.5em;right:54%}
+
+			.body .content{font-size:13px;line-height: 29px;box-shadow: 0px 0px 8px #2d304d;border-radius: 6px;padding: 20px 18px;min-width:560px}
+			.body a{text-decoration:none}
+			.body .content .label{
+				color:#4cbf36;
+				font-size:16px;
+			}
+			p{text-indent:1.9em}
+			b{font-size:9px;color:#ecc125;}
+			span{color:#2b2424}
+			.clear{clear:both;}
+			pre{background:#ccf2d0;border-radius: 7px;box-shadow: 1px 2px 10px #888}
+		</style>
+		<script type="text/javascript">
+		
+		</script>
+	</head>
+	<body>
+		<div class="body">
+			<div class="top"><a href="#top"><span style="font-size:1.5em;color:#26d54d">∧</span></a></div>
+			<div class="content">
+				
+				<h3>web常用 (更新|14:50 2023-02-27)</h3>
+				<div><a href="index.html">【返回首页】</a></div>
+				<a href="#web1">标签</a>
+				<a href="#web2">css</a>
+				<a href="#web3">定位</a>
+				<a href="#web4">颜色</a>
+				<a href="#web5">js</a>
+				<a href="#web6">jquery</a>
+				<a href="#web7">ajax</a>
+				<br/>
+				<h5 id="web1">常用标签</h5>			
+				<p><b>&lt;html&gt;标签</b> html标签是双标签，以&lt;html&gt;开始点，以&lt;/html&gt;结束点，在它们之间是文档的头部和主体.
+					不能与frameset同用。</p>
+				<p><b>&lt;head&gt;标签</b> 自己理解：双标签，html的头部，通告浏览器一些信息，不显示；&lt;head&gt;标签用于定义文档的头部，它
+					是所有头部元素的容器。&lt;head&gt;中的元素可以引用脚、指示浏览器在哪里找到样式表、提供元信息等等。
+					文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web 中的位置以及和其他文档的关系等。
+					绝大多数文档头部包含的数据都不会真正作为内容显示给读者。</p>
+				<p><b>&lt;title&gt;标签</b> 显示网页主题信息，文档的标题，供浏览器显示出来</p>
+				<p><b>&lt;meta&gt;标签</b> 在 Web 中的位置以及和其他文档的关系等，可说明页面信息，放一些搜索引擎的关键词。</p>
+				<p><b>&lt;style&gt;标签</b> 可引用css内部或外部样式。</p>
+				<p><b>&lt;body&gt;标签</b> 自己理解：双标签，身体，浏览器显示部分；body 元素定义文档的主体。 body 元素包含文档的所有内容（比如文本、超链接、图像、表格和列表等等）</p>
+				<p><b>&lt;div&gt;标签</b> margin：1px auto居中，浮动</p>
+				<p><b>&lt;font&gt;&lt;h&gt;&lt;i&gt;&lt;u&gt;&lt;span&gt;&lt;storng&gt;&lt;
+				 hr&gt;&lt;br&gt;标签</b></p>
+				<p>{&lt;font&gt;标签常用格式:
+				 &lt;font size="字体大小" color="字体颜色" face="字体类型"&gt;文字&lt;/font&gt;注:但是<font>里的属性不推
+				 荐用,一般用css来实现</p>
+				 <p>&lt;hn&gt;标题标签：一共有h1-6，数字越大字体越小，效果越严紧.
+				注释：浏览器会自动地在标题的前后添加空行。</p>
+				<div style="width:90%;margin:0.8em auto">
+					<h1 class="h">我是标题1a</h1>
+					<h2 class="h">我是标题2b</h2>
+					<h3 class="h">我是标题3c</h3>
+					<h4 class="h">我是标题4d</h4>
+					<h5 class="h">我是标题5e</h5>
+					<h6 class="h">我是标题6f</h6>
+				</div>
+				<p>&lt;b&gt;与&lt;strong&gt;加粗、&lt;i&gt;斜体、&lt;span&gt;跟css很实用、&lt;u&gt;下划线</p>
+				<p>&lt;br/&gt;换行标签、&lt;hr/&gt;分割线标签</p>
+				<p>&lt;br/&gt;单标签，实现换一行显示</p>
+				<p>&lt;hr/&gt;单标签，一条分割线，可以用样式调整他显示方式，很实用}</p>
+				<p><b>&lt;a&gt;超级链接标签</b> 超级链接常用格式：&lt;a href="URL" target="打开方式"&gt;文字&lt;/a&gt;.URL-绝对路径、#id(描点链接,跟&lt;span id=id&gt;&lt;/span&gt;配用)、+文件名(即跳转该文件同目录下文件)、
+				 ../文件名(即跳转该文件上一目录下文件).打开方式：_blank(在新窗口中打开)、_parent(在父框架集中打开)、_self(在相同的框架中打开 默认)、_top(在整个窗口中打开)、framename(在指定的框架中打开)</p>
+				<p><b>&lt;img&gt;标签</b> &lt;img&gt;常用格式：&lt;img src="路径" alt="图片加载不成功文本提示的内容" width="宽" hight=“高”/&gt;</p>
+				<p>1.图片标签中，宽、高不要加px单位</p>
+				<p>2.大小不同，会失贞，处理方法：a.将图片width="100%"[是跟外壳的宽来等比例缩放的，不要高的]</p>
+				<p>3.max-width:100%;会判断外壳的宽，如果超过的话，就会用外壳宽比例缩小，，否则：用图片原大小</p>
+				<p>4.border:会有突出效果</p>
+				<p>5.float:left;浮动，可以使嵌入式内容上面，img是行(块级)元素</p>
+				<p>背景图片：</p>
+				<p>1.background-color:;background-image:srl("地址");[二选一，不能同时用，没意义]</p>
+				<p>2.background-repeat:repeat-x[repeat-y];[背景图片平铺]</p>
+				<p>3.background-position:0px 0px;</p>
+				<p>4.background-attachment:;取值: scroll | fixed | inherit.[scroll(默认): 随着页面的滚动轴背景图片将移动,fixed: 随着页面的滚动轴背景图片不会移动.inherit: 继承]</p>
+				<p>5.背景图片失贞问题。[将背景图片放到div里,将高宽设为100%,加上绝对定位(position:absolute;top:0px;left:0px;),加上background-size:cover;再加上层级z-index:-1;？有演出问题，用overfiow：hidden；？]</p>
+				<p>&copy;&copy;扩展块内容：</p>
+				<p>1.行内元素与块级元素；他们的转换[升级为块级元素：display:inline-block;或display:line-block;降级为行内元素：display:block;]，还有一个display:none;[隐藏]</p>
+				<p>2.为什么老用div嵌套ul，a.因为他里面的li可以在行内元素与块级元素转化方便,b.li里面有很多通用性</p>
+				
+				<p><b>&lt;marquee&gt;滚动标签</b>&lt;marquee&gt;常用格式：&lt;marquee direction="方向" scrollamount=“速度”&gt;内容&lt;/marquee&gt;</p>
+				<p>注：这个标签属性很多，常用的有方向、速度、鼠标放上离开。	</p>
+				<p>&copy;&copy;扩展：<b>&lt;legend&gt;顶框标签</b></p>
+				<br/>
+				<h5 id="web2">CSS样式</h5>
+				<p><b>选择器</b> {有:标签选择器 id选择器 类选择器 另外可以:层级,继承}</p>
+				<p>1.以标签为对象来找到目标，如：&lt;p&gt;aoren&lt;/p&gt;,在css中，可以用p来找到它，但他是找到html里所有的p标签；缺点：不能差异化元素,会相互干扰。</p>
+				<p>2.通过id来找到对象，是最直接的，因为ID是唯一的，ID是表示：id="id名字" 那我们就用#bb来找到，不能随便用，权限高，要保证html中有只有一个，不然会出错。</p>
+				<p>3.类选择器是一个类别，一种或一部分相同的东西、对象;就像一个136班的人，都属于这个136班，他们都有一个属性，这个136班的人，一类对象有一些同样属性，我们就会用类这个东西，就不要每个个体都去写这个类的属性。</p>
+				<p>4.引进层级、继承：通过class="bb"中的bb找到他，又有可能bb类在aa类中，为了方便找到，我们引进层级关系，层级间又有继承，控制关系</p>
+				<p>&copy;&copy;扩展层级中空格：注意中间的空格</p>
+				<p>一般类表示：class="bb"，那跟id选择器一样，用.bb来找到，若有层级就用：.aa .bb来找到</p>
+				<p>层级关系不能太深，最好只有3级，再深的话会影响浏览器加载速度</p>
+				<p>4.相邻选择器 表达式：.bb+ .aa{};就会作用于类.bb下面相邻类.aa的元素，一是同层级，后方第一个相邻的元素</p>
+				<p>5.属性选择器</p>
+				<p>6.伪类选择器 .before和after CSS 伪元素 只能加内容和符号.用法：.after:after{content:'我在后面吧'; color:#F00;} 后面加内容;用法：.before:before{content:'我在前面吧'; color:#F00;} 前面加内容</p>
+				<p><b>优先级，提升权限</b></p>
+				<p>1.一般优先：内联样式-->内部样式-->外部样式 [开发里面:一般用的是外面样式,这样页面元素与样式列表可以分离,而且方便维护,提高效率]</p>
+				<p>&copy;&copy;扩展：外部样式引入有：&lt;link herf="地址" rel="stylesheet" type="text/css"&gt;或&copyimport url("地址路径")[常用在外面css中,导入样式进行合并样式]</p>
+				<p>2.同样[即同在内联样式中，或同在内部样式……]样式：就近原则</p>
+				<p>3.在同样的内部样式或外部样式时：a.id选择器的>类选择器;b.层级关系时，定位的越精准优先级越高</p>
+				<p>4.有一种提权限的方法：在后面！important，他权限大于内联样式大于内部样式大于外部样式</p>
+				<p><b>css注释</b> css注释只有：/*注释部分*/</p>
+				<p><b>CSS3特殊效果</b></p>
+				<p>box-shadow: 3px 3px 4px #2fe62b;阴影</p>
+				<p>border-radius: 6px;边角圆角效果</p>
+				<p>透明度:opacuty:0.8;</p>
+				<p><b>CSS3动画效果</b></p>
+				<p>颜色过渡transition:all 1s ease; //1s,是花多少时间完成 ease是 linear为均速</p><br/>
+				<p>等比例放大和缩小transform:scale(x);可以用于盒子、图片，它里面有一个参数x，表示等比例放大和缩小，1为原大小它里面有2个参数x，y，表示横抽x放大和缩小多少，纵抽y放大和缩小多少，1为原大小</p>
+				<p>©©扩展：有子属性transorom:scaleX();[横抽x缩放]，transfrom:scaleY();[纵抽y缩放]</p><br/>
+				<p>平移transform:translate(x,y);</p>
+				<p>它里面有2个参数x，y，表示横抽x平移，纵抽y平移</p>
+				<p>©©扩展：有子属性transform:translateX();[只横抽x平移]，transform:transtarteY	();[只纵抽y平移]</p><br/>
+				<p>指定对象的2D rotation（2D旋转）transform:rotate(xdeg);</p>
+				<p>它里面有一个参数x，表示旋转的度数，0-360</p>
+				<p>©©扩展：有子属性transform:rotateX();[横抽x方向旋转]，transform:rotateY();[纵抽y方向旋转]</p><br/>
+				<p>指定对象skew transform:ation(斜切扭曲)transform:skew(xdeg,ydeg);</p>
+				<p>它里面有2个参数x,y，表示倾斜的度数，0-360</p>
+				<p>©©扩展：有子属性transform:skewX();[横抽x方向倾斜]，transform:skewY();[纵抽y方向倾斜]</p><br/>
+				<p>中心点属性transform-origin(x y);</p>
+				<p>它里面有2个参数x,y，默认是50% 50%，物体的中心</p><br/>
+				<p>关键帧动画@keyframes</p>
+				<p>关键帧格式：@keyframes 电影名称{10%{属性列表} 20%{属性列表}}中间没有；0%可以用from，100%可以to代替</p>
+				<p>驱动电影：animation：电影名称 1s ease</p>
+				<p>css3兼容问题</p>
+				<p>-ms-transform:rotate(7deg);//-ms代表ie内核识别码</p>
+				<p>-moz-transform:rotate(7deg);//-moz代表火狐内核识别码</p>
+				<p>-webkit-transform:rotate(7deg);//-webkit代表谷歌内核识别码</p>
+				<p>-o-transform:rotate(7deg);//-o代表欧朋【opera】内核识别码</p>
+				<p>transform:rotate(7deg);//统一标识语句。。。最好这句话也写下去，符合w3c标准</p>
+				<br/>
+
+				<h5 id="web3">absolute 定位认识</h5>
+				<p>position之fixed固定定位、absolute绝对定位和relative相对定位；</p>
+				<p>absolute绝对定位和relative相对定位：需要参考点，用position:relative现实</p>
+				<p>absolute绝对定位和relative相对定位：前者不占位置流，后者占。</p>
+				<p>fixed：表示固定定位，与absolute定位类型类似，但它的相对移动的坐标是视图（屏幕内的网页窗口）本身</p>
+				<h5 id="web4">颜色部分</h5>
+				<p>颜色分类</p>
+				<p><b>16进制</b></p>
+				<p>格式：#+(0-9)+(a-f)组成，共6位</p>
+				<p><b>hs1-[ie9+支持]</b></p>
+				<p>格式：hs1(色调,饱和度,亮度);亮度为0%，是黑色，100%是白色。其他颜色一般hs1(x,50%,50%)</p>
+				<p>而x值有一个话：青年就要耍流氓（英文的首字母），就是Y(0-60黄)G(61-120绿)C(121-180青)B(181-240蓝)M(241-300洋红)R(301-360红)。</p>
+				<p><b>rbg-[ie9+支持]</b></p>
+				<p>格式：rgb(x,y,z)如：rgb(255,255,255)，全0是黑色，全255是白色</p>
+				<p>&copy;&copy;扩展：rgba(x,y,z,透明度[0-1]);</p>
+				<p><b>英文单词值</b></p>
+				<p>如：red红，green蓝，blue蓝…………</p>
+				<br/>
+
+				<h5 id="web5">Javascript</h5>
+				<p><b>Javascript基础</b></p>
+				<p class="content1"></p>
+				<p><b>Javascript内部对象</b></p>
+				<p class="content2"></p>
+				<p><b>Javascript外部对象</b></p>
+				<p class="content3"></p>
+				<p><b>Javascript自定义对象</b></p>
+				<p class="content4"></p>
+				<p><b>Javascript事件</b></p>
+				<p class="content5"></p>
+				<p id="web6"><b>jquery</b></p>
+				<p class="content6"></p>
+				<p id="web7"><b>异步加载</b></p>
+				<p class="content7"></p>
+				<p class="content8"></p>
+				<p>[此处完结]</p>
+			</div>
+			<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$(".content1").load("other/script_base.html");
+					$(".content2").load("other/script_inside.html");
+					$(".content3").load("other/script_external.html");
+					$(".content4").load("other/script_custom.html");
+					$(".content5").load("other/script_click.html");
+					$(".content6").load("other/jquery.html");
+					$(".content7").load("other/ajax.html");
+					$(".content8").load("other/ajaxche.html");
+				});
+			</script>
+		</div>
+	</body>
+</html>
